@@ -1102,3 +1102,62 @@ footer button {
     margin-top: 28px;
   }
 }
+/* Keep the conversation and composer in one viewport. */
+main:has(.chat-layout) {
+  padding-top: 26px;
+  padding-bottom: 12px;
+}
+.chat-layout {
+  display: flex;
+  flex-direction: column;
+  height: calc(100dvh - 230px);
+  min-height: 460px;
+}
+.chat-messages {
+  flex: 1;
+  min-height: 0;
+  max-height: none;
+}
+.chat-layout .composer {
+  flex-shrink: 0;
+}
+@media (max-width: 560px) {
+  main:has(.chat-layout) {
+    padding-top: 18px;
+    min-height: 0;
+  }
+  .chat-layout {
+    height: calc(100dvh - 140px);
+    min-height: 400px;
+  }
+  .chat-heading h2 {
+    font-size: 16px;
+  }
+  .chat-layout .scope {
+    margin-top: 14px;
+    padding: 10px 0;
+  }
+  .chat-welcome {
+    padding: 18px 0;
+  }
+  .chat-welcome .medium {
+    width: 35px;
+    height: 35px;
+  }
+  .chat-welcome h1 {
+    margin-top: 12px;
+    font-size: 23px;
+  }
+  .chat-welcome p {
+    font-size: 11px;
+  }
+  .suggestions {
+    margin-top: 20px;
+  }
+  .suggestions button {
+    padding: 12px;
+  }
+  .app:has(.chat-layout) footer {
+    display: none;
+  }
+}

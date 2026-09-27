@@ -1,5 +1,13 @@
-import { scopedClient } from "@/lib/supabase";
+import { scopedClient, configured } from "@/lib/supabase";
 export async function POST(req: Request) {
+  if (!configured)
+    return Response.json(
+      {
+        error:
+          "Supabase setup is pending. Configure the project environment first.",
+      },
+      { status: 503 },
+    );
   try {
     const token = req.headers.get("authorization")?.replace(/^Bearer /, "");
     if (!token)

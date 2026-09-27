@@ -9,6 +9,12 @@ const orbitron = Orbitron({
   variable: "--font-orbitron",
 });
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_APP_URL ||
+      (process.env.VERCEL_PROJECT_PRODUCTION_URL
+        ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+        : "http://localhost:3000"),
+  ),
   title: "Company Brain — your business, connected",
   description:
     "A Cortex workspace for shared company knowledge. Connect your sources, bring your model, and ask better questions.",
