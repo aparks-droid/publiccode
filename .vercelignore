@@ -1,0 +1,5 @@
+.company-brain
+.env*
+supabase/.temp
+verify
+.git

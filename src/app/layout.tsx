@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Orbitron } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
 const mono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
-const orbitron = Orbitron({
-  subsets: ["latin"],
-  weight: ["500", "700"],
-  variable: "--font-orbitron",
-});
 export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_APP_URL ||
@@ -17,10 +13,10 @@ export const metadata: Metadata = {
   ),
   title: "Company Brain — your business, connected",
   description:
-    "A Cortex workspace for shared company knowledge. Connect your sources, bring your model, and ask better questions.",
+    "A workspace for shared company knowledge. Connect your sources, bring your model, and ask better questions.",
   openGraph: {
     title: "Company Brain",
-    description: "Your business, connected. Built with Cortex.",
+    description: "Your business, connected.",
     type: "website",
   },
 };
@@ -30,12 +26,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geist.variable} ${mono.variable} ${orbitron.variable}`}
-        style={{ fontFamily: "var(--font-geist), sans-serif" }}
-      >
+    <html lang="en" className={`${geist.variable} ${mono.variable}`}>
+      <body className="antialiased">
         {children}
+        <Toaster theme="light" position="bottom-right" />
       </body>
     </html>
   );

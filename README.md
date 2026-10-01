@@ -1,75 +1,88 @@
 # Company Brain
 
-A Cortex company workspace for the How to AI community. Connect source records to Supabase, browse knowledge spaces, and ask business questions with your own model account.
+A local, customizable business workspace for the How to AI community. Connect Slack, Attio and Stripe to **your own Supabase project**, then use your own OpenAI or Anthropic API key to ask questions and surface issues across the records.
 
-## Run
+The [hosted site](https://company-brain-drab.vercel.app/) is a sample preview. Everyone runs their own copy locally; there is no shared company database or subscription-login bridge.
+
+## Start here
+
+You need Node.js 22 or later, access to this repository, and your own Supabase project.
 
 ```sh
+git clone https://github.com/how-to-ai-co/company-brain.git
+cd company-brain
 npm install
-cp .env.example .env.local
 npm run dev
 ```
 
-Create a Supabase project, put its URL and publishable/anon key in `.env.local`, and apply `supabase/migrations/202609270001_brain.sql` with the SQL editor or Supabase CLI. Enable email/password authentication. Set the Supabase Auth Site URL and allowed redirects to your deployment. Keep email confirmation enabled; production email delivery may require your own SMTP configuration.
+Open **http://127.0.0.1:3000**. The app and its local monitor start together. No Vercel deployment or environment-file editing is needed.
 
-Sign up, confirm your email, sign in, and create a workspace. Each account currently owns one private workspace; team membership and source-specific access controls are a future extension. RLS isolates all workspace records and history. No service-role key is used by the application.
+1. **Connect your database.** Create your own Supabase project. Run [`supabase/setup.sql`](supabase/setup.sql) in its SQL editor once. Enter its project URL and secret key (or legacy `service_role` key) in the app's setup form. The app verifies the schema and privileged key before saving it. Never use the instructor's project.
+2. **Connect a source.** Open Sources → Connect Slack, Attio or Stripe. Follow the short instructions, enter the source token, and choose **Connect & sync**. A connection counts as successful only after a real API read and database save.
+3. **Connect AI.** Choose Use ChatGPT (OpenAI API key) or Use Claude Code (Anthropic API key). These call the provider APIs, not subscription apps. Anthropic keys should have Scope set to Default workspace or another workspace. API billing is separate from a subscription.
+4. **Ask and inspect.** Ask a question that the imported records can answer. Review the cited source records. Use Analyze to populate Attention.
+5. **Optionally keep watch.** In Sources, describe what should get attention, choose an interval, and enable automatic checks. These use your saved AI key and API billing. Your computer and app must remain running; the browser can be closed. Closing the app stops checks.
 
-## Connect a source
+If you want to explore first, **Load sample company** adds invented Driftwood Coffee Roasters records to an otherwise empty workspace. Once you connect a real source, sample records are excluded from the UI and AI analysis. Loading samples never replaces real company data.
 
-Sources are adapter slots, not preinstalled Slack/CRM/ERP OAuth integrations. Register a source, then import real normalized JSON in the UI or call `POST /api/ingest` with the signed-in user's Supabase access token as the Bearer token. Batch limit: 100 records. Re-importing a source/external ID updates the existing record.
+For a guided coding-agent workflow, use [`class/build-recipe.md`](class/build-recipe.md).
 
-```json
-{
-  "source": "source-uuid-from-the-ui",
-  "records": [
-    {
-      "external_id": "your-system-record-id",
-      "domain": "finance",
-      "title": "Invoice 2026-042",
-      "content": "The source record's actual text and figures.",
-      "source_url": "https://your-source.example/record",
-      "metadata": { "currency": "USD" }
-    }
-  ]
-}
-```
+## What each connection imports
 
-Domains: `company`, `finance`, `operations`, `inventory`, `sales`, `marketing`, `cx`. Your connector should fetch through the source's API/MCP, respect the importing user's access, normalize records, then post batches. Use short-lived session tokens; scheduled sync needs a deliberately scoped service identity. Source deletion cascades to records. Provider-side deletions and permissions changes must be propagated by your adapter.
+| Source | Credential | Current scope |
+| --- | --- | --- |
+| Slack | Your workspace's bot token | Last 30 days from up to 20 joined public/private channels, up to 300 top-level messages per channel. Thread replies are not included. |
+| Attio | API key with `record_permission:read` and `object_configuration:read` | Up to 1,000 records from the standard Deals object. Source stages and attributes are preserved. |
+| Stripe | Restricted key with Charges read permission | Up to 1,000 charge attempts from the last 90 days, including failed charges and refunds. Test keys read test data. |
+| Other tools | Your adapter or export | Import up to 100 normalized JSON records at a time. |
 
-Supabase is a shared query layer. Existing source systems remain authoritative. This starter uses Postgres full-text retrieval (20 matches; falls back to 20 recent scoped records). It is not a financial aggregation engine: large datasets, totals, reconciliations, and time-series metrics need structured domain tables and deterministic queries. No fabricated demo metrics are shown.
+Adapters are read-only toward source services. Each successful sync atomically replaces that source's **bounded snapshot** in Supabase; updates and deletions within that snapshot are reflected without duplicating IDs. Failures preserve the previous snapshot. This is a working starter, not full-history ingestion: private-channel permissions, source retention, pagination caps, and missing Slack thread replies limit coverage. Source cards show their coverage and last sync/error.
 
-## Bring your model
+Slack setup: create an internal app, add bot scopes `channels:read`, `channels:history`, `groups:read`, `groups:history`, install it in your workspace, then invite it to each selected channel. [Slack API documentation](https://docs.slack.dev/reference/methods/conversations.history/).
 
-### Anthropic
+Attio: Settings → Developers → API key; enable the read scopes above and ensure Deals exists. [Attio deal records API](https://docs.attio.com/rest-api/endpoint-reference/standard-objects/deals/list-deal-records).
 
-Open Ask your brain → Model settings. Paste your Anthropic API key and model ID. The key stays in browser memory, is forwarded through the app's server to Anthropic, and is never stored in Supabase. Refreshing clears it. API usage is billed separately from a Claude subscription. The selected records are sent to your chosen model provider. Default model ID is editable.
+Stripe: create a restricted key with Charges read access. [Stripe Charges API](https://docs.stripe.com/api/charges/list).
 
-### Codex account
+## How the brain works
 
-Install the official Codex CLI, then run locally:
+**Sources → Supabase records → retrieval / attention analysis → Home, Attention and chat.**
+
+Chat searches Postgres full text, expands across departments when the initial search cap is hit, and falls back to recent records. It sends bounded evidence plus up to 12 conversation turns to the selected provider. This is evidence retrieval, not an exact accounting engine.
+
+Attention sends up to 400 recent records plus your attention guidelines to the model. It requires supporting record IDs, groups related issues, and saves a new analysis before removing old open issues. Resolved issues with identical category/evidence are suppressed. These are AI judgements, not a deterministic rules engine. Review priorities and cited evidence before acting.
+
+Automatic checks refresh connected sources first. If a source fails, existing attention items are kept rather than presenting a fresh all-company analysis. When enabled, analysis runs when data/guidelines change or a new UTC day begins. Monitor status, source errors, and analysis errors appear in Sources. If you restart the app, the next enabled check runs again; it does not replay every missed interval.
+
+## Your credentials and data
+
+- `.company-brain/connections.json` holds your local database, source and AI credentials. The folder is ignored by Git, with owner-only filesystem permissions. These are local plaintext secrets; protect your computer and don't share this folder.
+- Database and source keys never return to the browser. The local server connects to your Supabase project with a secret/service-role key. Database RLS denies anonymous browser access. The AI sees retrieved record content only when you ask/analyze or enable checks.
+- The launcher binds to `127.0.0.1`. Sensitive routes also reject remote hosts, cross-origin requests and non-JSON mutations. This is a single-person local application. Do not expose it through a tunnel or use it as a multi-user hosted service without adding authentication and authorization.
+- Deployments on Vercel automatically show only the bundled sample preview. They do not read local credentials or connect to company data.
+- Disconnect removes a saved source credential; existing imported records remain. Disconnect AI removes its saved key and stops future model calls from automatic checks.
+
+Existing installations: apply only the migrations you have not applied, in order. `20261002000100_local_private.sql` replaces the old open-workspace access with server-only access and adds atomic source sync. Existing records are preserved. Then use the local setup form with a secret/service-role key. Do not rerun the complete fresh-install SQL on an existing schema.
+
+## Customize
+
+Use Codex or Claude Code in this folder and ask it to extend your copy. Useful entry points:
+
+- `src/lib/server/connectors.ts`: add read adapters; return stable external IDs, text, metadata and original URLs.
+- `src/lib/server/sync.ts`: persist normalized source snapshots.
+- `src/app/api/analyze/route.ts`: attention criteria and evidence validation.
+- `src/app/api/chat/route.ts`: retrieval and questions.
+- `src/components/brain/`: Home, Attention, Sources, chat and department views.
+- `scripts/monitor.mjs`: recurring local checks.
+
+Finance totals across currencies, invoice-level accounting, full CRM relationships, Slack replies, document access propagation, team accounts and arbitrary ERP connections are further development work. Do not represent them as included connectors.
+
+## Verify
 
 ```sh
-npm run bridge -- --origin http://localhost:3000
-# For the hosted app, use its exact HTTPS origin instead.
-```
-
-Paste the pairing token shown by the bridge into Model settings, choose Sign in with Codex, finish the official browser login, and Check connection. The bridge uses Codex App Server's account login flow; it does not copy your existing Codex credentials. Credentials are stored in `~/.company-brain-codex`, with an isolated empty working directory. Keep the bridge running. Browser local-network permissions may be required for a hosted origin. The bridge accepts only its configured Origin and a random per-run pairing token, and listens only on loopback. Do not expose it publicly.
-
-Codex integration is a starter integration with an evolving App Server protocol. It requests a read-only sandbox, disables shell tools/web search, and rejects approval/tool requests. Verify compatibility with your installed Codex version before sharing deployment. Hosted login alone cannot access a user's local Codex account without this companion bridge.
-
-## Extend
-
-- Add adapters for Slack, Drive, ERP/accounting, CRM, support, and social.
-- Add structured finance/inventory tables and deterministic tools before promising exact aggregate answers.
-- Add team membership, roles, and document-level permission propagation before importing private shared company data.
-- Add provider sync jobs, cursor tracking, retries, deletions, and audit logs.
-- Add a bounded multi-turn retrieval strategy; current questions are answered independently, with chat history saved for display.
-
-## Validation
-
-```sh
+npm test
 npm run lint
 npm run build
 ```
 
-Do not commit `.env.local`, API keys, access tokens, or bridge credentials. This repository includes no synthetic company dataset. Empty views are intentional scaffolds for your community's future tools.
+Tests cover both AI providers with simulated API responses, source adapters, local credential persistence, request isolation, a fresh Postgres schema, access policies, atomic sync and retrieval. Live account verification requires the owner's own source credentials and AI key; passing fixture tests is not a claim that someone's account is connected. See [`VERIFICATION.md`](VERIFICATION.md).

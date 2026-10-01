@@ -1,0 +1,1359 @@
+{
+ "company": "Driftwood Coffee Roasters",
+ "note": "Fictional company for the AI 301 company-brain lesson. Every person, customer, and figure is invented.",
+ "sources": [
+  {
+   "kind": "slack",
+   "name": "Slack",
+   "records": [
+    {
+     "external_id": "slack-general-2026-09-28T09:02-0",
+     "domain": "operations",
+     "title": "#general — Alex: Morning all. Harvest lot from Huila landed Friday, cupping a",
+     "content": "Alex in #general, Sep 28, 2026 9:02 AM: Morning all. Harvest lot from Huila landed Friday, cupping at 2pm today in the lab. Everyone welcome.",
+     "source_url": "https://driftwood.example/slack/general/0",
+     "metadata": {
+      "channel": "general",
+      "author": "Alex",
+      "posted_at": "2026-09-28T09:02",
+      "text": "Morning all. Harvest lot from Huila landed Friday, cupping at 2pm today in the lab. Everyone welcome."
+     }
+    },
+    {
+     "external_id": "slack-general-2026-09-28T09:10-1",
+     "domain": "operations",
+     "title": "#general — Priya: Reminder: wholesale price list for Q4 goes live Thursday. Sa",
+     "content": "Priya in #general, Sep 28, 2026 9:10 AM: Reminder: wholesale price list for Q4 goes live Thursday. Sam has the final PDF.",
+     "source_url": "https://driftwood.example/slack/general/1",
+     "metadata": {
+      "channel": "general",
+      "author": "Priya",
+      "posted_at": "2026-09-28T09:10",
+      "text": "Reminder: wholesale price list for Q4 goes live Thursday. Sam has the final PDF."
+     }
+    },
+    {
+     "external_id": "slack-ops-2026-09-29T07:48-2",
+     "domain": "operations",
+     "title": "#ops — Marco: Roaster 2 drum bearing failed this morning. It is down until",
+     "content": "Marco in #ops, Sep 29, 2026 7:48 AM: Roaster 2 drum bearing failed this morning. It is down until we get the part.",
+     "source_url": "https://driftwood.example/slack/ops/2",
+     "metadata": {
+      "channel": "ops",
+      "author": "Marco",
+      "posted_at": "2026-09-29T07:48",
+      "text": "Roaster 2 drum bearing failed this morning. It is down until we get the part."
+     }
+    },
+    {
+     "external_id": "slack-ops-2026-09-29T07:55-3",
+     "domain": "operations",
+     "title": "#ops — Priya: How long?",
+     "content": "Priya in #ops, Sep 29, 2026 7:55 AM: How long?",
+     "source_url": "https://driftwood.example/slack/ops/3",
+     "metadata": {
+      "channel": "ops",
+      "author": "Priya",
+      "posted_at": "2026-09-29T07:55",
+      "text": "How long?"
+     }
+    },
+    {
+     "external_id": "slack-ops-2026-09-29T08:03-4",
+     "domain": "operations",
+     "title": "#ops — Marco: Replacement ships from Portland, arrives Oct 6. Until then w",
+     "content": "Marco in #ops, Sep 29, 2026 8:03 AM: Replacement ships from Portland, arrives Oct 6. Until then we only have Roaster 1, which halves capacity.",
+     "source_url": "https://driftwood.example/slack/ops/4",
+     "metadata": {
+      "channel": "ops",
+      "author": "Marco",
+      "posted_at": "2026-09-29T08:03",
+      "text": "Replacement ships from Portland, arrives Oct 6. Until then we only have Roaster 1, which halves capacity."
+     }
+    },
+    {
+     "external_id": "slack-ops-2026-09-29T08:05-5",
+     "domain": "operations",
+     "title": "#ops — Marco: Order 1042 for Lakeside Cafés (120 kg House Espresso) was du",
+     "content": "Marco in #ops, Sep 29, 2026 8:05 AM: Order 1042 for Lakeside Cafés (120 kg House Espresso) was due to ship Oct 1. Realistic ship date is now Oct 8.",
+     "source_url": "https://driftwood.example/slack/ops/5",
+     "metadata": {
+      "channel": "ops",
+      "author": "Marco",
+      "posted_at": "2026-09-29T08:05",
+      "text": "Order 1042 for Lakeside Cafés (120 kg House Espresso) was due to ship Oct 1. Realistic ship date is now Oct 8."
+     }
+    },
+    {
+     "external_id": "slack-ops-2026-09-29T08:11-6",
+     "domain": "operations",
+     "title": "#ops — Priya: Can we split it?",
+     "content": "Priya in #ops, Sep 29, 2026 8:11 AM: Can we split it?",
+     "source_url": "https://driftwood.example/slack/ops/6",
+     "metadata": {
+      "channel": "ops",
+      "author": "Priya",
+      "posted_at": "2026-09-29T08:11",
+      "text": "Can we split it?"
+     }
+    },
+    {
+     "external_id": "slack-ops-2026-09-29T08:14-7",
+     "domain": "operations",
+     "title": "#ops — Marco: Yes. I can roast 40 kg on Roaster 1 and ship that Oct 2, the",
+     "content": "Marco in #ops, Sep 29, 2026 8:14 AM: Yes. I can roast 40 kg on Roaster 1 and ship that Oct 2, then the other 80 kg on Oct 8.",
+     "source_url": "https://driftwood.example/slack/ops/7",
+     "metadata": {
+      "channel": "ops",
+      "author": "Marco",
+      "posted_at": "2026-09-29T08:14",
+      "text": "Yes. I can roast 40 kg on Roaster 1 and ship that Oct 2, then the other 80 kg on Oct 8."
+     }
+    },
+    {
+     "external_id": "slack-ops-2026-09-29T08:16-8",
+     "domain": "operations",
+     "title": "#ops — Priya: Do it. I will tell Sam so the customer hears it from us firs",
+     "content": "Priya in #ops, Sep 29, 2026 8:16 AM: Do it. I will tell Sam so the customer hears it from us first.",
+     "source_url": "https://driftwood.example/slack/ops/8",
+     "metadata": {
+      "channel": "ops",
+      "author": "Priya",
+      "posted_at": "2026-09-29T08:16",
+      "text": "Do it. I will tell Sam so the customer hears it from us first."
+     }
+    },
+    {
+     "external_id": "slack-sales-2026-09-29T10:30-9",
+     "domain": "sales",
+     "title": "#sales — Sam: Northgate Coworking tasting is booked for Oct 9. Three floor",
+     "content": "Sam in #sales, Sep 29, 2026 10:30 AM: Northgate Coworking tasting is booked for Oct 9. Three floors, self-serve espresso. They are unhappy with freshness from their current supplier.",
+     "source_url": "https://driftwood.example/slack/sales/9",
+     "metadata": {
+      "channel": "sales",
+      "author": "Sam",
+      "posted_at": "2026-09-29T10:30",
+      "text": "Northgate Coworking tasting is booked for Oct 9. Three floors, self-serve espresso. They are unhappy with freshness from their current supplier."
+     }
+    },
+    {
+     "external_id": "slack-sales-2026-09-29T10:41-10",
+     "domain": "sales",
+     "title": "#sales — Alex: Nice. Bring the Huila lot.",
+     "content": "Alex in #sales, Sep 29, 2026 10:41 AM: Nice. Bring the Huila lot.",
+     "source_url": "https://driftwood.example/slack/sales/10",
+     "metadata": {
+      "channel": "sales",
+      "author": "Alex",
+      "posted_at": "2026-09-29T10:41",
+      "text": "Nice. Bring the Huila lot."
+     }
+    },
+    {
+     "external_id": "slack-sales-2026-09-30T11:20-11",
+     "domain": "sales",
+     "title": "#sales — Sam: Called Jordan Reyes at Lakeside. Told them 40 kg ships Oct 2",
+     "content": "Sam in #sales, Sep 30, 2026 11:20 AM: Called Jordan Reyes at Lakeside. Told them 40 kg ships Oct 2 and the remaining 80 kg Oct 8.",
+     "source_url": "https://driftwood.example/slack/sales/11",
+     "metadata": {
+      "channel": "sales",
+      "author": "Sam",
+      "posted_at": "2026-09-30T11:20",
+      "text": "Called Jordan Reyes at Lakeside. Told them 40 kg ships Oct 2 and the remaining 80 kg Oct 8."
+     }
+    },
+    {
+     "external_id": "slack-sales-2026-09-30T11:22-12",
+     "domain": "sales",
+     "title": "#sales — Sam: Jordan was frustrated. Their Riverside location runs out of ",
+     "content": "Sam in #sales, Sep 30, 2026 11:22 AM: Jordan was frustrated. Their Riverside location runs out of espresso around Oct 5.",
+     "source_url": "https://driftwood.example/slack/sales/12",
+     "metadata": {
+      "channel": "sales",
+      "author": "Sam",
+      "posted_at": "2026-09-30T11:22",
+      "text": "Jordan was frustrated. Their Riverside location runs out of espresso around Oct 5."
+     }
+    },
+    {
+     "external_id": "slack-sales-2026-09-30T11:24-13",
+     "domain": "sales",
+     "title": "#sales — Sam: I promised to check whether we can get an extra 20 kg to Riv",
+     "content": "Sam in #sales, Sep 30, 2026 11:24 AM: I promised to check whether we can get an extra 20 kg to Riverside by Oct 4. I have NOT confirmed that with Marco yet. Jordan also asked whether the late-delivery credit applies.",
+     "source_url": "https://driftwood.example/slack/sales/13",
+     "metadata": {
+      "channel": "sales",
+      "author": "Sam",
+      "posted_at": "2026-09-30T11:24",
+      "text": "I promised to check whether we can get an extra 20 kg to Riverside by Oct 4. I have NOT confirmed that with Marco yet. Jordan also asked whether the late-delivery credit applies."
+     }
+    },
+    {
+     "external_id": "slack-ops-2026-09-30T13:05-14",
+     "domain": "operations",
+     "title": "#ops — Marco: Stock check on roasted House Espresso: 35 kg on hand. 15 kg ",
+     "content": "Marco in #ops, Sep 30, 2026 1:05 PM: Stock check on roasted House Espresso: 35 kg on hand. 15 kg is allocated to Birchwood Hotel, so 20 kg is unallocated.",
+     "source_url": "https://driftwood.example/slack/ops/14",
+     "metadata": {
+      "channel": "ops",
+      "author": "Marco",
+      "posted_at": "2026-09-30T13:05",
+      "text": "Stock check on roasted House Espresso: 35 kg on hand. 15 kg is allocated to Birchwood Hotel, so 20 kg is unallocated."
+     }
+    },
+    {
+     "external_id": "slack-ops-2026-09-30T13:06-15",
+     "domain": "operations",
+     "title": "#ops — Marco: We have 600 kg of green coffee for it, so supply is fine onc",
+     "content": "Marco in #ops, Sep 30, 2026 1:06 PM: We have 600 kg of green coffee for it, so supply is fine once Roaster 2 is back.",
+     "source_url": "https://driftwood.example/slack/ops/15",
+     "metadata": {
+      "channel": "ops",
+      "author": "Marco",
+      "posted_at": "2026-09-30T13:06",
+      "text": "We have 600 kg of green coffee for it, so supply is fine once Roaster 2 is back."
+     }
+    },
+    {
+     "external_id": "slack-finance-2026-09-30T14:12-16",
+     "domain": "finance",
+     "title": "#finance — Dana: Lakeside's September payment ($4,860) failed again in Stripe",
+     "content": "Dana in #finance, Sep 30, 2026 2:12 PM: Lakeside's September payment ($4,860) failed again in Stripe. Card declined twice. I am about to email them about it.",
+     "source_url": "https://driftwood.example/slack/finance/16",
+     "metadata": {
+      "channel": "finance",
+      "author": "Dana",
+      "posted_at": "2026-09-30T14:12",
+      "text": "Lakeside's September payment ($4,860) failed again in Stripe. Card declined twice. I am about to email them about it."
+     }
+    },
+    {
+     "external_id": "slack-finance-2026-09-30T14:15-17",
+     "domain": "finance",
+     "title": "#finance — Sam: Please hold. Their order 1042 is late because of our roaster",
+     "content": "Sam in #finance, Sep 30, 2026 2:15 PM: Please hold. Their order 1042 is late because of our roaster, and renewal talks are on Oct 6. Chasing them this week looks bad.",
+     "source_url": "https://driftwood.example/slack/finance/17",
+     "metadata": {
+      "channel": "finance",
+      "author": "Sam",
+      "posted_at": "2026-09-30T14:15",
+      "text": "Please hold. Their order 1042 is late because of our roaster, and renewal talks are on Oct 6. Chasing them this week looks bad."
+     }
+    },
+    {
+     "external_id": "slack-finance-2026-09-30T14:21-18",
+     "domain": "finance",
+     "title": "#finance — Dana: Fine, I will hold until Oct 7. But the contract credit only ",
+     "content": "Dana in #finance, Sep 30, 2026 2:21 PM: Fine, I will hold until Oct 7. But the contract credit only applies to the late order. They still owe the $4,860 in full.",
+     "source_url": "https://driftwood.example/slack/finance/18",
+     "metadata": {
+      "channel": "finance",
+      "author": "Dana",
+      "posted_at": "2026-09-30T14:21",
+      "text": "Fine, I will hold until Oct 7. But the contract credit only applies to the late order. They still owe the $4,860 in full."
+     }
+    },
+    {
+     "external_id": "slack-finance-2026-09-30T14:40-19",
+     "domain": "finance",
+     "title": "#finance — Dana: Fernhill Market paid August on time. September is due Oct 5.",
+     "content": "Dana in #finance, Sep 30, 2026 2:40 PM: Fernhill Market paid August on time. September is due Oct 5.",
+     "source_url": "https://driftwood.example/slack/finance/19",
+     "metadata": {
+      "channel": "finance",
+      "author": "Dana",
+      "posted_at": "2026-09-30T14:40",
+      "text": "Fernhill Market paid August on time. September is due Oct 5."
+     }
+    },
+    {
+     "external_id": "slack-leadership-2026-06-02T09:00-20",
+     "domain": "finance",
+     "title": "#leadership — Alex: Pinned policy: Sales may offer goodwill credits up to 5% of ",
+     "content": "Alex in #leadership, Jun 2, 2026 9:00 AM: Pinned policy: Sales may offer goodwill credits up to 5% of an order without approval. Anything above 5% needs my approval. Issue every credit as a Stripe refund so it is on record.",
+     "source_url": "https://driftwood.example/slack/leadership/20",
+     "metadata": {
+      "channel": "leadership",
+      "author": "Alex",
+      "posted_at": "2026-06-02T09:00",
+      "text": "Pinned policy: Sales may offer goodwill credits up to 5% of an order without approval. Anything above 5% needs my approval. Issue every credit as a Stripe refund so it is on record."
+     }
+    },
+    {
+     "external_id": "slack-leadership-2026-09-30T15:02-21",
+     "domain": "finance",
+     "title": "#leadership — Priya: Lakeside contract says 5% credit on late orders. That is $16",
+     "content": "Priya in #leadership, Sep 30, 2026 3:02 PM: Lakeside contract says 5% credit on late orders. That is $162 on order 1042. Sam wants to offer 10% to protect the renewal.",
+     "source_url": "https://driftwood.example/slack/leadership/21",
+     "metadata": {
+      "channel": "leadership",
+      "author": "Priya",
+      "posted_at": "2026-09-30T15:02",
+      "text": "Lakeside contract says 5% credit on late orders. That is $162 on order 1042. Sam wants to offer 10% to protect the renewal."
+     }
+    },
+    {
+     "external_id": "slack-leadership-2026-09-30T15:10-22",
+     "domain": "finance",
+     "title": "#leadership — Alex: I am open to 10% but want to see their payment history first",
+     "content": "Alex in #leadership, Sep 30, 2026 3:10 PM: I am open to 10% but want to see their payment history first. No decision yet.",
+     "source_url": "https://driftwood.example/slack/leadership/22",
+     "metadata": {
+      "channel": "leadership",
+      "author": "Alex",
+      "posted_at": "2026-09-30T15:10",
+      "text": "I am open to 10% but want to see their payment history first. No decision yet."
+     }
+    },
+    {
+     "external_id": "slack-support-2026-09-30T16:30-23",
+     "domain": "operations",
+     "title": "#support — Sam: Forwarded from the Riverside store manager at Lakeside: \"We ",
+     "content": "Sam in #support, Sep 30, 2026 4:30 PM: Forwarded from the Riverside store manager at Lakeside: \"We have about 5 days of House Espresso left. Our order has not shipped. Can someone tell us when it is coming?\"",
+     "source_url": "https://driftwood.example/slack/support/23",
+     "metadata": {
+      "channel": "support",
+      "author": "Sam",
+      "posted_at": "2026-09-30T16:30",
+      "text": "Forwarded from the Riverside store manager at Lakeside: \"We have about 5 days of House Espresso left. Our order has not shipped. Can someone tell us when it is coming?\""
+     }
+    },
+    {
+     "external_id": "slack-support-2026-09-30T16:34-24",
+     "domain": "operations",
+     "title": "#support — Priya: Who is replying? This should not sit overnight.",
+     "content": "Priya in #support, Sep 30, 2026 4:34 PM: Who is replying? This should not sit overnight.",
+     "source_url": "https://driftwood.example/slack/support/24",
+     "metadata": {
+      "channel": "support",
+      "author": "Priya",
+      "posted_at": "2026-09-30T16:34",
+      "text": "Who is replying? This should not sit overnight."
+     }
+    },
+    {
+     "external_id": "slack-support-2026-09-30T16:36-25",
+     "domain": "operations",
+     "title": "#support — Sam: Mine. I will reply once Marco confirms the extra 20 kg.",
+     "content": "Sam in #support, Sep 30, 2026 4:36 PM: Mine. I will reply once Marco confirms the extra 20 kg.",
+     "source_url": "https://driftwood.example/slack/support/25",
+     "metadata": {
+      "channel": "support",
+      "author": "Sam",
+      "posted_at": "2026-09-30T16:36",
+      "text": "Mine. I will reply once Marco confirms the extra 20 kg."
+     }
+    },
+    {
+     "external_id": "slack-general-2026-10-01T08:45-26",
+     "domain": "operations",
+     "title": "#general — Dana: Month-end close starts today. Please get September expenses ",
+     "content": "Dana in #general, Oct 1, 2026 8:45 AM: Month-end close starts today. Please get September expenses in by Friday.",
+     "source_url": "https://driftwood.example/slack/general/26",
+     "metadata": {
+      "channel": "general",
+      "author": "Dana",
+      "posted_at": "2026-10-01T08:45",
+      "text": "Month-end close starts today. Please get September expenses in by Friday."
+     }
+    },
+    {
+     "external_id": "slack-ops-2026-09-30T17:05-x0",
+     "domain": "operations",
+     "title": "#ops — Marco: Heads up: I am the only one trained on Roaster 1 and I am ou",
+     "content": "Marco in #ops, Sep 30, 2026 5:05 PM: Heads up: I am the only one trained on Roaster 1 and I am out Oct 9 and 10. Who is covering the roast schedule those two days?",
+     "source_url": "https://driftwood.example/slack/ops/x0",
+     "metadata": {
+      "channel": "ops",
+      "author": "Marco",
+      "posted_at": "2026-09-30T17:05",
+      "text": "Heads up: I am the only one trained on Roaster 1 and I am out Oct 9 and 10. Who is covering the roast schedule those two days?"
+     }
+    },
+    {
+     "external_id": "slack-ops-2026-10-01T08:20-x1",
+     "domain": "operations",
+     "title": "#ops — Marco: Bumping this. Nobody has picked up roasting cover for Oct 9 ",
+     "content": "Marco in #ops, Oct 1, 2026 8:20 AM: Bumping this. Nobody has picked up roasting cover for Oct 9 and 10 yet.",
+     "source_url": "https://driftwood.example/slack/ops/x1",
+     "metadata": {
+      "channel": "ops",
+      "author": "Marco",
+      "posted_at": "2026-10-01T08:20",
+      "text": "Bumping this. Nobody has picked up roasting cover for Oct 9 and 10 yet."
+     }
+    }
+   ]
+  },
+  {
+   "kind": "attio",
+   "name": "Attio",
+   "records": [
+    {
+     "external_id": "crm-account-lakeside",
+     "domain": "sales",
+     "title": "Account — Lakeside Cafés",
+     "content": "Lakeside Cafés. 5 locations (Downtown, Riverside, University, Harbor, Northgate). Customer since March 2024. Main contact: Jordan Reyes, Operations Director. Account owner: Sam. Average monthly spend: $4,500. Buys House Espresso and Decaf Blend wholesale.",
+     "source_url": "https://driftwood.example/attio/companies/lakeside",
+     "metadata": {
+      "type": "company",
+      "company": "Lakeside Cafés"
+     }
+    },
+    {
+     "external_id": "crm-account-birchwood",
+     "domain": "sales",
+     "title": "Account — Birchwood Hotel",
+     "content": "Birchwood Hotel. One location, restaurant and room service. Customer since January 2026. Contact: Mei Tanaka, F&B Manager. Monthly spend: $1,350. No open issues. Payments always succeed on the first try.",
+     "source_url": "https://driftwood.example/attio/companies/birchwood",
+     "metadata": {
+      "type": "company",
+      "company": "Birchwood Hotel"
+     }
+    },
+    {
+     "external_id": "crm-note-lakeside-contract",
+     "domain": "sales",
+     "title": "Note — Lakeside Cafés 2026 supply agreement terms",
+     "content": "Note on the Lakeside Cafés account. Signed supply agreement terms: Term Jan 1 – Dec 31, 2026. Driftwood will ship confirmed orders within 5 business days of the order date. If an order ships late, the customer receives a credit of 5% of that order's value on their next invoice. Payment terms: net 30. Invoices more than 30 days overdue may pause new shipments at Driftwood's discretion.",
+     "source_url": "https://driftwood.example/attio/notes/lakeside-contract",
+     "metadata": {
+      "type": "note",
+      "company": "Lakeside Cafés"
+     }
+    },
+    {
+     "external_id": "crm-deal-harbor-street-bakery-house-drip-blend",
+     "domain": "sales",
+     "title": "Deal — Harbor Street Bakery: House drip blend",
+     "content": "Deal with Harbor Street Bakery: House drip blend. Stage: Lead. Value: $14,400 per year. Owner: Sam. Contact: Rosa Alvarez. Expected close: Nov 15, 2026. Two bakery locations. Came in through the website form on Sep 26. Next step: Send sample box.",
+     "source_url": "https://driftwood.example/attio/deals/harbor-street-bakery-house-drip-blend",
+     "metadata": {
+      "type": "deal",
+      "company": "Harbor Street Bakery",
+      "name": "House drip blend",
+      "stage": "Lead",
+      "value": 14400,
+      "owner": "Sam",
+      "contact": "Rosa Alvarez",
+      "close_date": "2026-11-15",
+      "next_step": "Send sample box"
+     }
+    },
+    {
+     "external_id": "crm-deal-juniper-yoga-studio-lobby-coffee-bar",
+     "domain": "sales",
+     "title": "Deal — Juniper Yoga Studio: Lobby coffee bar",
+     "content": "Deal with Juniper Yoga Studio: Lobby coffee bar. Stage: Lead. Value: $4,800 per year. Owner: Priya. Contact: Tom Whitfield. Expected close: Nov 30, 2026. Referred by Birchwood Hotel. Next step: Intro call Oct 7.",
+     "source_url": "https://driftwood.example/attio/deals/juniper-yoga-studio-lobby-coffee-bar",
+     "metadata": {
+      "type": "deal",
+      "company": "Juniper Yoga Studio",
+      "name": "Lobby coffee bar",
+      "stage": "Lead",
+      "value": 4800,
+      "owner": "Priya",
+      "contact": "Tom Whitfield",
+      "close_date": "2026-11-30",
+      "next_step": "Intro call Oct 7"
+     }
+    },
+    {
+     "external_id": "crm-deal-pinecrest-golf-club-clubhouse-and-events",
+     "domain": "sales",
+     "title": "Deal — Pinecrest Golf Club: Clubhouse and events",
+     "content": "Deal with Pinecrest Golf Club: Clubhouse and events. Stage: Lead. Value: $26,000 per year. Owner: Sam. Contact: Helen Park. Expected close: Dec 10, 2026. Inbound email asking for wholesale pricing. Next step: Find the F&B decision maker. Fit: Large venue, but no decision maker identified yet. Blocker: No named buyer.",
+     "source_url": "https://driftwood.example/attio/deals/pinecrest-golf-club-clubhouse-and-events",
+     "metadata": {
+      "type": "deal",
+      "company": "Pinecrest Golf Club",
+      "name": "Clubhouse and events",
+      "stage": "Lead",
+      "value": 26000,
+      "owner": "Sam",
+      "contact": "Helen Park",
+      "close_date": "2026-12-10",
+      "next_step": "Find the F&B decision maker",
+      "fit": "Large venue, but no decision maker identified yet.",
+      "blocker": "No named buyer."
+     }
+    },
+    {
+     "external_id": "crm-deal-northgate-coworking-self-serve-espresso-3-floors",
+     "domain": "sales",
+     "title": "Deal — Northgate Coworking: Self-serve espresso, 3 floors",
+     "content": "Deal with Northgate Coworking: Self-serve espresso, 3 floors. Stage: Qualified. Value: $21,000 per year. Owner: Sam. Contact: Dev Malhotra. Expected close: Oct 30, 2026. Unhappy with freshness from their national supplier. Next step: Tasting on Oct 9. Fit: Unhappy with their current supplier; freshness is our strength. Blocker: Tasting on Oct 9 falls on a day with no roasting cover.",
+     "source_url": "https://driftwood.example/attio/deals/northgate-coworking-self-serve-espresso-3-floors",
+     "metadata": {
+      "type": "deal",
+      "company": "Northgate Coworking",
+      "name": "Self-serve espresso, 3 floors",
+      "stage": "Qualified",
+      "value": 21000,
+      "owner": "Sam",
+      "contact": "Dev Malhotra",
+      "close_date": "2026-10-30",
+      "next_step": "Tasting on Oct 9",
+      "fit": "Unhappy with their current supplier; freshness is our strength.",
+      "blocker": "Tasting on Oct 9 falls on a day with no roasting cover."
+     }
+    },
+    {
+     "external_id": "crm-deal-saltmarsh-grocers-retail-bags-4-stores",
+     "domain": "sales",
+     "title": "Deal — Saltmarsh Grocers: Retail bags, 4 stores",
+     "content": "Deal with Saltmarsh Grocers: Retail bags, 4 stores. Stage: Qualified. Value: $32,000 per year. Owner: Alex. Contact: Nina Brooks. Expected close: Nov 20, 2026. Wants private-label bags by the holidays. Next step: Send retail price list. Fit: Four stores and a holiday deadline; biggest new-logo deal.",
+     "source_url": "https://driftwood.example/attio/deals/saltmarsh-grocers-retail-bags-4-stores",
+     "metadata": {
+      "type": "deal",
+      "company": "Saltmarsh Grocers",
+      "name": "Retail bags, 4 stores",
+      "stage": "Qualified",
+      "value": 32000,
+      "owner": "Alex",
+      "contact": "Nina Brooks",
+      "close_date": "2026-11-20",
+      "next_step": "Send retail price list",
+      "fit": "Four stores and a holiday deadline; biggest new-logo deal."
+     }
+    },
+    {
+     "external_id": "crm-deal-ember-and-oak-restaurant-espresso-program",
+     "domain": "sales",
+     "title": "Deal — Ember & Oak: Restaurant espresso program",
+     "content": "Deal with Ember & Oak: Restaurant espresso program. Stage: Qualified. Value: $11,500 per year. Owner: Priya. Contact: Luis Ortega. Expected close: Oct 25, 2026. Opening a second restaurant in November. Next step: Site visit Oct 8.",
+     "source_url": "https://driftwood.example/attio/deals/ember-and-oak-restaurant-espresso-program",
+     "metadata": {
+      "type": "deal",
+      "company": "Ember & Oak",
+      "name": "Restaurant espresso program",
+      "stage": "Qualified",
+      "value": 11500,
+      "owner": "Priya",
+      "contact": "Luis Ortega",
+      "close_date": "2026-10-25",
+      "next_step": "Site visit Oct 8"
+     }
+    },
+    {
+     "external_id": "crm-deal-birchwood-hotel-lobby-cafe-expansion",
+     "domain": "sales",
+     "title": "Deal — Birchwood Hotel: Lobby café expansion",
+     "content": "Deal with Birchwood Hotel: Lobby café expansion. Stage: Proposal. Value: $9,600 per year. Owner: Sam. Contact: Mei Tanaka. Expected close: Oct 15, 2026. Existing customer opening a lobby café in November. Proposal sent Sep 27. Next step: Follow up on proposal Oct 3. Fit: Existing customer that pays reliably; expansion uses products they already buy. Blocker: Proposal sent Sep 27 with no reply yet.",
+     "source_url": "https://driftwood.example/attio/deals/birchwood-hotel-lobby-cafe-expansion",
+     "metadata": {
+      "type": "deal",
+      "company": "Birchwood Hotel",
+      "name": "Lobby café expansion",
+      "stage": "Proposal",
+      "value": 9600,
+      "owner": "Sam",
+      "contact": "Mei Tanaka",
+      "close_date": "2026-10-15",
+      "next_step": "Follow up on proposal Oct 3",
+      "fit": "Existing customer that pays reliably; expansion uses products they already buy.",
+      "blocker": "Proposal sent Sep 27 with no reply yet."
+     }
+    },
+    {
+     "external_id": "crm-deal-fernhill-market-second-store",
+     "domain": "sales",
+     "title": "Deal — Fernhill Market: Second store",
+     "content": "Deal with Fernhill Market: Second store. Stage: Proposal. Value: $18,000 per year. Owner: Alex. Contact: Grace Lin. Expected close: Oct 20, 2026. Existing customer adding a second location in January. Next step: Review pricing with Dana.",
+     "source_url": "https://driftwood.example/attio/deals/fernhill-market-second-store",
+     "metadata": {
+      "type": "deal",
+      "company": "Fernhill Market",
+      "name": "Second store",
+      "stage": "Proposal",
+      "value": 18000,
+      "owner": "Alex",
+      "contact": "Grace Lin",
+      "close_date": "2026-10-20",
+      "next_step": "Review pricing with Dana"
+     }
+    },
+    {
+     "external_id": "crm-deal-meridian-offices-office-coffee-200-staff",
+     "domain": "sales",
+     "title": "Deal — Meridian Offices: Office coffee, 200 staff",
+     "content": "Deal with Meridian Offices: Office coffee, 200 staff. Stage: Proposal. Value: $15,600 per year. Owner: Priya. Contact: Owen Clarke. Expected close: Oct 28, 2026. Proposal sent Sep 30. Next step: Answer procurement questions.",
+     "source_url": "https://driftwood.example/attio/deals/meridian-offices-office-coffee-200-staff",
+     "metadata": {
+      "type": "deal",
+      "company": "Meridian Offices",
+      "name": "Office coffee, 200 staff",
+      "stage": "Proposal",
+      "value": 15600,
+      "owner": "Priya",
+      "contact": "Owen Clarke",
+      "close_date": "2026-10-28",
+      "next_step": "Answer procurement questions"
+     }
+    },
+    {
+     "external_id": "crm-deal-lakeside-cafes-2027-renewal",
+     "domain": "sales",
+     "title": "Deal — Lakeside Cafés: 2027 renewal",
+     "content": "Deal with Lakeside Cafés: 2027 renewal. Stage: Negotiation. Value: $58,000 per year. Owner: Sam. Contact: Jordan Reyes. Expected close: Oct 6, 2026. Risk: a competing roaster quoted them 4% lower in August. Jordan said reliability matters more than price. Next step: Renewal meeting Oct 6. Fit: Largest account, 5 locations, 2.5 years with us. Blocker: Late order 1042 and an unresolved credit decision before the Oct 6 meeting.",
+     "source_url": "https://driftwood.example/attio/deals/lakeside-cafes-2027-renewal",
+     "metadata": {
+      "type": "deal",
+      "company": "Lakeside Cafés",
+      "name": "2027 renewal",
+      "stage": "Negotiation",
+      "value": 58000,
+      "owner": "Sam",
+      "contact": "Jordan Reyes",
+      "close_date": "2026-10-06",
+      "next_step": "Renewal meeting Oct 6",
+      "fit": "Largest account, 5 locations, 2.5 years with us.",
+      "blocker": "Late order 1042 and an unresolved credit decision before the Oct 6 meeting."
+     }
+    },
+    {
+     "external_id": "crm-deal-copperline-bakery-annual-contract",
+     "domain": "sales",
+     "title": "Deal — Copperline Bakery: Annual contract",
+     "content": "Deal with Copperline Bakery: Annual contract. Stage: Negotiation. Value: $12,000 per year. Owner: Priya. Contact: Ines Duarte. Expected close: Oct 12, 2026. Currently month to month. Wants a 12-month price lock. Next step: Agree delivery days. Fit: Four months of on-time trial orders. Blocker: Wants a 12-month price lock that needs pricing approval.",
+     "source_url": "https://driftwood.example/attio/deals/copperline-bakery-annual-contract",
+     "metadata": {
+      "type": "deal",
+      "company": "Copperline Bakery",
+      "name": "Annual contract",
+      "stage": "Negotiation",
+      "value": 12000,
+      "owner": "Priya",
+      "contact": "Ines Duarte",
+      "close_date": "2026-10-12",
+      "next_step": "Agree delivery days",
+      "fit": "Four months of on-time trial orders.",
+      "blocker": "Wants a 12-month price lock that needs pricing approval."
+     }
+    },
+    {
+     "external_id": "crm-deal-tidewater-bistro-weekly-house-espresso",
+     "domain": "sales",
+     "title": "Deal — Tidewater Bistro: Weekly House Espresso",
+     "content": "Deal with Tidewater Bistro: Weekly House Espresso. Stage: Won. Value: $18,000 per year. Owner: Sam. Contact: Caleb Moore. Expected close: Sep 22, 2026. Signed Sep 22. Next step: First delivery Oct 13.",
+     "source_url": "https://driftwood.example/attio/deals/tidewater-bistro-weekly-house-espresso",
+     "metadata": {
+      "type": "deal",
+      "company": "Tidewater Bistro",
+      "name": "Weekly House Espresso",
+      "stage": "Won",
+      "value": 18000,
+      "owner": "Sam",
+      "contact": "Caleb Moore",
+      "close_date": "2026-09-22",
+      "next_step": "First delivery Oct 13"
+     }
+    },
+    {
+     "external_id": "crm-deal-fernhill-market-wholesale-account",
+     "domain": "sales",
+     "title": "Deal — Fernhill Market: Wholesale account",
+     "content": "Deal with Fernhill Market: Wholesale account. Stage: Won. Value: $25,000 per year. Owner: Alex. Contact: Grace Lin. Expected close: Feb 20, 2026. Signed Feb 20. Next step: Renewal review in January.",
+     "source_url": "https://driftwood.example/attio/deals/fernhill-market-wholesale-account",
+     "metadata": {
+      "type": "deal",
+      "company": "Fernhill Market",
+      "name": "Wholesale account",
+      "stage": "Won",
+      "value": 25000,
+      "owner": "Alex",
+      "contact": "Grace Lin",
+      "close_date": "2026-02-20",
+      "next_step": "Renewal review in January"
+     }
+    },
+    {
+     "external_id": "crm-deal-copperline-bakery-trial-account",
+     "domain": "sales",
+     "title": "Deal — Copperline Bakery: Trial account",
+     "content": "Deal with Copperline Bakery: Trial account. Stage: Won. Value: $10,800 per year. Owner: Priya. Contact: Ines Duarte. Expected close: May 28, 2026. Started in June on a month-to-month trial. Next step: Convert to annual contract.",
+     "source_url": "https://driftwood.example/attio/deals/copperline-bakery-trial-account",
+     "metadata": {
+      "type": "deal",
+      "company": "Copperline Bakery",
+      "name": "Trial account",
+      "stage": "Won",
+      "value": 10800,
+      "owner": "Priya",
+      "contact": "Ines Duarte",
+      "close_date": "2026-05-28",
+      "next_step": "Convert to annual contract"
+     }
+    }
+   ]
+  },
+  {
+   "kind": "stripe",
+   "name": "Stripe",
+   "records": [
+    {
+     "external_id": "stripe-pay_1001",
+     "domain": "finance",
+     "title": "Payment succeeded — Birchwood Hotel, $1,350 (Jan 1, 2026)",
+     "content": "Stripe payment pay_1001. Customer: Birchwood Hotel. Amount: $1,350. Date: Jan 1, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1001",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1001",
+      "customer": "Birchwood Hotel",
+      "currency": "USD",
+      "amount": 1350,
+      "status": "succeeded",
+      "date": "2026-01-01",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1002",
+     "domain": "finance",
+     "title": "Payment succeeded — Lakeside Cafés, $4,200 (Jan 10, 2026)",
+     "content": "Stripe payment pay_1002. Customer: Lakeside Cafés. Amount: $4,200. Date: Jan 10, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1002",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1002",
+      "customer": "Lakeside Cafés",
+      "currency": "USD",
+      "amount": 4200,
+      "status": "succeeded",
+      "date": "2026-01-10",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1003",
+     "domain": "finance",
+     "title": "Payment succeeded — Birchwood Hotel, $1,350 (Feb 1, 2026)",
+     "content": "Stripe payment pay_1003. Customer: Birchwood Hotel. Amount: $1,350. Date: Feb 1, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1003",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1003",
+      "customer": "Birchwood Hotel",
+      "currency": "USD",
+      "amount": 1350,
+      "status": "succeeded",
+      "date": "2026-02-01",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1004",
+     "domain": "finance",
+     "title": "Payment succeeded — Lakeside Cafés, $4,320 (Feb 10, 2026)",
+     "content": "Stripe payment pay_1004. Customer: Lakeside Cafés. Amount: $4,320. Date: Feb 10, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1004",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1004",
+      "customer": "Lakeside Cafés",
+      "currency": "USD",
+      "amount": 4320,
+      "status": "succeeded",
+      "date": "2026-02-10",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1005",
+     "domain": "finance",
+     "title": "Payment succeeded — Birchwood Hotel, $1,350 (Mar 1, 2026)",
+     "content": "Stripe payment pay_1005. Customer: Birchwood Hotel. Amount: $1,350. Date: Mar 1, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1005",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1005",
+      "customer": "Birchwood Hotel",
+      "currency": "USD",
+      "amount": 1350,
+      "status": "succeeded",
+      "date": "2026-03-01",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1006",
+     "domain": "finance",
+     "title": "Payment succeeded — Fernhill Market, $1,980 (Mar 5, 2026)",
+     "content": "Stripe payment pay_1006. Customer: Fernhill Market. Amount: $1,980. Date: Mar 5, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1006",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1006",
+      "customer": "Fernhill Market",
+      "currency": "USD",
+      "amount": 1980,
+      "status": "succeeded",
+      "date": "2026-03-05",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1007",
+     "domain": "finance",
+     "title": "Payment succeeded — Lakeside Cafés, $4,380 (Mar 10, 2026)",
+     "content": "Stripe payment pay_1007. Customer: Lakeside Cafés. Amount: $4,380. Date: Mar 10, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1007",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1007",
+      "customer": "Lakeside Cafés",
+      "currency": "USD",
+      "amount": 4380,
+      "status": "succeeded",
+      "date": "2026-03-10",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1008",
+     "domain": "finance",
+     "title": "Payment succeeded — Birchwood Hotel, $1,350 (Apr 1, 2026)",
+     "content": "Stripe payment pay_1008. Customer: Birchwood Hotel. Amount: $1,350. Date: Apr 1, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1008",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1008",
+      "customer": "Birchwood Hotel",
+      "currency": "USD",
+      "amount": 1350,
+      "status": "succeeded",
+      "date": "2026-04-01",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1009",
+     "domain": "finance",
+     "title": "Payment succeeded — Fernhill Market, $2,040 (Apr 5, 2026)",
+     "content": "Stripe payment pay_1009. Customer: Fernhill Market. Amount: $2,040. Date: Apr 5, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1009",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1009",
+      "customer": "Fernhill Market",
+      "currency": "USD",
+      "amount": 2040,
+      "status": "succeeded",
+      "date": "2026-04-05",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1010",
+     "domain": "finance",
+     "title": "Payment succeeded — Lakeside Cafés, $4,500 (Apr 10, 2026)",
+     "content": "Stripe payment pay_1010. Customer: Lakeside Cafés. Amount: $4,500. Date: Apr 10, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1010",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1010",
+      "customer": "Lakeside Cafés",
+      "currency": "USD",
+      "amount": 4500,
+      "status": "succeeded",
+      "date": "2026-04-10",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1011",
+     "domain": "finance",
+     "title": "Payment succeeded — Birchwood Hotel, $1,350 (May 1, 2026)",
+     "content": "Stripe payment pay_1011. Customer: Birchwood Hotel. Amount: $1,350. Date: May 1, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1011",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1011",
+      "customer": "Birchwood Hotel",
+      "currency": "USD",
+      "amount": 1350,
+      "status": "succeeded",
+      "date": "2026-05-01",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1012",
+     "domain": "finance",
+     "title": "Payment succeeded — Fernhill Market, $2,100 (May 5, 2026)",
+     "content": "Stripe payment pay_1012. Customer: Fernhill Market. Amount: $2,100. Date: May 5, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1012",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1012",
+      "customer": "Fernhill Market",
+      "currency": "USD",
+      "amount": 2100,
+      "status": "succeeded",
+      "date": "2026-05-05",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1013",
+     "domain": "finance",
+     "title": "Payment succeeded — Lakeside Cafés, $4,560 (May 10, 2026)",
+     "content": "Stripe payment pay_1013. Customer: Lakeside Cafés. Amount: $4,560. Date: May 10, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1013",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1013",
+      "customer": "Lakeside Cafés",
+      "currency": "USD",
+      "amount": 4560,
+      "status": "succeeded",
+      "date": "2026-05-10",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1014",
+     "domain": "finance",
+     "title": "Payment succeeded — Birchwood Hotel, $1,350 (Jun 1, 2026)",
+     "content": "Stripe payment pay_1014. Customer: Birchwood Hotel. Amount: $1,350. Date: Jun 1, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1014",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1014",
+      "customer": "Birchwood Hotel",
+      "currency": "USD",
+      "amount": 1350,
+      "status": "succeeded",
+      "date": "2026-06-01",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1015",
+     "domain": "finance",
+     "title": "Payment succeeded — Fernhill Market, $2,100 (Jun 5, 2026)",
+     "content": "Stripe payment pay_1015. Customer: Fernhill Market. Amount: $2,100. Date: Jun 5, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1015",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1015",
+      "customer": "Fernhill Market",
+      "currency": "USD",
+      "amount": 2100,
+      "status": "succeeded",
+      "date": "2026-06-05",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1016",
+     "domain": "finance",
+     "title": "Payment succeeded — Lakeside Cafés, $4,620 (Jun 10, 2026)",
+     "content": "Stripe payment pay_1016. Customer: Lakeside Cafés. Amount: $4,620. Date: Jun 10, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1016",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1016",
+      "customer": "Lakeside Cafés",
+      "currency": "USD",
+      "amount": 4620,
+      "status": "succeeded",
+      "date": "2026-06-10",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1017",
+     "domain": "finance",
+     "title": "Payment succeeded — Copperline Bakery, $840 (Jun 15, 2026)",
+     "content": "Stripe payment pay_1017. Customer: Copperline Bakery. Amount: $840. Date: Jun 15, 2026. Status: succeeded. Monthly trial order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1017",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1017",
+      "customer": "Copperline Bakery",
+      "currency": "USD",
+      "amount": 840,
+      "status": "succeeded",
+      "date": "2026-06-15",
+      "description": "Monthly trial order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1018",
+     "domain": "finance",
+     "title": "Payment succeeded — Birchwood Hotel, $1,350 (Jul 1, 2026)",
+     "content": "Stripe payment pay_1018. Customer: Birchwood Hotel. Amount: $1,350. Date: Jul 1, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1018",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1018",
+      "customer": "Birchwood Hotel",
+      "currency": "USD",
+      "amount": 1350,
+      "status": "succeeded",
+      "date": "2026-07-01",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1019",
+     "domain": "finance",
+     "title": "Payment succeeded — Fernhill Market, $2,220 (Jul 5, 2026)",
+     "content": "Stripe payment pay_1019. Customer: Fernhill Market. Amount: $2,220. Date: Jul 5, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1019",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1019",
+      "customer": "Fernhill Market",
+      "currency": "USD",
+      "amount": 2220,
+      "status": "succeeded",
+      "date": "2026-07-05",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1020",
+     "domain": "finance",
+     "title": "Payment succeeded — Lakeside Cafés, $4,740 (Jul 10, 2026)",
+     "content": "Stripe payment pay_1020. Customer: Lakeside Cafés. Amount: $4,740. Date: Jul 10, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1020",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1020",
+      "customer": "Lakeside Cafés",
+      "currency": "USD",
+      "amount": 4740,
+      "status": "succeeded",
+      "date": "2026-07-10",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1021",
+     "domain": "finance",
+     "title": "Payment succeeded — Copperline Bakery, $900 (Jul 15, 2026)",
+     "content": "Stripe payment pay_1021. Customer: Copperline Bakery. Amount: $900. Date: Jul 15, 2026. Status: succeeded. Monthly trial order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1021",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1021",
+      "customer": "Copperline Bakery",
+      "currency": "USD",
+      "amount": 900,
+      "status": "succeeded",
+      "date": "2026-07-15",
+      "description": "Monthly trial order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1022",
+     "domain": "finance",
+     "title": "Payment succeeded — Birchwood Hotel, $1,350 (Aug 1, 2026)",
+     "content": "Stripe payment pay_1022. Customer: Birchwood Hotel. Amount: $1,350. Date: Aug 1, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1022",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1022",
+      "customer": "Birchwood Hotel",
+      "currency": "USD",
+      "amount": 1350,
+      "status": "succeeded",
+      "date": "2026-08-01",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1023",
+     "domain": "finance",
+     "title": "Payment succeeded — Fernhill Market, $2,280 (Aug 5, 2026)",
+     "content": "Stripe payment pay_1023. Customer: Fernhill Market. Amount: $2,280. Date: Aug 5, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1023",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1023",
+      "customer": "Fernhill Market",
+      "currency": "USD",
+      "amount": 2280,
+      "status": "succeeded",
+      "date": "2026-08-05",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1024",
+     "domain": "finance",
+     "title": "Payment succeeded — Lakeside Cafés, $4,800 (Aug 10, 2026)",
+     "content": "Stripe payment pay_1024. Customer: Lakeside Cafés. Amount: $4,800. Date: Aug 10, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1024",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1024",
+      "customer": "Lakeside Cafés",
+      "currency": "USD",
+      "amount": 4800,
+      "status": "succeeded",
+      "date": "2026-08-10",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1025",
+     "domain": "finance",
+     "title": "Payment succeeded — Copperline Bakery, $900 (Aug 15, 2026)",
+     "content": "Stripe payment pay_1025. Customer: Copperline Bakery. Amount: $900. Date: Aug 15, 2026. Status: succeeded. Monthly trial order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1025",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1025",
+      "customer": "Copperline Bakery",
+      "currency": "USD",
+      "amount": 900,
+      "status": "succeeded",
+      "date": "2026-08-15",
+      "description": "Monthly trial order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1026",
+     "domain": "finance",
+     "title": "Payment refunded — Copperline Bakery, $120 (Aug 19, 2026)",
+     "content": "Stripe payment pay_1026. Customer: Copperline Bakery. Amount: $120. Date: Aug 19, 2026. Status: refunded. Refund: damaged bag in August delivery.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1026",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1026",
+      "customer": "Copperline Bakery",
+      "currency": "USD",
+      "amount": 120,
+      "status": "refunded",
+      "date": "2026-08-19",
+      "description": "Refund: damaged bag in August delivery"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1027",
+     "domain": "finance",
+     "title": "Payment succeeded — Birchwood Hotel, $1,350 (Sep 1, 2026)",
+     "content": "Stripe payment pay_1027. Customer: Birchwood Hotel. Amount: $1,350. Date: Sep 1, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1027",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1027",
+      "customer": "Birchwood Hotel",
+      "currency": "USD",
+      "amount": 1350,
+      "status": "succeeded",
+      "date": "2026-09-01",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1028",
+     "domain": "finance",
+     "title": "Payment succeeded — Fernhill Market, $2,340 (Sep 5, 2026)",
+     "content": "Stripe payment pay_1028. Customer: Fernhill Market. Amount: $2,340. Date: Sep 5, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1028",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1028",
+      "customer": "Fernhill Market",
+      "currency": "USD",
+      "amount": 2340,
+      "status": "succeeded",
+      "date": "2026-09-05",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1029",
+     "domain": "finance",
+     "title": "Payment failed — Lakeside Cafés, $4,860 (Sep 10, 2026)",
+     "content": "Stripe payment pay_1029. Customer: Lakeside Cafés. Amount: $4,860. Date: Sep 10, 2026. Status: failed. Monthly wholesale order. Card declined.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1029",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1029",
+      "customer": "Lakeside Cafés",
+      "currency": "USD",
+      "amount": 4860,
+      "status": "failed",
+      "date": "2026-09-10",
+      "description": "Monthly wholesale order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1030",
+     "domain": "finance",
+     "title": "Payment succeeded — Copperline Bakery, $960 (Sep 15, 2026)",
+     "content": "Stripe payment pay_1030. Customer: Copperline Bakery. Amount: $960. Date: Sep 15, 2026. Status: succeeded. Monthly trial order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1030",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1030",
+      "customer": "Copperline Bakery",
+      "currency": "USD",
+      "amount": 960,
+      "status": "succeeded",
+      "date": "2026-09-15",
+      "description": "Monthly trial order"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1031",
+     "domain": "finance",
+     "title": "Payment failed — Lakeside Cafés, $4,860 (Sep 17, 2026)",
+     "content": "Stripe payment pay_1031. Customer: Lakeside Cafés. Amount: $4,860. Date: Sep 17, 2026. Status: failed. Monthly wholesale order (retry). Card declined again on retry.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1031",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1031",
+      "customer": "Lakeside Cafés",
+      "currency": "USD",
+      "amount": 4860,
+      "status": "failed",
+      "date": "2026-09-17",
+      "description": "Monthly wholesale order (retry)"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1032",
+     "domain": "finance",
+     "title": "Payment succeeded — Tidewater Bistro, $1,500 (Sep 23, 2026)",
+     "content": "Stripe payment pay_1032. Customer: Tidewater Bistro. Amount: $1,500. Date: Sep 23, 2026. Status: succeeded. First order deposit.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1032",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1032",
+      "customer": "Tidewater Bistro",
+      "currency": "USD",
+      "amount": 1500,
+      "status": "succeeded",
+      "date": "2026-09-23",
+      "description": "First order deposit"
+     }
+    },
+    {
+     "external_id": "stripe-pay_1033",
+     "domain": "finance",
+     "title": "Payment succeeded — Birchwood Hotel, $1,350 (Oct 1, 2026)",
+     "content": "Stripe payment pay_1033. Customer: Birchwood Hotel. Amount: $1,350. Date: Oct 1, 2026. Status: succeeded. Monthly wholesale order.",
+     "source_url": "https://driftwood.example/stripe/payments/pay_1033",
+     "metadata": {
+      "type": "payment",
+      "id": "pay_1033",
+      "customer": "Birchwood Hotel",
+      "currency": "USD",
+      "amount": 1350,
+      "status": "succeeded",
+      "date": "2026-10-01",
+      "description": "Monthly wholesale order"
+     }
+    }
+   ]
+  }
+ ],
+ "issues": [
+  {
+   "title": "Lakeside delivery commitment unconfirmed",
+   "consequence": "Riverside runs out of espresso around Oct 5, and the 20 kg Sam promised by Oct 4 has not been confirmed with production.",
+   "category": "Customers",
+   "priority": "high",
+   "owner": "Sam",
+   "due": "2026-10-04",
+   "status": "Sam owns the reply; waiting on Marco",
+   "action": "Confirm the 20 kg of unallocated stock with Marco, then answer the Riverside store manager.",
+   "customer": "Lakeside Cafés",
+   "evidence": [
+    "slack-sales-2026-09-30T11:24-13",
+    "slack-support-2026-09-30T16:30-23",
+    "slack-support-2026-09-30T16:36-25",
+    "slack-ops-2026-09-30T13:05-14"
+   ]
+  },
+  {
+   "title": "Late-delivery credit for Lakeside not decided",
+   "consequence": "The $58,000 renewal meeting is Oct 6 and a competitor has quoted 4% lower; Sam wants 10% credit, policy allows 5% without approval.",
+   "category": "Revenue",
+   "priority": "high",
+   "owner": "Alex",
+   "due": "2026-10-06",
+   "status": "Waiting on Alex",
+   "action": "Decide 5% ($162) or 10% credit before the renewal meeting.",
+   "customer": "Lakeside Cafés",
+   "evidence": [
+    "slack-leadership-2026-09-30T15:10-22",
+    "slack-leadership-2026-09-30T15:02-21",
+    "slack-leadership-2026-06-02T09:00-20",
+    "crm-note-lakeside-contract",
+    "crm-deal-lakeside-cafes-2027-renewal"
+   ]
+  },
+  {
+   "title": "Lakeside owes $4,860 after two failed charges",
+   "consequence": "September's payment was declined twice and collection is on hold so it does not sour the renewal.",
+   "category": "Finance",
+   "priority": "medium",
+   "owner": "Dana",
+   "due": "2026-10-07",
+   "status": "On hold until Oct 7",
+   "action": "Agree with Sam how to raise the failed payment at or after the Oct 6 meeting.",
+   "customer": "Lakeside Cafés",
+   "evidence": [
+    "stripe-pay_1029",
+    "stripe-pay_1031",
+    "slack-finance-2026-09-30T14:12-16",
+    "slack-finance-2026-09-30T14:15-17",
+    "slack-finance-2026-09-30T14:21-18"
+   ]
+  },
+  {
+   "title": "Roaster 2 down, capacity halved until Oct 6",
+   "consequence": "Only Roaster 1 is running, which already delayed Lakeside order 1042 and limits every order this week.",
+   "category": "Operations",
+   "priority": "medium",
+   "owner": "Marco",
+   "due": "2026-10-06",
+   "status": "Part ordered, arrives Oct 6",
+   "action": "Check which other orders slip this week and tell those customers now.",
+   "customer": "",
+   "evidence": [
+    "slack-ops-2026-09-29T07:48-2",
+    "slack-ops-2026-09-29T08:03-4",
+    "slack-ops-2026-09-29T08:05-5"
+   ]
+  },
+  {
+   "title": "No roasting cover for Oct 9 and 10",
+   "consequence": "Marco is the only person trained on Roaster 1 and is out both days; the Northgate tasting is Oct 9.",
+   "category": "People",
+   "priority": "medium",
+   "owner": "Unassigned",
+   "due": "2026-10-08",
+   "status": "Asked twice, no answer",
+   "action": "Name who covers roasting, or move the roast schedule.",
+   "customer": "",
+   "evidence": [
+    "slack-ops-2026-09-30T17:05-x0",
+    "slack-ops-2026-10-01T08:20-x1",
+    "crm-deal-northgate-coworking-self-serve-espresso-3-floors"
+   ]
+  },
+  {
+   "title": "Birchwood lobby café proposal has gone quiet",
+   "consequence": "A $9,600 expansion with a reliable customer; follow-up is due Oct 3.",
+   "category": "Revenue",
+   "priority": "low",
+   "owner": "Sam",
+   "due": "2026-10-03",
+   "status": "Proposal sent Sep 27",
+   "action": "Call Mei Tanaka to follow up.",
+   "customer": "Birchwood Hotel",
+   "evidence": [
+    "crm-deal-birchwood-hotel-lobby-cafe-expansion"
+   ]
+  }
+ ]
+}

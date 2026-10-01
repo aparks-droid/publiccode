@@ -42,7 +42,7 @@ export default function Image() {
         connected.
       </div>
       <div style={{ marginTop: 48, fontSize: 22, color: "#888" }}>
-        Shared knowledge. Your models. Built with Cortex.
+        Shared knowledge. Your models.
       </div>
     </div>,
     size,

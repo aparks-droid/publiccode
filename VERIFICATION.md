@@ -1,19 +1,26 @@
-# Build verification — 27 September 2026
+# Local starter verification — 1 October 2026
 
-Verified:
-- Next.js production build and TypeScript compilation.
-- ESLint: no errors or warnings.
-- Desktop overview, chat navigation, and model settings in Chrome.
-- Responsive chat layout at 395px width.
-- Codex App Server starts with isolated credentials; bridge account endpoint responds.
-- Bridge rejects invalid pairing tokens and foreign origins.
-- Hosted page returns HTTP 200.
+## Confirmed
 
-Pending:
-- Supabase project provisioning: Vercel marketplace checkout requires approval of a recurring paid plan. No database resource has been created yet.
-- Apply the migration and verify authentication, import persistence, workspace isolation, retrieval, and saved history against the live database.
-- Complete a Codex account login and a model answer with user credentials; no model account was used during setup.
-- Anthropic answer verification requires a user-supplied API key.
-- Native source OAuth/synchronization adapters are extension points, not implemented integrations.
+- 26 automated tests pass: both AI API paths, evidence and conversation handling, provider failures, local-key persistence, origin/host protection, Slack/Attio/Stripe pagination and normalization, and Postgres migration/access/snapshot behavior.
+- A clean export of the exact GitHub release files passes npm ci, all 26 tests, lint, and a production build, without instructor credentials or untracked files.
+- Desktop and 390px-wide source connection forms were reviewed in the browser.
+- Live Supabase: applied the private local-server migration to the existing Company Brain project. Its 130 records, 3 sources, 6 issues and company workspace were preserved. An anonymous query returns zero records.
+- Live Supabase write path: a disposable workspace/source was created, a snapshot saved, full-text evidence retrieved, and the same external ID updated without duplication. The disposable workspace was removed afterward.
+- Local browser: database records load; source credential dialogs render; the actual Slack API rejects an invalid test token with an actionable inline error. No invalid token is saved. A localhost/127.0.0.1 origin mismatch found during this test was fixed and added to request-guard coverage.
+- The local app launcher starts a separate monitor process. An enabled scheduled check completed against the live database and correctly skipped AI because no key was connected. Sources displayed the timestamp and missing-key explanation. Automatic checks were returned to off after this test.
+- Vercel serves only the bundled sample preview, with a repo/recipe link. It no longer depends on an open company database.
 
-GitHub repository is private under how-to-ai-co. CLI deployment works. Automatic GitHub deployments are not connected: Vercel could not access the private organization repository with its current GitHub installation permissions.
+## Still requires owner credentials
+
+- A successful read from a real Slack, Attio or Stripe account. Adapter tests use representative provider responses. An invalid-token check proves the request/error path, not a successful import.
+- A successful real OpenAI or Anthropic answer through this local saved-key flow. Provider tests simulate replies.
+- A complete unattended cycle with real sources and an AI key. The worker can run independently of the browser; useful analysis still depends on those connections.
+
+These are not claims that a community member's account is connected. Follow the build recipe's real-record question and citation check for each installation.
+
+## Distribution
+
+The repo is private at https://github.com/how-to-ai-co/company-brain. Members need access to clone it. No visibility change was made.
+
+Use `npm test`, `npm run lint`, and `npm run build` for local checks. After connecting your database, `node scripts/verify-database.mjs` verifies actual Supabase persistence/retrieval in a disposable workspace, then removes only that workspace. It never prints credentials.
