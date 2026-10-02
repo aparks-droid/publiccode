@@ -27,6 +27,10 @@ If you want to explore first, **Load sample company** adds invented Driftwood Co
 
 For a guided coding-agent workflow, use [`class/build-recipe.md`](class/build-recipe.md).
 
+## Connect Instinct
+
+Instinct can read the same bundled data shown on the hosted website through `GET /api/instinct` with a Bearer API key. This read-only endpoint needs no database or AI credentials. See [`INSTINCT.md`](INSTINCT.md) for setup and the [`OpenAPI schema`](instinct.openapi.json).
+
 ## What each connection imports
 
 | Source | Credential | Current scope |

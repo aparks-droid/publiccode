@@ -1,0 +1,53 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Company Brain website reader",
+    "version": "1.0.0",
+    "description": "Read the same bundled sample data shown by the Company Brain Vercel website. No writes or database access."
+  },
+  "servers": [
+    {
+      "url": "https://company-brain-drab.vercel.app"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/api/instinct": {
+      "get": {
+        "operationId": "readWebsite",
+        "summary": "Read the website company snapshot",
+        "responses": {
+          "200": {
+            "description": "Website snapshot. demo=true identifies sample company data.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key"
+          },
+          "503": {
+            "description": "Integration unavailable"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  }
+}
