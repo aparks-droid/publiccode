@@ -306,7 +306,7 @@ export default function Home() {
                         className="self-start"
                         onClick={async () => {
                           await fetch("/api/login", { method: "DELETE" });
-                          window.location.assign("/login");
+                          window.location.reload();
                         }}
                       >
                         Sign out
