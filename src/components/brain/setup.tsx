@@ -153,9 +153,11 @@ export function FinishSetup({ brain }: { brain: Brain }) {
       help: (
         <>
           Export each tab of your workbook as CSV (File → Download → CSV in
-          Google Sheets, or Save As → CSV in Excel). Add a <code>type</code>{" "}
-          column with task, deliverable, invoice, prospect, engagement or note,
-          and use dates as YYYY-MM-DD. Keep a stable <code>id</code> column so
+          Google Sheets, or Save As → CSV in Excel). The tab name sets what a
+          row is: anything imported under a to-do or Tasks tab is a to-do,
+          whatever its own Type column says. Group rows with a{" "}
+          <code>category</code> column; dates can be 12/31/26 or 2026-12-31.
+          Keep a stable <code>id</code> column so
           re-importing updates rows instead of duplicating them. Leave out
           anything you don’t want stored, and remember your AI rules: client
           names reach an AI model only when you ask a question.

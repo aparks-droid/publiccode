@@ -39,6 +39,7 @@ type Item = {
   id: string;
   label: string;
   client: string;
+  category: string;
   due: string;
   days: number;
   priority: string;
@@ -53,6 +54,7 @@ function agenda(rows: RecordRow[], asOf: Date): Item[] {
     kind,
     label: label.replace(/^\s*\*+\s*/, "") || r.title,
     client: field(r, "client", "client_name", "customer", "firm"),
+    category: field(r, "category", "section", "group", "heading"),
     due,
     days: daysBetween(asOf, due),
     priority: priorityOf(r),
@@ -103,14 +105,18 @@ export function HomeOverview({
   );
   const asOf = asOfDate(rows);
   const all = agenda(rows, asOf);
+  // Every open to-do shows, whatever its due date; the owner decides what
+  // matters. Highest priority first, then the order of the spreadsheet.
+  const todos = all.filter((i) => i.kind === "Task").sort(byPriority);
+  const top = todos.filter((i) => i.priority.length >= 4).length;
+  // Deliverables and follow-ups keep their date order.
   const items = all
-    .filter((i) => !isNaN(i.days))
-    .sort((a, b) => a.days - b.days || byPriority(a, b));
-  const undated = all
-    .filter((i) => isNaN(i.days) && i.kind === "Task")
-    .sort(byPriority);
-  const overdue = items.filter((i) => i.days < 0);
-  const soon = items.filter((i) => i.days >= 0 && i.days <= 7);
+    .filter((i) => i.kind !== "Task")
+    .sort(
+      (a, b) =>
+        (isNaN(a.days) ? 1e9 : a.days) - (isNaN(b.days) ? 1e9 : b.days) ||
+        byPriority(a, b),
+    );
   const invoices = sheetRows(rows, "invoice").filter(
     (r) => !isDone(r.metadata.status),
   );
@@ -138,16 +144,16 @@ export function HomeOverview({
   ).length;
   const stats = [
     {
-      label: "Overdue",
-      value: hasSheet ? String(overdue.length) : "—",
-      hint: "Tasks, deliverables and follow-ups",
-      tone: overdue.length ? "text-[var(--negative)]" : "",
+      label: "Open to-dos",
+      value: hasSheet ? String(todos.length) : "—",
+      hint: hasSheet ? "Every open item on your list" : "No to-do list loaded",
+      tone: "",
     },
     {
-      label: "Due in 7 days",
-      value: hasSheet ? String(soon.length) : "—",
-      hint: soon.length ? `Next: ${prettyDate(soon[0].due)}` : "Nothing due",
-      tone: "",
+      label: "Top priority ****",
+      value: hasSheet ? String(top) : "—",
+      hint: top ? "Listed first below" : "None marked ****",
+      tone: top ? "text-[var(--gold-deep)]" : "",
     },
     {
       label: "Past-due receivables",
@@ -165,7 +171,7 @@ export function HomeOverview({
     },
   ];
   const brief = hasSheet
-    ? `${overdue.length ? `${plural(overdue.length, "item")} ${overdue.length === 1 ? "is" : "are"} overdue` : "Nothing is overdue"} and ${plural(soon.length, "more item")} ${soon.length === 1 ? "is" : "are"} due in the next 7 days.${undated.length ? ` ${plural(undated.length, "open task")} ${undated.length === 1 ? "has" : "have"} no due date.` : ""} ${pastDue.length ? `${dollars(pastDueTotal)} is past due across ${plural(pastDue.length, "invoice")}.` : "No invoice is past due."} ${issues.length ? `${plural(issues.length, "issue")} need${issues.length === 1 ? "s" : ""} a decision${high ? `, ${high} of them high priority` : ""}.` : ""}`
+    ? `${plural(todos.length, "open to-do")}${top ? `, ${top} at top priority` : ""}.${items.length ? ` ${items.length} ${items.length === 1 ? "deliverable or follow-up is" : "deliverables and follow-ups are"} open.` : ""} ${pastDue.length ? `${dollars(pastDueTotal)} is past due across ${plural(pastDue.length, "invoice")}.` : "No invoice is past due."} ${issues.length ? `${plural(issues.length, "issue")} need${issues.length === 1 ? "s" : ""} a decision${high ? `, ${high} of them high priority` : ""}.` : ""}`
     : "";
   const ask = (question: string) => {
     brain.setPage("chat");
@@ -240,114 +246,121 @@ export function HomeOverview({
       </section>
 
       <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
-        <section className="pp-panel min-w-0 scroll-mt-24" aria-labelledby="agenda-title">
-          <div className="flex items-baseline justify-between gap-2 border-b border-[var(--border-gold)] px-5 py-4">
-            <h2 id="agenda-title" className="pp-title text-xl">
-              Due soon and overdue
-            </h2>
-            <span className="text-sm text-[var(--ink-faint)]">
-              {items.length ? `${items.length} dated · ` : ""}Priority **** to *
-            </span>
-          </div>
-          <ul
-            className="pp-scroll divide-y divide-[var(--border-cool)] overflow-y-auto"
-            tabIndex={0}
-            aria-label={`${plural(items.length, "dated item")}, scrollable`}
+        <div className="flex min-w-0 flex-col gap-5">
+          <section
+            className="pp-panel min-w-0 scroll-mt-24"
+            aria-labelledby="todo-title"
           >
-            {items.map((i) => (
-              <li key={i.id} className="flex items-start gap-3 px-5 py-3">
-                <span
-                  className="w-8 shrink-0 pt-0.5 font-mono text-xs text-[var(--gold-deep)] sm:w-10 sm:text-sm"
-                  aria-label={i.priority ? `Priority ${i.priority.length}` : undefined}
-                >
-                  {i.priority}
-                </span>
-                <div className="min-w-0 flex-1">
-                  <p className="text-sm font-medium">{i.label}</p>
-                  <p className="text-sm text-[var(--ink-muted)]">
-                    {i.kind}
-                    {i.client && (
-                      <>
-                        {" · "}
-                        <button
-                          className="text-left underline-offset-2 hover:underline"
-                          onClick={() => onCustomer(i.client)}
-                        >
-                          {i.client}
-                        </button>
-                      </>
+            <div className="flex items-baseline justify-between gap-2 border-b border-[var(--border-gold)] px-5 py-4">
+              <h2 id="todo-title" className="pp-title text-xl">
+                To do
+              </h2>
+              <span className="text-sm text-[var(--ink-faint)]">
+                {todos.length ? `${todos.length} open · ` : ""}Priority **** to *
+              </span>
+            </div>
+            <ul
+              className="pp-scroll divide-y divide-[var(--border-cool)] overflow-y-auto"
+              tabIndex={0}
+              aria-label={`${plural(todos.length, "open to-do")}, scrollable`}
+            >
+              {todos.map((i) => (
+                <li key={i.id} className="flex items-start gap-3 px-5 py-3">
+                  <span
+                    className="w-8 shrink-0 pt-0.5 font-mono text-xs text-[var(--gold-deep)] sm:w-10 sm:text-sm"
+                    aria-label={i.priority ? `Priority ${i.priority.length}` : undefined}
+                  >
+                    {i.priority}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-medium">{i.label}</p>
+                    {(i.category || i.client) && (
+                      <p className="text-sm text-[var(--ink-muted)]">
+                        <span className="text-[10px] font-medium uppercase tracking-[0.12em] text-[var(--ink-faint)]">
+                          Category
+                        </span>{" "}
+                        {i.category || i.client}
+                      </p>
                     )}
-                  </p>
-                </div>
-                <span
-                  className={cn(
-                    "shrink-0 text-sm tabular-nums",
-                    i.days < 0
-                      ? "font-medium text-[var(--negative)]"
-                      : i.days <= 2
-                        ? "text-[var(--caution)]"
-                        : "text-[var(--ink-muted)]",
+                  </div>
+                  {i.due && (
+                    <span className="shrink-0 text-sm tabular-nums text-[var(--ink-muted)]">
+                      {isNaN(i.days) ? i.due : `Due ${prettyDate(i.due)}`}
+                    </span>
                   )}
-                >
-                  {when(i.days)}
-                </span>
-              </li>
-            ))}
-            {!items.length && (
-              <li className="flex items-start gap-3 px-5 py-5 text-sm text-[var(--ink-muted)]">
-                <Check className="mt-0.5 size-4 shrink-0 text-[var(--positive)]" />
-                {hasSheet
-                  ? undated.length
-                    ? "No open item has a due date. Add a due column (any common date format) to see overdue and due-soon items here."
-                    : "Nothing open with a date."
-                  : "Dated tasks and deliverables appear here once your spreadsheet is imported."}
-              </li>
+                </li>
+              ))}
+              {!todos.length && (
+                <li className="flex items-start gap-3 px-5 py-5 text-sm text-[var(--ink-muted)]">
+                  <Check className="mt-0.5 size-4 shrink-0 text-[var(--positive)]" />
+                  {hasSheet
+                    ? "No open to-dos."
+                    : "Your to-do list appears here once your spreadsheet is imported."}
+                </li>
+              )}
+            </ul>
+            {hasSheet && (
+              <p className="border-t border-[var(--border-cool)] px-5 py-2 text-sm text-[var(--ink-faint)]">
+                {plural(rows.length, "workbook row")}: {todos.length} open to-dos
+                {items.length ? `, ${items.length} deliverables and follow-ups` : ""}
+                {doneTasks ? `, ${doneTasks} marked done (hidden)` : ""}
+                {elsewhere ? `, ${elsewhere} other records (invoices, notes and similar)` : ""}.
+              </p>
             )}
-          </ul>
-          {hasSheet && (
-            <p className="border-t border-[var(--border-cool)] px-5 py-2 text-sm text-[var(--ink-faint)]">
-              {plural(rows.length, "workbook row")}: {items.length} dated
-              {undated.length ? `, ${undated.length} without a due date` : ""}
-              {doneTasks ? `, ${doneTasks} marked done (hidden)` : ""}
-              {elsewhere ? `, ${elsewhere} other records (invoices, notes and similar, shown elsewhere or in Sources)` : ""}.
-            </p>
-          )}
-          {undated.length > 0 && (
-            <>
-              <div className="flex items-baseline justify-between gap-2 border-y border-[var(--border-gold)] px-5 py-4">
-                <h2 className="pp-title text-xl">Open tasks, no due date</h2>
+          </section>
+
+          {items.length > 0 && (
+            <section className="pp-panel min-w-0" aria-labelledby="agenda-title">
+              <div className="flex items-baseline justify-between gap-2 border-b border-[var(--border-gold)] px-5 py-4">
+                <h2 id="agenda-title" className="pp-title text-xl">
+                  Deliverables and follow-ups
+                </h2>
                 <span className="text-sm text-[var(--ink-faint)]">
-                  {undated.length} open · highest priority first
+                  {items.length} open
                 </span>
               </div>
               <ul
                 className="pp-scroll divide-y divide-[var(--border-cool)] overflow-y-auto"
                 tabIndex={0}
-                aria-label={`${plural(undated.length, "open task")} without a due date, scrollable`}
+                aria-label={`${plural(items.length, "deliverable or follow-up")}, scrollable`}
               >
-                {undated.map((i) => (
+                {items.map((i) => (
                   <li key={i.id} className="flex items-start gap-3 px-5 py-3">
-                    <span
-                      className="w-8 shrink-0 pt-0.5 font-mono text-xs text-[var(--gold-deep)] sm:w-10 sm:text-sm"
-                      aria-label={i.priority ? `Priority ${i.priority.length}` : undefined}
-                    >
-                      {i.priority}
-                    </span>
-                    <p className="min-w-0 flex-1 text-sm font-medium">
-                      {i.label}
-                      {i.client && (
-                        <span className="font-normal text-[var(--ink-muted)]">
-                          {" · "}
-                          {i.client}
-                        </span>
-                      )}
-                    </p>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-medium">{i.label}</p>
+                      <p className="text-sm text-[var(--ink-muted)]">
+                        {i.kind}
+                        {i.client && (
+                          <>
+                            {" · "}
+                            <button
+                              className="text-left underline-offset-2 hover:underline"
+                              onClick={() => onCustomer(i.client)}
+                            >
+                              {i.client}
+                            </button>
+                          </>
+                        )}
+                      </p>
+                    </div>
+                    {!isNaN(i.days) && (
+                      <span
+                        className={cn(
+                          "shrink-0 text-sm tabular-nums",
+                          i.days < 0
+                            ? "font-medium text-[var(--negative)]"
+                            : "text-[var(--ink-muted)]",
+                        )}
+                      >
+                        {when(i.days)}
+                      </span>
+                    )}
                   </li>
                 ))}
               </ul>
-            </>
+            </section>
           )}
-        </section>
+        </div>
 
         <div className="flex min-w-0 flex-col gap-5">
           <section className="pp-panel min-w-0" aria-label="Needs attention">

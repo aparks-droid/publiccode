@@ -149,10 +149,10 @@ const kindOf = (value: unknown) => {
   if (/note|meeting/.test(t)) return "note";
   return "";
 };
-// A "type" column is often a category of the owner's own (Admin, Marketing),
-// so fall back to the tab name when it isn't one of the workbook kinds.
+// The tab decides first: everything on a to-do tab is a to-do, whatever the
+// row's own Type says. The Type column is used only for tabs of no known kind.
 export const typeOf = (r: RecordRow) =>
-  kindOf(r.metadata.type) || kindOf(r.metadata.sheet) || String(r.metadata.type || "");
+  kindOf(r.metadata.sheet) || kindOf(r.metadata.type) || String(r.metadata.type || "");
 export const sheetRows = (rows: RecordRow[], type: string) =>
   rows.filter((r) => typeOf(r) === type);
 // First non-empty value among several possible column names.

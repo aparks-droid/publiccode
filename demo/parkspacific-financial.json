@@ -575,17 +575,17 @@
      "external_id": "sheet-task-t1",
      "domain": "company",
      "title": "Task **** Send Okafor Brandt a revised dashboard date if the WIP export is still missing",
-     "content": "To-do (priority ****): Send Okafor Brandt a revised dashboard date if the WIP export is still missing. Due Oct 3, 2026. Status: Open. Client: Okafor Brandt Litigation Group.",
+     "content": "To-do (priority ****): Send Okafor Brandt a revised dashboard date if the WIP export is still missing. Due Oct 3, 2026. Status: Open. Category: CLIENT DELIVERY.",
      "source_url": "https://parkspacific.example/workbook/tasks/t1",
      "metadata": {
       "sheet": "Tasks",
       "type": "task",
       "as_of": "2026-10-02",
-      "client": "Okafor Brandt Litigation Group",
       "item": "Send Okafor Brandt a revised dashboard date if the WIP export is still missing",
       "priority": "****",
       "due": "2026-10-03",
       "status": "Open",
+      "category": "CLIENT DELIVERY",
       "owner": "Aaron"
      }
     },
@@ -593,17 +593,17 @@
      "external_id": "sheet-task-t2",
      "domain": "company",
      "title": "Task **** Kealoha Fitzgerald: payment reminder for invoice PPF-2609-03",
-     "content": "To-do (priority ****): Kealoha Fitzgerald: payment reminder for invoice PPF-2609-03. Due Oct 2, 2026. Status: Open. Client: Kealoha Fitzgerald LLP.",
+     "content": "To-do (priority ****): Kealoha Fitzgerald: payment reminder for invoice PPF-2609-03. Due Oct 2, 2026. Status: Open. Category: COLLECTIONS.",
      "source_url": "https://parkspacific.example/workbook/tasks/t2",
      "metadata": {
       "sheet": "Tasks",
       "type": "task",
       "as_of": "2026-10-02",
-      "client": "Kealoha Fitzgerald LLP",
       "item": "Kealoha Fitzgerald: payment reminder for invoice PPF-2609-03",
       "priority": "****",
       "due": "2026-10-02",
       "status": "Open",
+      "category": "COLLECTIONS",
       "owner": "Aaron"
      }
     },
@@ -611,17 +611,17 @@
      "external_id": "sheet-task-t3",
      "domain": "company",
      "title": "Task *** Prepare Business Health Review agenda for Vance Whitcombe & Rao",
-     "content": "To-do (priority ***): Prepare Business Health Review agenda for Vance Whitcombe & Rao. Due Oct 6, 2026. Status: Open. Client: Vance Whitcombe & Rao.",
+     "content": "To-do (priority ***): Prepare Business Health Review agenda for Vance Whitcombe & Rao. Due Oct 6, 2026. Status: Open. Category: CLIENT DELIVERY.",
      "source_url": "https://parkspacific.example/workbook/tasks/t3",
      "metadata": {
       "sheet": "Tasks",
       "type": "task",
       "as_of": "2026-10-02",
-      "client": "Vance Whitcombe & Rao",
       "item": "Prepare Business Health Review agenda for Vance Whitcombe & Rao",
       "priority": "***",
       "due": "2026-10-06",
       "status": "Open",
+      "category": "CLIENT DELIVERY",
       "owner": "Aaron"
      }
     },
@@ -629,17 +629,17 @@
      "external_id": "sheet-task-t4",
      "domain": "company",
      "title": "Task *** Brightwater Legal Group: send the Business Health Review offer",
-     "content": "To-do (priority ***): Brightwater Legal Group: send the Business Health Review offer. Due Sep 29, 2026. Status: Open. Client: Brightwater Legal Group.",
+     "content": "To-do (priority ***): Brightwater Legal Group: send the Business Health Review offer. Due Sep 29, 2026. Status: Open. Category: FINISH SALES FUNNEL.",
      "source_url": "https://parkspacific.example/workbook/tasks/t4",
      "metadata": {
       "sheet": "Tasks",
       "type": "task",
       "as_of": "2026-10-02",
-      "client": "Brightwater Legal Group",
       "item": "Brightwater Legal Group: send the Business Health Review offer",
       "priority": "***",
       "due": "2026-09-29",
       "status": "Open",
+      "category": "FINISH SALES FUNNEL",
       "owner": "Aaron"
      }
     },
@@ -647,17 +647,17 @@
      "external_id": "sheet-task-t5",
      "domain": "company",
      "title": "Task ** Write the Ridgeway bookkeeping referral transition plan",
-     "content": "To-do (priority **): Write the Ridgeway bookkeeping referral transition plan. Due Nov 1, 2026. Status: Open. Client: Ridgeway Family Law.",
+     "content": "To-do (priority **): Write the Ridgeway bookkeeping referral transition plan. Due Nov 1, 2026. Status: Open. Category: ADMINISTRATIVE.",
      "source_url": "https://parkspacific.example/workbook/tasks/t5",
      "metadata": {
       "sheet": "Tasks",
       "type": "task",
       "as_of": "2026-10-02",
-      "client": "Ridgeway Family Law",
       "item": "Write the Ridgeway bookkeeping referral transition plan",
       "priority": "**",
       "due": "2026-11-01",
       "status": "Open",
+      "category": "ADMINISTRATIVE",
       "owner": "Aaron"
      }
     },
@@ -665,17 +665,17 @@
      "external_id": "sheet-task-t6",
      "domain": "company",
      "title": "Task ** Schedule Q4 quarterly reviews with Platinum clients",
-     "content": "To-do (priority **): Schedule Q4 quarterly reviews with Platinum clients. Due Oct 15, 2026. Status: Open.",
+     "content": "To-do (priority **): Schedule Q4 quarterly reviews with Platinum clients. Due Dec 31, 2026. Status: Open. Category: CLIENT DELIVERY.",
      "source_url": "https://parkspacific.example/workbook/tasks/t6",
      "metadata": {
       "sheet": "Tasks",
       "type": "task",
       "as_of": "2026-10-02",
-      "client": "",
       "item": "Schedule Q4 quarterly reviews with Platinum clients",
       "priority": "**",
-      "due": "2026-10-15",
+      "due": "2026-12-31",
       "status": "Open",
+      "category": "CLIENT DELIVERY",
       "owner": "Aaron"
      }
     },
@@ -683,17 +683,16 @@
      "external_id": "sheet-task-t7",
      "domain": "company",
      "title": "Task * File September receipts and reconcile the business card",
-     "content": "To-do (priority *): File September receipts and reconcile the business card. Due Oct 10, 2026. Status: Open.",
+     "content": "To-do (priority *): File September receipts and reconcile the business card. No due date. Status: Open. Category: ADMINISTRATIVE.",
      "source_url": "https://parkspacific.example/workbook/tasks/t7",
      "metadata": {
       "sheet": "Tasks",
       "type": "task",
       "as_of": "2026-10-02",
-      "client": "",
       "item": "File September receipts and reconcile the business card",
       "priority": "*",
-      "due": "2026-10-10",
       "status": "Open",
+      "category": "ADMINISTRATIVE",
       "owner": "Aaron"
      }
     },
@@ -701,17 +700,17 @@
      "external_id": "sheet-task-t8",
      "domain": "company",
      "title": "Task *** Halvorsen & Mendes risk meeting deck",
-     "content": "To-do (priority ***): Halvorsen & Mendes risk meeting deck. Due Oct 1, 2026. Status: Done. Client: Halvorsen & Mendes LLP.",
+     "content": "To-do (priority ***): Halvorsen & Mendes risk meeting deck. Due Oct 1, 2026. Status: Done. Category: CLIENT DELIVERY.",
      "source_url": "https://parkspacific.example/workbook/tasks/t8",
      "metadata": {
       "sheet": "Tasks",
       "type": "task",
       "as_of": "2026-10-02",
-      "client": "Halvorsen & Mendes LLP",
       "item": "Halvorsen & Mendes risk meeting deck",
       "priority": "***",
       "due": "2026-10-01",
       "status": "Done",
+      "category": "CLIENT DELIVERY",
       "owner": "Aaron"
      }
     },

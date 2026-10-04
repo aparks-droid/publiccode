@@ -59,9 +59,10 @@ export function SpreadsheetSource({ brain }: { brain: Brain }) {
           <h2 className="pp-title text-2xl">Client workbook (spreadsheet)</h2>
           <p className="mt-1 text-sm text-[var(--ink-muted)]">
             Import a CSV export of one tab at a time: tasks, deliverables,
-            invoices, prospects, engagements or notes. Each row needs an{" "}
-            <code>id</code>; dates as YYYY-MM-DD; an optional <code>url</code>{" "}
-            column links back to the original sheet.
+            invoices, prospects, engagements or notes. The tab name decides the
+            kind of row. Each row needs an <code>id</code>; a{" "}
+            <code>category</code> column groups to-dos; an optional{" "}
+            <code>url</code> column links back to the original sheet.
           </p>
         </div>
         <span className="rounded-[2px] border border-[var(--border-cool)] px-2 py-0.5 text-xs font-medium">
