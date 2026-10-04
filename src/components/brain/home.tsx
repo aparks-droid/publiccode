@@ -240,7 +240,7 @@ export function HomeOverview({
       </section>
 
       <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)]">
-        <section className="pp-panel min-w-0" aria-labelledby="agenda-title">
+        <section className="pp-panel min-w-0 scroll-mt-24" aria-labelledby="agenda-title">
           <div className="flex items-baseline justify-between gap-2 border-b border-[var(--border-gold)] px-5 py-4">
             <h2 id="agenda-title" className="pp-title text-xl">
               Due soon and overdue
@@ -250,7 +250,7 @@ export function HomeOverview({
             </span>
           </div>
           <ul
-            className="pp-scroll max-h-[32rem] divide-y divide-[var(--border-cool)] overflow-y-auto"
+            className="pp-scroll divide-y divide-[var(--border-cool)] overflow-y-auto"
             tabIndex={0}
             aria-label={`${plural(items.length, "dated item")}, scrollable`}
           >
@@ -321,7 +321,7 @@ export function HomeOverview({
                 </span>
               </div>
               <ul
-                className="pp-scroll max-h-[32rem] divide-y divide-[var(--border-cool)] overflow-y-auto"
+                className="pp-scroll divide-y divide-[var(--border-cool)] overflow-y-auto"
                 tabIndex={0}
                 aria-label={`${plural(undated.length, "open task")} without a due date, scrollable`}
               >
