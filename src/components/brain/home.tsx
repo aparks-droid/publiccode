@@ -237,11 +237,15 @@ export function HomeOverview({
               Due soon and overdue
             </h2>
             <span className="text-sm text-[var(--ink-faint)]">
-              Priority **** to *
+              {items.length ? `${items.length} dated · ` : ""}Priority **** to *
             </span>
           </div>
-          <ul className="divide-y divide-[var(--border-cool)]">
-            {items.slice(0, 9).map((i) => (
+          <ul
+            className="pp-scroll max-h-[32rem] divide-y divide-[var(--border-cool)] overflow-y-auto"
+            tabIndex={0}
+            aria-label={`${plural(items.length, "dated item")}, scrollable`}
+          >
+            {items.map((i) => (
               <li key={i.id} className="flex items-start gap-3 px-5 py-3">
                 <span
                   className="w-8 shrink-0 pt-0.5 font-mono text-xs text-[var(--gold-deep)] sm:w-10 sm:text-sm"
@@ -299,8 +303,12 @@ export function HomeOverview({
                   {undated.length} open · highest priority first
                 </span>
               </div>
-              <ul className="divide-y divide-[var(--border-cool)]">
-                {undated.slice(0, 12).map((i) => (
+              <ul
+                className="pp-scroll max-h-[32rem] divide-y divide-[var(--border-cool)] overflow-y-auto"
+                tabIndex={0}
+                aria-label={`${plural(undated.length, "open task")} without a due date, scrollable`}
+              >
+                {undated.map((i) => (
                   <li key={i.id} className="flex items-start gap-3 px-5 py-3">
                     <span
                       className="w-8 shrink-0 pt-0.5 font-mono text-xs text-[var(--gold-deep)] sm:w-10 sm:text-sm"
@@ -320,14 +328,6 @@ export function HomeOverview({
                   </li>
                 ))}
               </ul>
-              {undated.length > 12 && (
-                <button
-                  className="w-full border-t border-[var(--border-cool)] px-5 py-3 text-left text-sm text-[var(--ink-muted)] hover:text-[var(--navy)]"
-                  onClick={() => brain.setPage("sources")}
-                >
-                  {undated.length - 12} more in Sources →
-                </button>
-              )}
             </>
           )}
         </section>
