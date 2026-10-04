@@ -24,7 +24,7 @@ const engagements = [
   ["halvorsen", "Halvorsen & Mendes LLP", "Platinum — Elite FCFO", 3400, "monthly", 18, "2026-05-01", "Monthly risk update meeting with the managing partner; dashboards maintained monthly."],
   ["okafor", "Okafor Brandt Litigation Group", "Gold — Executive FCFO", 8600, "fixed", 14, "2026-09-08", "Six-week engagement, currently in week 4. Focus: realization, WIP and collections."],
   ["kealoha", "Kealoha Fitzgerald LLP", "Platinum — Elite FCFO + AI add-on", 5000, "monthly", 9, "2026-03-01", "Platinum $2,600/month plus AI consulting add-on $2,400/month (AI policy and governance)."],
-  ["vance", "Vance Whitcombe & Rao", "Silver — Business Health Review", 1500, "fixed", 6, "2026-09-28", "Two-day Business Health Review scheduled Oct 7–8."],
+  ["vance", "Vance Whitcombe & Rao", "Silver — Business Health Review", 1750, "fixed", 6, "2026-09-28", "Two-day Business Health Review scheduled Oct 7–8."],
   ["delacroix", "Delacroix Sutton PC", "Gold — Executive FCFO", 9800, "fixed", 22, "2026-09-24", "Six-week engagement, week 2. 50% deposit invoiced at kickoff."],
   ["pemberton", "Pemberton Ashe LLP", "Platinum — Elite FCFO", 1800, "monthly", 5.5, "2026-06-01", "Monthly dashboard refresh and risk review."],
   ["ridgeway", "Ridgeway Family Law", "Legacy bookkeeping", 900, "monthly", 2.1, "2025-04-01", "Legacy bookkeeping client. Supported, not marketed; referral transition planned."],
@@ -58,7 +58,7 @@ const invoices = [
   ["PPF-2610-03", "Kealoha Fitzgerald LLP", 5000, "2026-10-01", "2026-10-15", "Open", "October Platinum retainer + AI add-on"],
   ["PPF-2609-07", "Okafor Brandt Litigation Group", 4300, "2026-09-08", "2026-09-22", "Paid", "Gold engagement — 50% deposit"],
   ["PPF-2609-09", "Delacroix Sutton PC", 4900, "2026-09-24", "2026-10-01", "Overdue", "Gold engagement — 50% deposit"],
-  ["PPF-2609-10", "Vance Whitcombe & Rao", 1500, "2026-09-28", "2026-09-28", "Paid", "Business Health Review"],
+  ["PPF-2609-10", "Vance Whitcombe & Rao", 1750, "2026-09-28", "2026-09-28", "Paid", "Business Health Review"],
   ["PPF-2609-06", "Pemberton Ashe LLP", 1800, "2026-09-01", "2026-09-15", "Overdue", "September Platinum retainer"],
   ["PPF-2610-06", "Pemberton Ashe LLP", 1800, "2026-10-01", "2026-10-15", "Open", "October Platinum retainer"],
   ["PPF-2608-12", "Ridgeway Family Law", 900, "2026-08-01", "2026-08-15", "Overdue", "August bookkeeping"],
@@ -71,8 +71,8 @@ for (const [id, firm, amount, issued, due, status, desc] of invoices)
 
 // Pipeline tab — prospects moving up the offer ladder.
 const prospects = [
-  ["brightwater", "Brightwater Legal Group", 12, "Stage 2 — $17 risk report purchased", 1500, "Offer the Business Health Review", "2026-09-29", "Bought the $17 risk and mitigation report Sep 22. Follow-up offering the Business Health Review was due Sep 29."],
-  ["castellan", "Castellan Moore LLP", 31, "Silver — BHR proposal sent", 1500, "Follow-up call", "2026-10-02", "Business Health Review proposal sent Sep 25 to the firm administrator."],
+  ["brightwater", "Brightwater Legal Group", 12, "Stage 2 — $17 risk report purchased", 1750, "Offer the Business Health Review", "2026-09-29", "Bought the $17 risk and mitigation report Sep 22. Follow-up offering the Business Health Review was due Sep 29."],
+  ["castellan", "Castellan Moore LLP", 31, "Silver — BHR proposal sent", 1750, "Follow-up call", "2026-10-02", "Business Health Review proposal sent Sep 25 to the firm administrator."],
   ["ironwood", "Ironwood Trial Lawyers", 8, "Gold — proposal sent", 7400, "Decision expected", "2026-10-06", "Completed a Business Health Review in August. Gold proposal for $7,400 sent Sep 18."],
   ["sato", "Sato Whitfield PLLC", 16, "Stage 1 — one-pager download", 0, "Send the $17 risk report offer", "2026-10-09", "Downloaded the one-page risk giveaway from a LinkedIn post on Sep 30."],
 ];
