@@ -297,10 +297,22 @@ export default function Home() {
                         )}
                       </CardContent>
                     </Card>
-                    {!brain.preview && configured && (
+                    {!brain.preview && !brain.hosted && configured && (
                       <DatabaseSetup brain={brain} />
                     )}
-                    {brain.preview && (
+                    {brain.hosted && (
+                      <Card>
+                        <CardHeader>
+                          <CardTitle>Website settings</CardTitle>
+                          <CardDescription className="text-sm">
+                            This is your private website. Its database ({brain.project}),
+                            Claude key and sign-in are managed in Vercel → Settings →
+                            Environment Variables, so they can’t be changed or seen here.
+                          </CardDescription>
+                        </CardHeader>
+                      </Card>
+                    )}
+                    {(brain.preview || brain.hosted) && (
                       <Button
                         variant="outline"
                         className="self-start"

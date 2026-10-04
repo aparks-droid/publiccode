@@ -17,6 +17,7 @@ const post = (url: string, body: object) =>
 export function useBrain() {
   const [configured, setConfigured] = useState(false),
     [preview, setPreview] = useState(false),
+    [hosted, setHosted] = useState(false),
     [project, setProject] = useState(""),
     [setupError, setSetupError] = useState(""),
     [monitoring, setMonitoring] = useState({
@@ -64,6 +65,7 @@ export function useBrain() {
     if (!response.ok) throw Error(data.error);
     setConfigured(data.configured);
     setPreview(data.demo);
+    setHosted(!!data.hosted);
     setProject(data.project || "");
     ws.current = data.workspace;
     setCompany(data.company);
@@ -370,6 +372,7 @@ export function useBrain() {
     loaded,
     configured,
     preview,
+    hosted,
     project,
     setupError,
     monitoring,

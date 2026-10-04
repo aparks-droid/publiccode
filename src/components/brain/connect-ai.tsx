@@ -133,7 +133,9 @@ export function ConnectAi({ brain }: { brain: Brain }) {
           </form>
         )}
         <p className="text-sm leading-relaxed text-muted-foreground">
-          {brain.preview
+          {brain.hosted
+            ? "On the website, the Claude key is set in Vercel and only tested here."
+            : brain.preview
             ? "Your key stays in this tab for the sample preview."
             : "Your key is saved on this computer for chat and attention checks."}{" "}
           API billing is separate from your subscription.

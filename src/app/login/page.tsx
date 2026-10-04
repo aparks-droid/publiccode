@@ -1,5 +1,5 @@
 "use client";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,14 @@ function SignIn() {
   const params = useSearchParams();
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+  const [code, setCode] = useState("");
+  const [needsCode, setNeedsCode] = useState(false);
+  useEffect(() => {
+    void fetch("/api/login")
+      .then((r) => r.json())
+      .then((d) => setNeedsCode(!!d.codeRequired))
+      .catch(() => {});
+  }, []);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const next = params.get("next") || "/";
@@ -22,7 +30,7 @@ function SignIn() {
         const res = await fetch("/api/login", {
           method: "POST",
           headers: { "content-type": "application/json" },
-          body: JSON.stringify({ user, password }),
+          body: JSON.stringify({ user, password, code }),
         }).catch(() => null);
         if (res?.ok)
           window.location.assign(next.startsWith("/") && !next.startsWith("//") ? next : "/");
@@ -63,6 +71,21 @@ function SignIn() {
           required
         />
       </label>
+      {needsCode && (
+        <label className="grid gap-1 text-sm font-medium">
+          Authenticator code
+          <Input
+            inputMode="numeric"
+            autoComplete="one-time-code"
+            pattern="[0-9 ]{6,7}"
+            maxLength={7}
+            className="h-11 bg-white tracking-[0.3em]"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            required
+          />
+        </label>
+      )}
       {error && (
         <p role="alert" className="text-sm text-[var(--negative)]">
           {error}

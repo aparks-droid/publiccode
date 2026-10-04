@@ -3,6 +3,7 @@ import {
   assertLocal,
   demoMode,
   failure,
+  hostedLive,
   readConfig,
   workspaceDb,
 } from "@/lib/server/local";
@@ -66,6 +67,7 @@ export async function GET(req: Request) {
       ...settings,
       configured: true,
       demo: false,
+      hosted: hostedLive(),
       project: new URL(
         config.database?.url || process.env.SUPABASE_URL!,
       ).hostname.split(".")[0],

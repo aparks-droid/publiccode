@@ -1,7 +1,13 @@
 import { mkdir, readFile, rename, writeFile, chmod } from "node:fs/promises";
 import { join } from "node:path";
 import { randomUUID } from "node:crypto";
-import { assertLocal, configDirectory, demoMode, failure } from "@/lib/server/local";
+import {
+  assertLocal,
+  configDirectory,
+  demoMode,
+  failure,
+  hostedLive,
+} from "@/lib/server/local";
 import { SETUP_CHOICES, SETUP_STEP_IDS } from "@/lib/setup";
 
 // Private, non-secret setup progress. It lives beside the local connections in
@@ -23,7 +29,7 @@ const unavailable = () =>
   );
 
 export async function GET(req: Request) {
-  if (demoMode()) return unavailable();
+  if (demoMode() || hostedLive()) return unavailable();
   try {
     assertLocal(req);
     const plan = await readPlan();
@@ -35,7 +41,7 @@ export async function GET(req: Request) {
 
 let saving = Promise.resolve();
 export async function POST(req: Request) {
-  if (demoMode()) return unavailable();
+  if (demoMode() || hostedLive()) return unavailable();
   try {
     assertLocal(req);
     const { step, choice } = await req.json();
