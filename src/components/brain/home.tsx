@@ -11,7 +11,11 @@ import {
 import {
   asOfDate,
   daysBetween,
+  dueOf,
+  field,
   isDone,
+  priorityOf,
+  taskLabel,
   money,
   plural,
   prettyDate,
@@ -41,32 +45,31 @@ type Item = {
   kind: string;
 };
 
-// Everything with a date that is still open, from the workbook rows.
+// Everything still open from the workbook rows, dated or not.
 function agenda(rows: RecordRow[], asOf: Date): Item[] {
-  const open = (r: RecordRow) => !isDone(r.metadata.status);
-  const item = (r: RecordRow, kind: string, label: unknown, due: unknown) => ({
+  const open = (r: RecordRow) => !isDone(field(r, "status", "state", "done"));
+  const item = (r: RecordRow, kind: string, label: string, due: string) => ({
     id: r.id,
     kind,
-    label: String(label || r.title),
-    client: String(r.metadata.client || ""),
-    due: String(due || ""),
+    label: label.replace(/^\s*\*+\s*/, "") || r.title,
+    client: field(r, "client", "client_name", "customer", "firm"),
+    due,
     days: daysBetween(asOf, due),
-    priority: String(r.metadata.priority || ""),
+    priority: priorityOf(r),
   });
   return [
     ...sheetRows(rows, "task")
       .filter(open)
-      .map((r) => item(r, "Task", r.metadata.item, r.metadata.due)),
+      .map((r) => item(r, "Task", taskLabel(r), dueOf(r))),
     ...sheetRows(rows, "deliverable")
       .filter(open)
-      .map((r) => item(r, "Deliverable", r.metadata.item, r.metadata.due)),
+      .map((r) => item(r, "Deliverable", taskLabel(r), dueOf(r))),
     ...sheetRows(rows, "prospect").map((r) =>
-      item(r, "Follow-up", r.metadata.next_step, r.metadata.follow_up),
+      item(r, "Follow-up", field(r, "next_step") || taskLabel(r), field(r, "follow_up") || dueOf(r)),
     ),
-  ]
-    .filter((i) => i.due && !isNaN(i.days))
-    .sort((a, b) => a.days - b.days || b.priority.length - a.priority.length);
+  ];
 }
+const byPriority = (a: Item, b: Item) => b.priority.length - a.priority.length;
 
 const dollars = (n: number) =>
   Number.isInteger(n)
@@ -99,15 +102,21 @@ export function HomeOverview({
     (s) => s.kind === "web" && s.mode === "sample",
   );
   const asOf = asOfDate(rows);
-  const items = agenda(rows, asOf);
+  const all = agenda(rows, asOf);
+  const items = all
+    .filter((i) => !isNaN(i.days))
+    .sort((a, b) => a.days - b.days || byPriority(a, b));
+  const undated = all
+    .filter((i) => isNaN(i.days) && i.kind === "Task")
+    .sort(byPriority);
   const overdue = items.filter((i) => i.days < 0);
   const soon = items.filter((i) => i.days >= 0 && i.days <= 7);
   const invoices = sheetRows(rows, "invoice").filter(
     (r) => !isDone(r.metadata.status),
   );
-  const pastDue = invoices.filter((r) => daysBetween(asOf, r.metadata.due) < 0);
+  const pastDue = invoices.filter((r) => daysBetween(asOf, dueOf(r)) < 0);
   const pastDueTotal = pastDue.reduce(
-    (t, r) => t + (Number(r.metadata.amount) || 0),
+    (t, r) => t + (Number(String(field(r, "amount", "balance", "total")).replace(/[$,]/g, "")) || 0),
     0,
   );
   const monthly = sheetRows(rows, "engagement").filter(
@@ -147,7 +156,7 @@ export function HomeOverview({
     },
   ];
   const brief = hasSheet
-    ? `${overdue.length ? `${plural(overdue.length, "item")} ${overdue.length === 1 ? "is" : "are"} overdue` : "Nothing is overdue"} and ${plural(soon.length, "more item")} ${soon.length === 1 ? "is" : "are"} due in the next 7 days. ${pastDue.length ? `${dollars(pastDueTotal)} is past due across ${plural(pastDue.length, "invoice")}.` : "No invoice is past due."} ${issues.length ? `${plural(issues.length, "issue")} need${issues.length === 1 ? "s" : ""} a decision${high ? `, ${high} of them high priority` : ""}.` : ""}`
+    ? `${overdue.length ? `${plural(overdue.length, "item")} ${overdue.length === 1 ? "is" : "are"} overdue` : "Nothing is overdue"} and ${plural(soon.length, "more item")} ${soon.length === 1 ? "is" : "are"} due in the next 7 days.${undated.length ? ` ${plural(undated.length, "open task")} ${undated.length === 1 ? "has" : "have"} no due date.` : ""} ${pastDue.length ? `${dollars(pastDueTotal)} is past due across ${plural(pastDue.length, "invoice")}.` : "No invoice is past due."} ${issues.length ? `${plural(issues.length, "issue")} need${issues.length === 1 ? "s" : ""} a decision${high ? `, ${high} of them high priority` : ""}.` : ""}`
     : "";
   const ask = (question: string) => {
     brain.setPage("chat");
@@ -275,11 +284,52 @@ export function HomeOverview({
               <li className="flex items-start gap-3 px-5 py-5 text-sm text-[var(--ink-muted)]">
                 <Check className="mt-0.5 size-4 shrink-0 text-[var(--positive)]" />
                 {hasSheet
-                  ? "Nothing open with a date."
+                  ? undated.length
+                    ? "No open item has a due date. Add a due column (any common date format) to see overdue and due-soon items here."
+                    : "Nothing open with a date."
                   : "Dated tasks and deliverables appear here once your spreadsheet is imported."}
               </li>
             )}
           </ul>
+          {undated.length > 0 && (
+            <>
+              <div className="flex items-baseline justify-between gap-2 border-y border-[var(--border-gold)] px-5 py-4">
+                <h2 className="pp-title text-xl">Open tasks, no due date</h2>
+                <span className="text-sm text-[var(--ink-faint)]">
+                  {undated.length} open · highest priority first
+                </span>
+              </div>
+              <ul className="divide-y divide-[var(--border-cool)]">
+                {undated.slice(0, 12).map((i) => (
+                  <li key={i.id} className="flex items-start gap-3 px-5 py-3">
+                    <span
+                      className="w-8 shrink-0 pt-0.5 font-mono text-xs text-[var(--gold-deep)] sm:w-10 sm:text-sm"
+                      aria-label={i.priority ? `Priority ${i.priority.length}` : undefined}
+                    >
+                      {i.priority}
+                    </span>
+                    <p className="min-w-0 flex-1 text-sm font-medium">
+                      {i.label}
+                      {i.client && (
+                        <span className="font-normal text-[var(--ink-muted)]">
+                          {" · "}
+                          {i.client}
+                        </span>
+                      )}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+              {undated.length > 12 && (
+                <button
+                  className="w-full border-t border-[var(--border-cool)] px-5 py-3 text-left text-sm text-[var(--ink-muted)] hover:text-[var(--navy)]"
+                  onClick={() => brain.setPage("sources")}
+                >
+                  {undated.length - 12} more in Sources →
+                </button>
+              )}
+            </>
+          )}
         </section>
 
         <div className="flex min-w-0 flex-col gap-5">

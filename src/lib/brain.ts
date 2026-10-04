@@ -136,20 +136,75 @@ export const failedOnce = (payments: RecordRow[]) => {
   });
 };
 
-// Spreadsheet (workbook) rows: imported or sample records of a known sheet type.
+// Spreadsheet (workbook) rows. Imported tabs name things their own way
+// ("To do list", "Bills", "Due date"), so types, fields and dates are read
+// tolerantly rather than requiring the template's exact headers.
+const typeOf = (r: RecordRow) => {
+  const t = String(r.metadata.type || r.metadata.sheet || "").toLowerCase();
+  if (/task|to.?do|action/.test(t)) return "task";
+  if (/invoice|bill|receivable/.test(t)) return "invoice";
+  if (/deliverable/.test(t)) return "deliverable";
+  if (/prospect|pipeline|lead|opportunit/.test(t)) return "prospect";
+  if (/engagement|retainer|contract/.test(t)) return "engagement";
+  if (/note|meeting/.test(t)) return "note";
+  return t;
+};
 export const sheetRows = (rows: RecordRow[], type: string) =>
-  rows.filter((r) => r.metadata.type === type);
-const day = (v: unknown) => new Date(`${String(v).slice(0, 10)}T12:00:00`);
+  rows.filter((r) => typeOf(r) === type);
+// First non-empty value among several possible column names.
+export const field = (r: RecordRow, ...keys: string[]) => {
+  for (const k of keys) {
+    const v = r.metadata[k];
+    if (v !== undefined && v !== null && String(v).trim()) return String(v).trim();
+  }
+  return "";
+};
+export const taskLabel = (r: RecordRow) =>
+  field(r, "item", "task", "to_do", "todo", "description", "title", "name", "action") ||
+  r.title;
+export const dueOf = (r: RecordRow) =>
+  field(r, "due", "due_date", "deadline", "date_due", "close_date", "date");
+// Priority as leading asterisks (**** highest), from a priority column or the item text.
+export const priorityOf = (r: RecordRow) => {
+  const p = field(r, "priority", "pri", "rank");
+  if (/^\*+$/.test(p)) return p;
+  if (/^[1-4]$/.test(p)) return "*".repeat(5 - Number(p));
+  return /^\s*(\*+)/.exec(taskLabel(r))?.[1] || "";
+};
+// Accepts 2026-10-09, 2026-10-09T…, 10/9/2026, 10/9/26 and "Oct 9, 2026".
+export const parseDay = (v: unknown): Date | null => {
+  const s = String(v ?? "").trim();
+  if (!s) return null;
+  let m = /^(\d{4})-(\d{1,2})-(\d{1,2})/.exec(s);
+  if (m) return new Date(+m[1], +m[2] - 1, +m[3], 12);
+  m = /^(\d{1,2})\/(\d{1,2})\/(\d{2}|\d{4})$/.exec(s);
+  if (m) {
+    const y = m[3].length === 2 ? 2000 + +m[3] : +m[3];
+    return new Date(y, +m[1] - 1, +m[2], 12);
+  }
+  const d = new Date(s);
+  return isNaN(d.getTime())
+    ? null
+    : new Date(d.getFullYear(), d.getMonth(), d.getDate(), 12);
+};
+const today = () => {
+  const n = new Date();
+  return new Date(n.getFullYear(), n.getMonth(), n.getDate(), 12);
+};
 // The reference date for a workbook: its export date when rows carry one,
 // so a sample snapshot keeps reading the same way; otherwise today.
 export const asOfDate = (rows: RecordRow[]) => {
   const dates = rows
-    .map((r) => String(r.metadata.as_of || ""))
-    .filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d))
-    .sort();
-  return dates.length ? day(dates[dates.length - 1]) : day(new Date().toISOString());
+    .map((r) => parseDay(r.metadata.as_of))
+    .filter((d): d is Date => !!d)
+    .sort((a, b) => a.getTime() - b.getTime());
+  return dates.length ? dates[dates.length - 1] : today();
 };
-export const daysBetween = (from: Date, to: unknown) =>
-  Math.round((day(to).getTime() - from.getTime()) / 86400000);
+export const daysBetween = (from: Date, to: unknown) => {
+  const d = parseDay(to);
+  return d ? Math.round((d.getTime() - from.getTime()) / 86400000) : NaN;
+};
 export const isDone = (status: unknown) =>
-  /^(complete|completed|done|paid|delivered)$/i.test(String(status || ""));
+  /^(complete|completed|done|closed|paid|delivered|cancell?ed|x|yes|true|✓|✔)$/i.test(
+    String(status || "").trim(),
+  );
