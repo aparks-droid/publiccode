@@ -47,6 +47,12 @@ export function Customer({
       String(b.metadata.posted_at).localeCompare(String(a.metadata.posted_at)),
     );
   const issues = brain.issues.filter((i) => !i.resolved && mine(i.customer));
+  const sheet = brain
+    .from("web")
+    .filter((r) => mine(r.metadata.client))
+    .sort((a, b) =>
+      String(a.metadata.type).localeCompare(String(b.metadata.type)),
+    );
   const block = (title: string, children: React.ReactNode) => (
     <section className="flex flex-col gap-2">
       <h3 className="text-sm font-semibold">{title}</h3>
@@ -63,7 +69,8 @@ export function Customer({
           <DialogTitle>{name}</DialogTitle>
           <DialogDescription>
             {plural(issues.length, "open issue")} ·{" "}
-            {plural(deals.length, "deal")} · {displayMoney(paid)} paid
+            {plural(sheet.length, "workbook record")}
+            {payments.length ? ` · ${displayMoney(paid)} paid` : ""}
             {owed.length
               ? ` · ${money(owed.reduce((t, p) => t + Number(p.metadata.amount), 0))} in failed payments`
               : ""}
@@ -84,6 +91,22 @@ export function Customer({
             : none,
         )}
         {block(
+          "From your workbook",
+          sheet.length
+            ? sheet.map((r) => (
+                <div key={r.id} className="rounded-[2px] border p-3 text-sm">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Badge variant="outline" className="rounded-[2px] capitalize">
+                      {String(r.metadata.type)}
+                    </Badge>
+                    <span className="font-medium">{r.title.replace(/^[^—]*— /, "")}</span>
+                  </div>
+                  <p className="mt-1 text-muted-foreground">{r.content}</p>
+                </div>
+              ))
+            : none,
+        )}
+        {!!deals.length && block(
           "Deals",
           deals.length
             ? deals.map((d) => (
@@ -103,7 +126,7 @@ export function Customer({
               ))
             : none,
         )}
-        {block(
+        {!!payments.length && block(
           "Payments",
           payments.length ? (
             <div className="rounded-lg border p-3 text-sm">
@@ -125,7 +148,7 @@ export function Customer({
             none
           ),
         )}
-        {block(
+        {!!mentions.length && block(
           "What the team is saying",
           mentions.length
             ? mentions.slice(0, 6).map((m) => (
@@ -146,7 +169,7 @@ export function Customer({
           onClick={() => {
             onClose();
             brain.askQuestion(
-              `Brief me on ${name}: what is going on, what have we promised, and what do they owe us?`,
+              `Brief me on ${name}: what is going on, what have we promised, what is due, and what do they owe us?`,
             );
           }}
         >

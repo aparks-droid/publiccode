@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/dialog";
 import { prettyDate, toolName } from "@/lib/brain";
 import type { Brain } from "@/lib/use-brain";
+import { SpreadsheetSource } from "@/components/brain/spreadsheet";
 const connectors = [
   {
     kind: "slack",
@@ -113,6 +114,12 @@ export function Sources({ brain }: { brain: Brain }) {
   };
   return (
     <div className="flex flex-col gap-6">
+      <SpreadsheetSource brain={brain} />
+      <h2 className="pp-title -mb-2 text-xl">Other connectors</h2>
+      <p className="-mt-3 text-sm text-[var(--ink-muted)]">
+        Not selected for ParksPacific Financial. They stay available if that
+        changes.
+      </p>
       <div className="grid gap-4 lg:grid-cols-3">
         {connectors.map((x) => {
           const s = brain.sources.find((s) => s.kind === x.kind),
@@ -141,7 +148,7 @@ export function Sources({ brain }: { brain: Brain }) {
                     : connected
                       ? "Connected"
                       : s?.mode === "sample"
-                        ? "Sample data"
+                        ? "Sample"
                         : s?.mode === "imported"
                           ? "Imported records"
                           : "Not connected"}
@@ -309,9 +316,10 @@ export function Sources({ brain }: { brain: Brain }) {
       {!brain.preview && !brain.sources.some((s) => s.mode !== "sample") && (
         <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border p-4">
           <div>
-            <p className="font-medium">Explore a fictional company first</p>
+            <p className="font-medium">Explore the sample workbook first</p>
             <p className="text-sm text-muted-foreground">
-              Optional sample data. It stays separate from your real sources.
+              Optional labelled sample workbook. It stays separate from your
+              real records and disappears once you import your own.
             </p>
           </div>
           <Button
@@ -319,7 +327,7 @@ export function Sources({ brain }: { brain: Brain }) {
             disabled={brain.busy || !brain.configured}
             onClick={() => void brain.loadDemo()}
           >
-            Load sample company
+            Load sample workbook
           </Button>
         </div>
       )}

@@ -451,7 +451,7 @@ export function Attention({
             </p>
             <p>
               <strong>
-                High priority currently means money or a customer is at risk
+                High priority currently means money or a client is at risk
                 within days.
               </strong>{" "}
               This is an AI judgment. Each issue includes the supporting records
@@ -459,8 +459,8 @@ export function Attention({
             </p>
             <p>
               <strong>Sample analysis is an example.</strong> Those issues were
-              prepared for the demo company; they were not found by monitoring
-              your business.
+              prepared for the sample workbook; they were not found by
+              monitoring your business.
             </p>
             <p className="rounded-lg bg-muted p-3">
               In your local copy, Sources lets you set attention guidelines and

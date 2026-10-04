@@ -67,7 +67,7 @@
      "external_id": "sheet-engagement-vance",
      "domain": "cx",
      "title": "Engagement — Vance Whitcombe & Rao (Silver — Business Health Review)",
-     "content": "Vance Whitcombe & Rao. Tier: Silver — Business Health Review. Fee: $1,750 fixed. Firm revenue about $6M. Client since Sep 28, 2026. Two-day Business Health Review scheduled Oct 7–8.",
+     "content": "Vance Whitcombe & Rao. Tier: Silver — Business Health Review. Fee: $1,500 fixed. Firm revenue about $6M. Client since Sep 28, 2026. Two-day Business Health Review scheduled Oct 7–8.",
      "source_url": "https://parkspacific.example/workbook/engagements/vance",
      "metadata": {
       "sheet": "Engagements",
@@ -75,7 +75,7 @@
       "as_of": "2026-10-02",
       "client": "Vance Whitcombe & Rao",
       "tier": "Silver — Business Health Review",
-      "fee": 1750,
+      "fee": 1500,
       "basis": "fixed",
       "firm_revenue_m": 6,
       "since": "2026-09-28",
@@ -398,8 +398,8 @@
     {
      "external_id": "sheet-invoice-PPF-2609-10",
      "domain": "finance",
-     "title": "Invoice PPF-2609-10 — Vance Whitcombe & Rao, $1,750 (Paid)",
-     "content": "Invoice PPF-2609-10 to Vance Whitcombe & Rao: Business Health Review. Amount $1,750. Issued Sep 28, 2026, due Sep 28, 2026. Status: Paid.",
+     "title": "Invoice PPF-2609-10 — Vance Whitcombe & Rao, $1,500 (Paid)",
+     "content": "Invoice PPF-2609-10 to Vance Whitcombe & Rao: Business Health Review. Amount $1,500. Issued Sep 28, 2026, due Sep 28, 2026. Status: Paid.",
      "source_url": "https://parkspacific.example/workbook/invoices/PPF-2609-10",
      "metadata": {
       "sheet": "Invoices",
@@ -407,7 +407,7 @@
       "as_of": "2026-10-02",
       "client": "Vance Whitcombe & Rao",
       "invoice": "PPF-2609-10",
-      "amount": 1750,
+      "amount": 1500,
       "currency": "USD",
       "issued": "2026-09-28",
       "due": "2026-09-28",
@@ -498,16 +498,16 @@
     {
      "external_id": "sheet-prospect-brightwater",
      "domain": "sales",
-     "title": "Prospect — Brightwater Legal Group: Stage 2 — $19 reports purchased",
-     "content": "Brightwater Legal Group (about $12M revenue). Ladder stage: Stage 2 — $19 reports purchased. Proposed value $1,750. Next step: Offer the Business Health Review, due Sep 29, 2026. Bought the Top 25 Risks reports Sep 22. Follow-up offering the Business Health Review was due Sep 29.",
+     "title": "Prospect — Brightwater Legal Group: Stage 2 — $17 risk report purchased",
+     "content": "Brightwater Legal Group (about $12M revenue). Ladder stage: Stage 2 — $17 risk report purchased. Proposed value $1,500. Next step: Offer the Business Health Review, due Sep 29, 2026. Bought the $17 risk and mitigation report Sep 22. Follow-up offering the Business Health Review was due Sep 29.",
      "source_url": "https://parkspacific.example/workbook/prospects/brightwater",
      "metadata": {
       "sheet": "Prospects",
       "type": "prospect",
       "as_of": "2026-10-02",
       "client": "Brightwater Legal Group",
-      "stage": "Stage 2 — $19 reports purchased",
-      "value": 1750,
+      "stage": "Stage 2 — $17 risk report purchased",
+      "value": 1500,
       "next_step": "Offer the Business Health Review",
       "follow_up": "2026-09-29",
       "firm_revenue_m": 12,
@@ -518,7 +518,7 @@
      "external_id": "sheet-prospect-castellan",
      "domain": "sales",
      "title": "Prospect — Castellan Moore LLP: Silver — BHR proposal sent",
-     "content": "Castellan Moore LLP (about $31M revenue). Ladder stage: Silver — BHR proposal sent. Proposed value $1,750. Next step: Follow-up call, due Oct 2, 2026. Business Health Review proposal sent Sep 25 to the firm administrator.",
+     "content": "Castellan Moore LLP (about $31M revenue). Ladder stage: Silver — BHR proposal sent. Proposed value $1,500. Next step: Follow-up call, due Oct 2, 2026. Business Health Review proposal sent Sep 25 to the firm administrator.",
      "source_url": "https://parkspacific.example/workbook/prospects/castellan",
      "metadata": {
       "sheet": "Prospects",
@@ -526,7 +526,7 @@
       "as_of": "2026-10-02",
       "client": "Castellan Moore LLP",
       "stage": "Silver — BHR proposal sent",
-      "value": 1750,
+      "value": 1500,
       "next_step": "Follow-up call",
       "follow_up": "2026-10-02",
       "firm_revenue_m": 31,
@@ -556,7 +556,7 @@
      "external_id": "sheet-prospect-sato",
      "domain": "sales",
      "title": "Prospect — Sato Whitfield PLLC: Stage 1 — one-pager download",
-     "content": "Sato Whitfield PLLC (about $16M revenue). Ladder stage: Stage 1 — one-pager download. No proposal yet. Next step: Send the $19 report offer, due Oct 9, 2026. Downloaded Ten No-Capital Risk Mitigations from LinkedIn on Sep 30.",
+     "content": "Sato Whitfield PLLC (about $16M revenue). Ladder stage: Stage 1 — one-pager download. No proposal yet. Next step: Send the $17 risk report offer, due Oct 9, 2026. Downloaded the one-page risk giveaway from a LinkedIn post on Sep 30.",
      "source_url": "https://parkspacific.example/workbook/prospects/sato",
      "metadata": {
       "sheet": "Prospects",
@@ -565,9 +565,153 @@
       "client": "Sato Whitfield PLLC",
       "stage": "Stage 1 — one-pager download",
       "value": 0,
-      "next_step": "Send the $19 report offer",
+      "next_step": "Send the $17 risk report offer",
       "follow_up": "2026-10-09",
       "firm_revenue_m": 16,
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-task-t1",
+     "domain": "company",
+     "title": "Task **** Send Okafor Brandt a revised dashboard date if the WIP export is still missing",
+     "content": "To-do (priority ****): Send Okafor Brandt a revised dashboard date if the WIP export is still missing. Due Oct 3, 2026. Status: Open. Client: Okafor Brandt Litigation Group.",
+     "source_url": "https://parkspacific.example/workbook/tasks/t1",
+     "metadata": {
+      "sheet": "Tasks",
+      "type": "task",
+      "as_of": "2026-10-02",
+      "client": "Okafor Brandt Litigation Group",
+      "item": "Send Okafor Brandt a revised dashboard date if the WIP export is still missing",
+      "priority": "****",
+      "due": "2026-10-03",
+      "status": "Open",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-task-t2",
+     "domain": "company",
+     "title": "Task **** Kealoha Fitzgerald: payment reminder for invoice PPF-2609-03",
+     "content": "To-do (priority ****): Kealoha Fitzgerald: payment reminder for invoice PPF-2609-03. Due Oct 2, 2026. Status: Open. Client: Kealoha Fitzgerald LLP.",
+     "source_url": "https://parkspacific.example/workbook/tasks/t2",
+     "metadata": {
+      "sheet": "Tasks",
+      "type": "task",
+      "as_of": "2026-10-02",
+      "client": "Kealoha Fitzgerald LLP",
+      "item": "Kealoha Fitzgerald: payment reminder for invoice PPF-2609-03",
+      "priority": "****",
+      "due": "2026-10-02",
+      "status": "Open",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-task-t3",
+     "domain": "company",
+     "title": "Task *** Prepare Business Health Review agenda for Vance Whitcombe & Rao",
+     "content": "To-do (priority ***): Prepare Business Health Review agenda for Vance Whitcombe & Rao. Due Oct 6, 2026. Status: Open. Client: Vance Whitcombe & Rao.",
+     "source_url": "https://parkspacific.example/workbook/tasks/t3",
+     "metadata": {
+      "sheet": "Tasks",
+      "type": "task",
+      "as_of": "2026-10-02",
+      "client": "Vance Whitcombe & Rao",
+      "item": "Prepare Business Health Review agenda for Vance Whitcombe & Rao",
+      "priority": "***",
+      "due": "2026-10-06",
+      "status": "Open",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-task-t4",
+     "domain": "company",
+     "title": "Task *** Brightwater Legal Group: send the Business Health Review offer",
+     "content": "To-do (priority ***): Brightwater Legal Group: send the Business Health Review offer. Due Sep 29, 2026. Status: Open. Client: Brightwater Legal Group.",
+     "source_url": "https://parkspacific.example/workbook/tasks/t4",
+     "metadata": {
+      "sheet": "Tasks",
+      "type": "task",
+      "as_of": "2026-10-02",
+      "client": "Brightwater Legal Group",
+      "item": "Brightwater Legal Group: send the Business Health Review offer",
+      "priority": "***",
+      "due": "2026-09-29",
+      "status": "Open",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-task-t5",
+     "domain": "company",
+     "title": "Task ** Write the Ridgeway bookkeeping referral transition plan",
+     "content": "To-do (priority **): Write the Ridgeway bookkeeping referral transition plan. Due Nov 1, 2026. Status: Open. Client: Ridgeway Family Law.",
+     "source_url": "https://parkspacific.example/workbook/tasks/t5",
+     "metadata": {
+      "sheet": "Tasks",
+      "type": "task",
+      "as_of": "2026-10-02",
+      "client": "Ridgeway Family Law",
+      "item": "Write the Ridgeway bookkeeping referral transition plan",
+      "priority": "**",
+      "due": "2026-11-01",
+      "status": "Open",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-task-t6",
+     "domain": "company",
+     "title": "Task ** Schedule Q4 quarterly reviews with Platinum clients",
+     "content": "To-do (priority **): Schedule Q4 quarterly reviews with Platinum clients. Due Oct 15, 2026. Status: Open.",
+     "source_url": "https://parkspacific.example/workbook/tasks/t6",
+     "metadata": {
+      "sheet": "Tasks",
+      "type": "task",
+      "as_of": "2026-10-02",
+      "client": "",
+      "item": "Schedule Q4 quarterly reviews with Platinum clients",
+      "priority": "**",
+      "due": "2026-10-15",
+      "status": "Open",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-task-t7",
+     "domain": "company",
+     "title": "Task * File September receipts and reconcile the business card",
+     "content": "To-do (priority *): File September receipts and reconcile the business card. Due Oct 10, 2026. Status: Open.",
+     "source_url": "https://parkspacific.example/workbook/tasks/t7",
+     "metadata": {
+      "sheet": "Tasks",
+      "type": "task",
+      "as_of": "2026-10-02",
+      "client": "",
+      "item": "File September receipts and reconcile the business card",
+      "priority": "*",
+      "due": "2026-10-10",
+      "status": "Open",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-task-t8",
+     "domain": "company",
+     "title": "Task *** Halvorsen & Mendes risk meeting deck",
+     "content": "To-do (priority ***): Halvorsen & Mendes risk meeting deck. Due Oct 1, 2026. Status: Done. Client: Halvorsen & Mendes LLP.",
+     "source_url": "https://parkspacific.example/workbook/tasks/t8",
+     "metadata": {
+      "sheet": "Tasks",
+      "type": "task",
+      "as_of": "2026-10-02",
+      "client": "Halvorsen & Mendes LLP",
+      "item": "Halvorsen & Mendes risk meeting deck",
+      "priority": "***",
+      "due": "2026-10-01",
+      "status": "Done",
       "owner": "Aaron"
      }
     },
@@ -620,7 +764,7 @@
      "external_id": "sheet-note-capacity-1001",
      "domain": "company",
      "title": "Note — ParksPacific Financial: Internal capacity review (Oct 1, 2026)",
-     "content": "Internal capacity review with ParksPacific Financial, Oct 1, 2026. October holds a two-day Business Health Review, two Gold engagements and three Platinum monthly meetings. Advisory calendar about 92% booked. Ridgeway bookkeeping referral transition plan due by Nov 1.",
+     "content": "Internal capacity review with ParksPacific Financial, Oct 1, 2026. October holds a two-day Business Health Review, two Gold engagements and three Platinum monthly meetings, which fills the part-time calendar through Oct 16. Ridgeway bookkeeping moves to a referral partner; transition plan due by Nov 1.",
      "source_url": "https://parkspacific.example/workbook/notes/capacity-1001",
      "metadata": {
       "sheet": "Notes",
@@ -648,7 +792,8 @@
    "evidence": [
     "sheet-deliverable-okafor-dashboard",
     "sheet-note-okafor-0930",
-    "sheet-deliverable-okafor-recs"
+    "sheet-deliverable-okafor-recs",
+    "sheet-task-t1"
    ]
   },
   {
@@ -684,8 +829,8 @@
    ]
   },
   {
-   "title": "Brightwater follow-up missed after $19 purchase",
-   "consequence": "A qualified $19 buyer has had no Business Health Review offer three days after the planned follow-up.",
+   "title": "Brightwater follow-up missed after $17 purchase",
+   "consequence": "A qualified $17 buyer has had no Business Health Review offer three days after the planned follow-up.",
    "category": "Customers",
    "priority": "medium",
    "owner": "Aaron",
@@ -694,17 +839,18 @@
    "action": "Send the Business Health Review offer with one clear call to action.",
    "customer": "Brightwater Legal Group",
    "evidence": [
-    "sheet-prospect-brightwater"
+    "sheet-prospect-brightwater",
+    "sheet-task-t4"
    ]
   },
   {
    "title": "October advisory calendar near capacity",
-   "consequence": "With the Vance review, two Gold engagements and Platinum meetings, a Gold win from Ironwood would need a later start.",
+   "consequence": "The calendar is full through Oct 16, so a Gold win from Ironwood would need a start date after that.",
    "category": "People",
    "priority": "medium",
    "owner": "Aaron",
    "due": "2026-10-06",
-   "status": "About 92% booked",
+   "status": "Booked through Oct 16",
    "action": "Decide the earliest Ironwood start date before their Oct 6 decision.",
    "customer": "",
    "evidence": [

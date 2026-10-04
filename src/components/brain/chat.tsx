@@ -1,5 +1,5 @@
 "use client";
-import { ArrowUp, Brain as BrainIcon, Loader2, RotateCcw } from "lucide-react";
+import { ArrowUp, Loader2, RotateCcw, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
@@ -7,10 +7,10 @@ import { plural } from "@/lib/brain";
 import type { Brain } from "@/lib/use-brain";
 
 const suggestions = [
-  "What needs our attention this week?",
-  "Which customers owe us money?",
-  "What is in the pipeline, and what is at risk?",
-  "What is the team worried about?",
+  "What is overdue, and what should I handle first?",
+  "Which clients owe us money past due?",
+  "Which prospects need a follow-up, and what was offered?",
+  "What have we promised clients in recent meetings?",
 ];
 
 export function Chat({ brain }: { brain: Brain }) {
@@ -19,7 +19,7 @@ export function Chat({ brain }: { brain: Brain }) {
   return (
     <div className="mx-auto flex h-[calc(100dvh-10rem)] max-w-3xl flex-col gap-3">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold tracking-tight">
+        <h1 className="pp-title text-3xl">
           Ask your brain
         </h1>
         {!empty && (
@@ -36,7 +36,7 @@ export function Chat({ brain }: { brain: Brain }) {
       <div className="flex-1 overflow-y-auto">
         {empty ? (
           <div className="flex h-full flex-col items-center justify-center gap-4 text-center">
-            <BrainIcon className="size-10 text-violet-600" />
+            <Sparkles className="size-8 text-[var(--gold-deep)]" />
             <p className="text-muted-foreground">
               Pick a question or write your own.
             </p>
