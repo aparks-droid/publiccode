@@ -168,7 +168,7 @@ export function Sources({ brain }: { brain: Brain }) {
               </CardContent>
               <CardFooter className="flex flex-wrap gap-2">
                 <Button
-                  disabled={brain.busy || !brain.configured || brain.preview}
+                  disabled={brain.busy || !brain.configured || brain.preview || brain.hosted}
                   onClick={() =>
                     connected
                       ? void brain.syncSource(x.kind, x.name).catch(() => {})
@@ -201,7 +201,13 @@ export function Sources({ brain }: { brain: Brain }) {
           );
         })}
       </div>
-      {!brain.preview && (
+      {brain.hosted && (
+        <p className="rounded-[2px] border border-[var(--border-cool)] bg-white p-4 text-sm text-[var(--ink-muted)]">
+          On the website, spreadsheet imports and to-do changes work as usual.
+          Connector keys and automatic checks are set up in your local copy.
+        </p>
+      )}
+      {!brain.preview && !brain.hosted && (
         <Card>
           <CardHeader>
             <CardTitle>Keep watch on your business</CardTitle>
@@ -313,7 +319,7 @@ export function Sources({ brain }: { brain: Brain }) {
           </CardFooter>
         </Card>
       )}
-      {!brain.preview && !brain.sources.some((s) => s.mode !== "sample") && (
+      {!brain.preview && !brain.hosted && !brain.sources.some((s) => s.mode !== "sample") && (
         <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border p-4">
           <div>
             <p className="font-medium">Explore the sample workbook first</p>

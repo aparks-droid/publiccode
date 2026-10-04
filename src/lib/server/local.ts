@@ -3,6 +3,9 @@ import { join } from "node:path";
 import { randomUUID } from "node:crypto";
 import { createClient } from "@supabase/supabase-js";
 import type { Choice } from "../ai";
+import { hostedLive } from "./mode";
+import { SESSION_COOKIE, validSession } from "./site-auth";
+export { hostedLive };
 
 export type LocalConfig = {
   database?: { url: string; key: string };
@@ -13,8 +16,32 @@ export type LocalConfig = {
   monitoring?: { enabled: boolean; minutes: number; instructions: string };
 };
 export const demoMode = () =>
-  !!process.env.VERCEL || process.env.BRAIN_DEMO === "1";
+  (!!process.env.VERCEL || process.env.BRAIN_DEMO === "1") && !hostedLive();
+const cookie = (req: Request, name: string) =>
+  (req.headers.get("cookie") || "")
+    .split(/;\s*/)
+    .find((c) => c.startsWith(`${name}=`))
+    ?.slice(name.length + 1);
+// The hosted website: every data route needs a valid signed-in session, a
+// same-site request from the site itself, and JSON for changes.
+function assertSignedIn(req: Request) {
+  if (!validSession(cookie(req, SESSION_COOKIE)))
+    throw Error("Sign in to continue.");
+  const host = req.headers.get("x-forwarded-host") || req.headers.get("host");
+  const origin = req.headers.get("origin");
+  if (
+    (origin && (!host || new URL(origin).host !== host)) ||
+    req.headers.get("sec-fetch-site") === "cross-site"
+  )
+    throw Error("This request must come from your Company Brain window.");
+  if (
+    req.method !== "GET" &&
+    !req.headers.get("content-type")?.includes("application/json")
+  )
+    throw Error("Send a JSON request from Company Brain.");
+}
 export function assertLocal(req: Request) {
+  if (hostedLive()) return assertSignedIn(req);
   const url = new URL(req.url);
   const host = req.headers.get("host") || url.host;
   const localHosts = ["localhost", "127.0.0.1", "[::1]"];
@@ -48,8 +75,26 @@ export function assertLocal(req: Request) {
 }
 export const configDirectory = () =>
   process.env.BRAIN_CONFIG_DIR || join(process.cwd(), ".company-brain");
+// The hosted website reads its settings from the hosting provider's encrypted
+// environment variables; nothing is written to disk there.
+function hostedConfig(): LocalConfig {
+  const key = process.env.BRAIN_ANTHROPIC_API_KEY;
+  return {
+    ...(key
+      ? {
+          ai: {
+            provider: "anthropic",
+            apiKey: key,
+            model: process.env.ANTHROPIC_MODEL || undefined,
+          },
+        }
+      : {}),
+    monitoring: { enabled: false, minutes: 60, instructions: "" },
+  };
+}
 export async function readConfig(): Promise<LocalConfig> {
   if (demoMode()) return {};
+  if (hostedLive()) return hostedConfig();
   try {
     return JSON.parse(
       await readFile(join(configDirectory(), "connections.json"), "utf8"),
@@ -66,6 +111,10 @@ export async function updateConfig(
   const operation = saving.then(async () => {
     if (demoMode())
       throw Error("Connections are saved only in your local copy.");
+    if (hostedLive())
+      throw Error(
+        "On the website this setting is managed in Vercel → Settings → Environment Variables.",
+      );
     const dir = configDirectory();
     await mkdir(dir, { recursive: true, mode: 0o700 });
     await chmod(dir, 0o700);

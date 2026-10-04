@@ -3,6 +3,7 @@ import {
   assertLocal,
   demoMode,
   failure,
+  hostedLive,
   readConfig,
   updateConfig,
 } from "@/lib/server/local";
@@ -13,7 +14,7 @@ export async function GET(req: Request) {
     assertLocal(req);
     const { ai } = await readConfig();
     return Response.json({
-      mode: "local",
+      mode: hostedLive() ? "hosted" : "local",
       provider: ai?.provider,
       model: ai?.model,
       connected: !!ai?.apiKey,
@@ -26,6 +27,16 @@ export async function POST(req: Request) {
   try {
     if (!demoMode()) assertLocal(req);
     const { action, provider, apiKey } = await req.json();
+    // On the website the key lives in Vercel; it can be tested, not changed here.
+    if (hostedLive()) {
+      const { ai } = await readConfig();
+      if (action !== "test" || !ai?.apiKey)
+        throw Error(
+          "On the website, Claude is set in Vercel → Settings → Environment Variables (BRAIN_ANTHROPIC_API_KEY).",
+        );
+      const result = await answerWith(ai, "Reply with the single word OK.", "Connection test.");
+      return Response.json({ ok: true, model: result.model });
+    }
     if (action === "disconnect" && !demoMode()) {
       await updateConfig((c) => ({ ...c, ai: undefined }));
       return Response.json({ ok: true });

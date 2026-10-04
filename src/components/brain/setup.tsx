@@ -83,11 +83,14 @@ type Step = {
 };
 
 export function FinishSetup({ brain }: { brain: Brain }) {
-  const { progress, save, error } = useProgress(brain.preview, brain.loaded);
+  const { progress, save, error } = useProgress(
+    brain.preview || brain.hosted,
+    brain.loaded,
+  );
   const [helpOpen, setHelpOpen] = useState<SetupStepId | "">("");
   const sheet = brain.sources.find((s) => s.kind === "web");
   const sheetRecords = brain.from("web").length;
-  const local = !brain.preview;
+  const local = !brain.preview && !brain.hosted;
   const steps: Step[] = [
     {
       id: "database",
@@ -102,7 +105,9 @@ export function FinishSetup({ brain }: { brain: Brain }) {
       connectLabel: "Open database form",
       connectNote: local
         ? undefined
-        : "The database is connected from your local copy, never from this public preview.",
+        : brain.hosted
+          ? "On the website the database is set in Vercel → Settings → Environment Variables."
+          : "The database is connected from your local copy, never from this public preview.",
       help: (
         <>
           Create a project at supabase.com under your own account. In its SQL
@@ -143,13 +148,16 @@ export function FinishSetup({ brain }: { brain: Brain }) {
         },
       ],
       connect:
-        local && brain.configured ? () => brain.setPage("sources") : undefined,
+        (local || brain.hosted) && brain.configured
+          ? () => brain.setPage("sources")
+          : undefined,
       connectLabel: "Import a CSV",
-      connectNote: local
-        ? brain.configured
-          ? undefined
-          : "Connect the database first."
-        : "Imports happen in your local copy.",
+      connectNote:
+        local || brain.hosted
+          ? brain.configured
+            ? undefined
+            : "Connect the database first."
+          : "Imports happen in your local copy.",
       help: (
         <>
           Export each tab of your workbook as CSV (File → Download → CSV in

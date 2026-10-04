@@ -6,6 +6,7 @@ import {
   assertLocal,
   configDirectory,
   failure,
+  hostedLive,
   readConfig,
   workspaceDb,
 } from "@/lib/server/local";
@@ -40,6 +41,10 @@ export async function POST(req: Request) {
   let acquired = false;
   try {
     assertLocal(req);
+    if (hostedLive())
+      throw Error(
+        "Automatic checks run in the local copy. On the website, use Analyze on the Attention page.",
+      );
     if (running) throw Error("A check is already running.");
     const config = await readConfig();
     const { automatic } = await req.json();
