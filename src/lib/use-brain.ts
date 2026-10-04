@@ -293,6 +293,21 @@ export function useBrain() {
     await mutation("/api/sync", { kind, action: "disconnect" });
     toast.success("Connection removed. Previously synced records are kept.");
   }
+  async function todo(body: object, success: string) {
+    try {
+      await mutation("/api/records", body);
+      toast.success(success);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+  const saveTodo = (id: string | null, fields: object) =>
+    todo({ action: "save", id, fields }, id ? "To-do updated." : "To-do added.");
+  const markTodoDone = (id: string, done: boolean) =>
+    todo({ action: "done", id, done }, done ? "Marked done." : "Reopened.");
+  const deleteTodo = (id: string) =>
+    todo({ action: "delete", id }, "To-do deleted.");
   async function importRecords(kind: string, name: string, list: unknown[]) {
     try {
       const data = await mutation("/api/ingest", { kind, name, records: list });
@@ -398,6 +413,9 @@ export function useBrain() {
     loadDemo,
     syncSource,
     importRecords,
+    saveTodo,
+    markTodoDone,
+    deleteTodo,
     resolveIssue,
     newConversation,
     kindOf,
