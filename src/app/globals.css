@@ -195,6 +195,28 @@
     width: 3px;
     background: var(--brand-gradient);
   }
+  /* Long lists scroll inside their panel with an always-visible bar
+     (macOS hides overlay scrollbars until you scroll). */
+  .pp-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold) var(--lavender);
+    overscroll-behavior: contain;
+  }
+  .pp-scroll::-webkit-scrollbar {
+    width: 10px;
+  }
+  .pp-scroll::-webkit-scrollbar-track {
+    background: var(--lavender);
+  }
+  .pp-scroll::-webkit-scrollbar-thumb {
+    background: var(--gold);
+    border-radius: 2px;
+    border: 2px solid var(--lavender);
+  }
+  .pp-scroll:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: -2px;
+  }
   /* Placeholder for the official mark. The logo file is placed here later; never redrawn. */
   .parkspacific-mark {
     display: inline-block;
@@ -210,4 +232,5 @@
   header nav, .no-print { display: none !important; }
   body { background: white !important; }
   .pp-panel, .pp-feature { break-inside: avoid; }
+  .pp-scroll { max-height: none !important; overflow: visible !important; }
 }
