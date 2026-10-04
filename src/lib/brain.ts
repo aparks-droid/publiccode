@@ -139,16 +139,20 @@ export const failedOnce = (payments: RecordRow[]) => {
 // Spreadsheet (workbook) rows. Imported tabs name things their own way
 // ("To do list", "Bills", "Due date"), so types, fields and dates are read
 // tolerantly rather than requiring the template's exact headers.
-const typeOf = (r: RecordRow) => {
-  const t = String(r.metadata.type || r.metadata.sheet || "").toLowerCase();
+const kindOf = (value: unknown) => {
+  const t = String(value || "").toLowerCase();
   if (/task|to.?do|action/.test(t)) return "task";
   if (/invoice|bill|receivable/.test(t)) return "invoice";
   if (/deliverable/.test(t)) return "deliverable";
   if (/prospect|pipeline|lead|opportunit/.test(t)) return "prospect";
   if (/engagement|retainer|contract/.test(t)) return "engagement";
   if (/note|meeting/.test(t)) return "note";
-  return t;
+  return "";
 };
+// A "type" column is often a category of the owner's own (Admin, Marketing),
+// so fall back to the tab name when it isn't one of the workbook kinds.
+export const typeOf = (r: RecordRow) =>
+  kindOf(r.metadata.type) || kindOf(r.metadata.sheet) || String(r.metadata.type || "");
 export const sheetRows = (rows: RecordRow[], type: string) =>
   rows.filter((r) => typeOf(r) === type);
 // First non-empty value among several possible column names.

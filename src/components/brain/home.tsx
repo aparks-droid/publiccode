@@ -127,6 +127,15 @@ export function HomeOverview({
     0,
   );
   const hasSheet = rows.length > 0;
+  // Account for every workbook row, so nothing disappears without a reason.
+  const taskRows = sheetRows(rows, "task");
+  const doneTasks = taskRows.filter((r) =>
+    isDone(field(r, "status", "state", "done")),
+  ).length;
+  const listed = new Set(all.map((i) => i.id));
+  const elsewhere = rows.filter(
+    (r) => !listed.has(r.id) && !taskRows.includes(r),
+  ).length;
   const stats = [
     {
       label: "Overdue",
@@ -295,6 +304,14 @@ export function HomeOverview({
               </li>
             )}
           </ul>
+          {hasSheet && (
+            <p className="border-t border-[var(--border-cool)] px-5 py-2 text-sm text-[var(--ink-faint)]">
+              {plural(rows.length, "workbook row")}: {items.length} dated
+              {undated.length ? `, ${undated.length} without a due date` : ""}
+              {doneTasks ? `, ${doneTasks} marked done (hidden)` : ""}
+              {elsewhere ? `, ${elsewhere} other records (invoices, notes and similar, shown elsewhere or in Sources)` : ""}.
+            </p>
+          )}
           {undated.length > 0 && (
             <>
               <div className="flex items-baseline justify-between gap-2 border-y border-[var(--border-gold)] px-5 py-4">
