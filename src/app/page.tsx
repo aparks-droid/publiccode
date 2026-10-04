@@ -300,6 +300,18 @@ export default function Home() {
                     {!brain.preview && configured && (
                       <DatabaseSetup brain={brain} />
                     )}
+                    {brain.preview && (
+                      <Button
+                        variant="outline"
+                        className="self-start"
+                        onClick={async () => {
+                          await fetch("/api/login", { method: "DELETE" });
+                          window.location.assign("/login");
+                        }}
+                      >
+                        Sign out
+                      </Button>
+                    )}
                   </div>
                 )}
               </>

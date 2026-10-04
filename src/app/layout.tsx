@@ -23,6 +23,7 @@ export const metadata: Metadata = {
   title: "ParksPacific Financial — Company Brain",
   description:
     "The ParksPacific Financial company brain. You may have to live with risk, but you never have to let it win.",
+  robots: { index: false, follow: false },
   openGraph: {
     title: "ParksPacific Financial — Company Brain",
     description: "You may have to live with risk, but you never have to let it win.",
