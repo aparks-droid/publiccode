@@ -232,6 +232,14 @@
     flex-shrink: 0;
   }
 }
+/* Print button on Today: only the to-do table prints. */
+@media print {
+  body.pp-printing * { visibility: hidden; }
+  body.pp-printing .pp-print-area,
+  body.pp-printing .pp-print-area * { visibility: visible; }
+  body.pp-printing .pp-print-area { position: absolute; inset: 0 auto auto 0; width: 100%; color: #000; }
+  @page { margin: 12mm; }
+}
 @media print {
   header nav, .no-print { display: none !important; }
   body { background: white !important; }

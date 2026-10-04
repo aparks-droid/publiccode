@@ -1,6 +1,17 @@
 "use client";
 import { useState } from "react";
-import { ArrowRight, ArrowUp, Check, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUp,
+  Check,
+  Download,
+  Pencil,
+  Plus,
+  Printer,
+  RotateCcw,
+  Sparkles,
+  Trash2,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -24,6 +35,13 @@ import {
   type RecordRow,
 } from "@/lib/brain";
 import type { Brain } from "@/lib/use-brain";
+import type { TodoFields } from "@/lib/todos";
+import {
+  TodoDialog,
+  TodoPrintSheet,
+  downloadTodos,
+  fieldsOf,
+} from "@/components/brain/todo-tools";
 import { cn } from "@/lib/utils";
 
 export const TAGLINE =
@@ -44,9 +62,10 @@ type Item = {
   days: number;
   priority: string;
   kind: string;
+  done: boolean;
 };
 
-// Everything still open from the workbook rows, dated or not.
+// Workbook items: every to-do (open or done) plus open deliverables and follow-ups.
 function agenda(rows: RecordRow[], asOf: Date): Item[] {
   const open = (r: RecordRow) => !isDone(field(r, "status", "state", "done"));
   const item = (r: RecordRow, kind: string, label: string, due: string) => ({
@@ -58,11 +77,12 @@ function agenda(rows: RecordRow[], asOf: Date): Item[] {
     due,
     days: daysBetween(asOf, due),
     priority: priorityOf(r),
+    done: !open(r),
   });
   return [
-    ...sheetRows(rows, "task")
-      .filter(open)
-      .map((r) => item(r, "Task", taskLabel(r), dueOf(r))),
+    ...sheetRows(rows, "task").map((r) =>
+      item(r, "Task", taskLabel(r), dueOf(r)),
+    ),
     ...sheetRows(rows, "deliverable")
       .filter(open)
       .map((r) => item(r, "Deliverable", taskLabel(r), dueOf(r))),
@@ -97,6 +117,11 @@ export function HomeOverview({
   onCustomer: (name: string) => void;
 }) {
   const [selected, setSelected] = useState("");
+  const [showDone, setShowDone] = useState(false);
+  const [editing, setEditing] = useState<{
+    id: string | null;
+    fields: TodoFields | null;
+  } | null>(null);
   const issues = openByPriority(brain.issues);
   const high = issues.filter((i) => i.priority === "high").length;
   const rows = brain.from("web");
@@ -107,8 +132,12 @@ export function HomeOverview({
   const all = agenda(rows, asOf);
   // Every open to-do shows, whatever its due date; the owner decides what
   // matters. Highest priority first, then the order of the spreadsheet.
-  const todos = all.filter((i) => i.kind === "Task").sort(byPriority);
-  const top = todos.filter((i) => i.priority.length >= 4).length;
+  const allTodos = all.filter((i) => i.kind === "Task");
+  const openTodos = allTodos.filter((i) => !i.done).sort(byPriority);
+  const todos = showDone
+    ? [...openTodos, ...allTodos.filter((i) => i.done).sort(byPriority)]
+    : openTodos;
+  const top = openTodos.filter((i) => i.priority.length >= 4).length;
   // Deliverables and follow-ups keep their date order.
   const items = all
     .filter((i) => i.kind !== "Task")
@@ -133,19 +162,30 @@ export function HomeOverview({
     0,
   );
   const hasSheet = rows.length > 0;
+  // Editing changes the owner's own database, so it is offered only in the
+  // local copy with a connected database, and never on sample records.
+  const editable = !brain.preview && brain.configured && !sample;
+  const lockedHint = brain.preview
+    ? "This is the public preview. Add, edit and delete work in your local copy."
+    : sample
+      ? "These are sample records. Import your own spreadsheet to edit to-dos here."
+      : "Connect your database to add and edit to-dos.";
   // Account for every workbook row, so nothing disappears without a reason.
   const taskRows = sheetRows(rows, "task");
   const doneTasks = taskRows.filter((r) =>
     isDone(field(r, "status", "state", "done")),
   ).length;
   const listed = new Set(all.map((i) => i.id));
+  const categories = [
+    ...new Set(allTodos.map((i) => i.category || i.client).filter(Boolean)),
+  ].sort();
   const elsewhere = rows.filter(
     (r) => !listed.has(r.id) && !taskRows.includes(r),
   ).length;
   const stats = [
     {
       label: "Open to-dos",
-      value: hasSheet ? String(todos.length) : "—",
+      value: hasSheet ? String(openTodos.length) : "—",
       hint: hasSheet ? "Every open item on your list" : "No to-do list loaded",
       tone: "",
     },
@@ -171,7 +211,7 @@ export function HomeOverview({
     },
   ];
   const brief = hasSheet
-    ? `${plural(todos.length, "open to-do")}${top ? `, ${top} at top priority` : ""}.${items.length ? ` ${items.length} ${items.length === 1 ? "deliverable or follow-up is" : "deliverables and follow-ups are"} open.` : ""} ${pastDue.length ? `${dollars(pastDueTotal)} is past due across ${plural(pastDue.length, "invoice")}.` : "No invoice is past due."} ${issues.length ? `${plural(issues.length, "issue")} need${issues.length === 1 ? "s" : ""} a decision${high ? `, ${high} of them high priority` : ""}.` : ""}`
+    ? `${plural(openTodos.length, "open to-do")}${top ? `, ${top} at top priority` : ""}.${items.length ? ` ${items.length} ${items.length === 1 ? "deliverable or follow-up is" : "deliverables and follow-ups are"} open.` : ""} ${pastDue.length ? `${dollars(pastDueTotal)} is past due across ${plural(pastDue.length, "invoice")}.` : "No invoice is past due."} ${issues.length ? `${plural(issues.length, "issue")} need${issues.length === 1 ? "s" : ""} a decision${high ? `, ${high} of them high priority` : ""}.` : ""}`
     : "";
   const ask = (question: string) => {
     brain.setPage("chat");
@@ -251,21 +291,68 @@ export function HomeOverview({
             className="pp-panel min-w-0 scroll-mt-24"
             aria-labelledby="todo-title"
           >
-            <div className="flex items-baseline justify-between gap-2 border-b border-[var(--border-gold)] px-5 py-4">
-              <h2 id="todo-title" className="pp-title text-xl">
-                To do
-              </h2>
-              <span className="text-sm text-[var(--ink-faint)]">
-                {todos.length ? `${todos.length} open · ` : ""}Priority **** to *
-              </span>
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[var(--border-gold)] px-5 py-3">
+              <div className="flex items-baseline gap-3">
+                <h2 id="todo-title" className="pp-title text-xl">
+                  To do
+                </h2>
+                <span className="text-sm text-[var(--ink-faint)]">
+                  {openTodos.length} open · **** first
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                <Button
+                  size="sm"
+                  disabled={!editable}
+                  title={editable ? undefined : lockedHint}
+                  onClick={() => setEditing({ id: null, fields: null })}
+                >
+                  <Plus /> Add
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  disabled={!taskRows.length}
+                  onClick={() => {
+                    document.body.classList.add("pp-printing");
+                    const done = () => {
+                      document.body.classList.remove("pp-printing");
+                      window.removeEventListener("afterprint", done);
+                    };
+                    window.addEventListener("afterprint", done);
+                    window.print();
+                  }}
+                >
+                  <Printer /> Print
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  disabled={!taskRows.length}
+                  onClick={() => downloadTodos(taskRows, brain.company)}
+                >
+                  <Download /> Download
+                </Button>
+              </div>
             </div>
+            {!editable && hasSheet && (
+              <p className="border-b border-[var(--border-cool)] bg-[var(--paper)] px-5 py-2 text-sm text-[var(--ink-muted)]">
+                {lockedHint}
+              </p>
+            )}
             <ul
               className="pp-scroll divide-y divide-[var(--border-cool)] overflow-y-auto"
               tabIndex={0}
-              aria-label={`${plural(todos.length, "open to-do")}, scrollable`}
+              aria-label={`${plural(todos.length, "to-do")}, scrollable`}
             >
               {todos.map((i) => (
-                <li key={i.id} className="flex items-start gap-3 px-5 py-3">
+                <li
+                  key={i.id}
+                  className={cn(
+                    "group flex items-start gap-3 px-5 py-3",
+                    i.done && "bg-[var(--paper)]",
+                  )}
+                >
                   <span
                     className="w-8 shrink-0 pt-0.5 font-mono text-xs text-[var(--gold-deep)] sm:w-10 sm:text-sm"
                     aria-label={i.priority ? `Priority ${i.priority.length}` : undefined}
@@ -273,41 +360,116 @@ export function HomeOverview({
                     {i.priority}
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium">{i.label}</p>
-                    {(i.category || i.client) && (
-                      <p className="text-sm text-[var(--ink-muted)]">
-                        <span className="text-[10px] font-medium uppercase tracking-[0.12em] text-[var(--ink-faint)]">
-                          Category
-                        </span>{" "}
-                        {i.category || i.client}
-                      </p>
-                    )}
+                    <p
+                      className={cn(
+                        "text-sm font-medium",
+                        i.done && "text-[var(--ink-faint)] line-through",
+                      )}
+                    >
+                      {i.label}
+                    </p>
+                    <p className="flex flex-wrap gap-x-3 text-sm text-[var(--ink-muted)]">
+                      {(i.category || i.client) && (
+                        <span>
+                          <span className="text-[10px] font-medium uppercase tracking-[0.12em] text-[var(--ink-faint)]">
+                            Category
+                          </span>{" "}
+                          {i.category || i.client}
+                        </span>
+                      )}
+                      {i.due && (
+                        <span className="tabular-nums">
+                          {isNaN(i.days) ? i.due : `Due ${prettyDate(i.due)}`}
+                        </span>
+                      )}
+                    </p>
                   </div>
-                  {i.due && (
-                    <span className="shrink-0 text-sm tabular-nums text-[var(--ink-muted)]">
-                      {isNaN(i.days) ? i.due : `Due ${prettyDate(i.due)}`}
-                    </span>
+                  {editable && (
+                    <div className="flex shrink-0 items-center gap-0.5">
+                      <Button
+                        size="icon-sm"
+                        variant="ghost"
+                        aria-label={i.done ? `Reopen: ${i.label}` : `Mark done: ${i.label}`}
+                        title={i.done ? "Reopen" : "Mark done"}
+                        disabled={brain.busy}
+                        onClick={() => void brain.markTodoDone(i.id, !i.done)}
+                      >
+                        {i.done ? <RotateCcw /> : <Check />}
+                      </Button>
+                      <Button
+                        size="icon-sm"
+                        variant="ghost"
+                        aria-label={`Edit: ${i.label}`}
+                        title="Edit"
+                        disabled={brain.busy}
+                        onClick={() => {
+                          const r = rows.find((x) => x.id === i.id);
+                          if (r) setEditing({ id: i.id, fields: fieldsOf(r) });
+                        }}
+                      >
+                        <Pencil />
+                      </Button>
+                      <Button
+                        size="icon-sm"
+                        variant="ghost"
+                        aria-label={`Delete: ${i.label}`}
+                        title="Delete"
+                        disabled={brain.busy}
+                        onClick={() => {
+                          if (
+                            window.confirm(
+                              `Delete this to-do?\n\n"${i.label}"\n\nIt is removed from your Company Brain. Your spreadsheet isn't changed, so re-importing it would bring the row back.`,
+                            )
+                          )
+                            void brain.deleteTodo(i.id);
+                        }}
+                      >
+                        <Trash2 />
+                      </Button>
+                    </div>
                   )}
                 </li>
               ))}
               {!todos.length && (
                 <li className="flex items-start gap-3 px-5 py-5 text-sm text-[var(--ink-muted)]">
                   <Check className="mt-0.5 size-4 shrink-0 text-[var(--positive)]" />
-                  {hasSheet
-                    ? "No open to-dos."
+                  {hasSheet || editable
+                    ? "No open to-dos. Use Add to create one."
                     : "Your to-do list appears here once your spreadsheet is imported."}
                 </li>
               )}
             </ul>
             {hasSheet && (
-              <p className="border-t border-[var(--border-cool)] px-5 py-2 text-sm text-[var(--ink-faint)]">
-                {plural(rows.length, "workbook row")}: {todos.length} open to-dos
-                {items.length ? `, ${items.length} deliverables and follow-ups` : ""}
-                {doneTasks ? `, ${doneTasks} marked done (hidden)` : ""}
-                {elsewhere ? `, ${elsewhere} other records (invoices, notes and similar)` : ""}.
+              <p className="flex flex-wrap items-center gap-x-2 border-t border-[var(--border-cool)] px-5 py-2 text-sm text-[var(--ink-faint)]">
+                <span>
+                  {plural(rows.length, "workbook row")}: {openTodos.length} open to-dos
+                  {items.length ? `, ${items.length} deliverables and follow-ups` : ""}
+                  {doneTasks ? `, ${doneTasks} marked done` : ""}
+                  {elsewhere ? `, ${elsewhere} other records (invoices, notes and similar)` : ""}.
+                </span>
+                {doneTasks > 0 && (
+                  <button
+                    className="font-medium text-[var(--navy)] underline underline-offset-2"
+                    onClick={() => setShowDone((v) => !v)}
+                  >
+                    {showDone ? "Hide done" : `Show done (${doneTasks})`}
+                  </button>
+                )}
               </p>
             )}
+            <TodoPrintSheet rows={taskRows} company={brain.company} />
           </section>
+          {editing && (
+            <TodoDialog
+              key={editing.id || "new"}
+              open
+              initial={editing.fields}
+              categories={categories}
+              busy={brain.busy}
+              onClose={() => setEditing(null)}
+              onSave={(f) => brain.saveTodo(editing.id, f)}
+            />
+          )}
 
           {items.length > 0 && (
             <section className="pp-panel min-w-0" aria-labelledby="agenda-title">

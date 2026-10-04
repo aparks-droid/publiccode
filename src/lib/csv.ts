@@ -43,7 +43,7 @@ const domainFor: Record<string, string> = {
   note: "company",
 };
 const numeric = new Set(["amount", "fee", "value", "firm_revenue_m"]);
-const key = (h: string) =>
+export const columnKey = (h: string) =>
   h.trim().toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "");
 
 export type SheetRecord = {
@@ -60,9 +60,9 @@ export function csvToRecords(text: string, sheet: string): SheetRecord[] {
   const [header, ...body] = parseCsv(text);
   if (!header || !body.length)
     throw Error("The CSV needs a header row and at least one data row.");
-  const keys = header.map(key);
+  const keys = header.map(columnKey);
   if (keys.some((k) => !k)) throw Error("Every column needs a header.");
-  const fallbackType = key(sheet).replace(/s$/, "") || "row";
+  const fallbackType = columnKey(sheet).replace(/s$/, "") || "row";
   const seen = new Set<string>();
   return body.map((cells, n) => {
     const metadata: Record<string, string | number> = { sheet };
@@ -72,7 +72,7 @@ export function csvToRecords(text: string, sheet: string): SheetRecord[] {
       const num = Number(raw.replace(/[$,]/g, ""));
       metadata[k] = numeric.has(k) && raw && !isNaN(num) ? num : raw;
     });
-    const type = key(String(metadata.type || fallbackType)) || "row";
+    const type = columnKey(String(metadata.type || fallbackType)) || "row";
     metadata.type = type;
     const id = String(metadata.id || metadata.invoice || "").trim();
     if (!id)
