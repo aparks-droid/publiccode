@@ -8,7 +8,7 @@ import {
 } from "@/lib/server/local";
 import { connectionStatus } from "@/lib/server/connectors";
 import { demoSnapshot } from "@/lib/server/demo";
-import demo from "../../../../demo/driftwood-coffee.json";
+import demo from "../../../../demo/parkspacific-financial.json";
 export async function GET(req: Request) {
   if (demoMode()) return Response.json(demoSnapshot());
   try {

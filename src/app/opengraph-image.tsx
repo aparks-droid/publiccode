@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-export const alt = "Company Brain — your business, connected";
+export const alt = "ParksPacific Financial — Company Brain";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export default function Image() {
@@ -10,39 +10,35 @@ export default function Image() {
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        background: "#faf9fc",
+        background: "#F5F2FB",
         padding: "70px",
-        color: "#171717",
+        color: "#1A2456",
+        borderLeft: "12px solid #C8A84B",
       }}
     >
       <div
-        style={{ display: "flex", alignItems: "center", gap: 18, fontSize: 28 }}
+        style={{
+          display: "flex",
+          fontSize: 22,
+          letterSpacing: 5,
+          color: "#9A7E2E",
+          textTransform: "uppercase",
+        }}
       >
-        <div
-          style={{
-            height: 40,
-            width: 40,
-            borderRadius: 40,
-            background: "linear-gradient(135deg,#dfcaff,#7c3aed,#41217d)",
-          }}
-        />
-        company brain
+        Company brain
+      </div>
+      <div style={{ fontSize: 84, lineHeight: 1.1, marginTop: 110 }}>
+        ParksPacific Financial
       </div>
       <div
         style={{
-          fontSize: 76,
-          lineHeight: 1.15,
-          letterSpacing: -3,
-          marginTop: 90,
+          marginTop: 36,
+          fontSize: 32,
+          fontStyle: "italic",
+          color: "#4A4570",
         }}
       >
-        Your business,
-      </div>
-      <div style={{ fontSize: 76, color: "#877297", letterSpacing: -3 }}>
-        connected.
-      </div>
-      <div style={{ marginTop: 48, fontSize: 22, color: "#888" }}>
-        Shared knowledge. Your models.
+        You may have to live with risk, but you never have to let it win.
       </div>
     </div>,
     size,

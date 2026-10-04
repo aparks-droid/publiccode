@@ -36,6 +36,7 @@ export const toolName: Record<string, string> = {
   slack: "Slack",
   attio: "Attio",
   stripe: "Stripe",
+  web: "Spreadsheet",
 };
 export type RecordRow = {
   id: string;
@@ -134,3 +135,21 @@ export const failedOnce = (payments: RecordRow[]) => {
     return true;
   });
 };
+
+// Spreadsheet (workbook) rows: imported or sample records of a known sheet type.
+export const sheetRows = (rows: RecordRow[], type: string) =>
+  rows.filter((r) => r.metadata.type === type);
+const day = (v: unknown) => new Date(`${String(v).slice(0, 10)}T12:00:00`);
+// The reference date for a workbook: its export date when rows carry one,
+// so a sample snapshot keeps reading the same way; otherwise today.
+export const asOfDate = (rows: RecordRow[]) => {
+  const dates = rows
+    .map((r) => String(r.metadata.as_of || ""))
+    .filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d))
+    .sort();
+  return dates.length ? day(dates[dates.length - 1]) : day(new Date().toISOString());
+};
+export const daysBetween = (from: Date, to: unknown) =>
+  Math.round((day(to).getTime() - from.getTime()) / 86400000);
+export const isDone = (status: unknown) =>
+  /^(complete|completed|done|paid|delivered)$/i.test(String(status || ""));

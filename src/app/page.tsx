@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Brain as BrainIcon, Settings, Sparkles } from "lucide-react";
+import { Settings, Sparkles } from "lucide-react";
 import { DatabaseSetup } from "@/components/brain/database-setup";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -19,14 +19,16 @@ import { Customer } from "@/components/brain/customer";
 import { Sources } from "@/components/brain/sources";
 import { PipelineView, RevenueView } from "@/components/brain/tool-views";
 import { HomeOverview } from "@/components/brain/home";
+import { FinishSetup } from "@/components/brain/setup";
 import { useBrain } from "@/lib/use-brain";
 
-const pages = [
-  ["home", "Home"],
+const allPages = [
+  ["home", "Today"],
   ["attention", "Attention"],
   ["pipeline", "Pipeline"],
   ["revenue", "Revenue"],
   ["sources", "Sources"],
+  ["setup", "Finish setup"],
   ["chat", "Ask your brain"],
 ];
 const aiNames: Record<string, string> = {
@@ -44,9 +46,15 @@ export default function Home() {
   const payments = brain
     .from("stripe")
     .filter((r) => r.metadata.type === "payment");
+  // Pipeline and Revenue read Attio and Stripe, which are not selected
+  // sources here; show them only once such records exist.
+  const pages = allPages.filter(
+    ([id]) =>
+      (id !== "pipeline" || deals.length) && (id !== "revenue" || payments.length),
+  );
   const heading = (title: string, hint: string) => (
     <div className="mb-5">
-      <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>
+      <h1 className="pp-title text-3xl">{title}</h1>
       <p className="text-sm text-muted-foreground">{hint}</p>
     </div>
   );
@@ -77,21 +85,28 @@ export default function Home() {
 
   return (
     <div className="flex min-h-dvh flex-col">
-      <header className="sticky top-0 z-10 border-b bg-background/95 backdrop-blur">
-        <div className="flex h-14 items-center gap-2 px-3 sm:gap-3 sm:px-6">
+      <header className="sticky top-0 z-10 border-b border-[var(--border-gold)] bg-[var(--paper)]/95 backdrop-blur">
+        <div className="flex h-16 items-center gap-2 px-3 sm:gap-3 sm:px-6">
           <button
             className="flex min-w-0 items-center gap-2 whitespace-nowrap font-semibold"
             onClick={() => setPage("home")}
           >
-            <BrainIcon className="size-5 shrink-0 text-violet-600" />
-            <span className="truncate">Company Brain</span>
+            <span className="parkspacific-mark" aria-hidden="true" />
+            <span className="flex min-w-0 flex-col items-start leading-tight">
+              <span className="truncate font-heading text-lg font-semibold tracking-wide text-[var(--navy)]">
+                ParksPacific Financial
+              </span>
+              <span className="hidden text-[10px] font-medium uppercase tracking-[0.16em] text-[var(--gold-deep)] sm:block">
+                Company brain
+              </span>
+            </span>
           </button>
           {brain.demo && (
             <Badge
               variant="outline"
-              className="border-amber-200 bg-amber-50 text-amber-800"
+              className="rounded-[2px] border-[var(--gold)] bg-white text-[var(--gold-deep)]"
             >
-              Demo<span className="hidden sm:inline">&nbsp;data</span>
+              Sample<span className="hidden sm:inline">&nbsp;data</span>
             </Badge>
           )}
           <nav className="hidden gap-1 lg:flex">
@@ -117,7 +132,7 @@ export default function Home() {
                   variant="outline"
                   onClick={() => setPage("settings")}
                 >
-                  <span className="size-2 rounded-full bg-emerald-500" />
+                  <span className="size-2 rounded-full bg-[var(--positive)]" />
                   <span className="hidden sm:inline">Connected to </span>
                   {aiName}
                 </Button>
@@ -157,18 +172,17 @@ export default function Home() {
         ) : (
           <>
             {brain.preview && (
-              <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-xl border bg-muted/40 px-4 py-3 text-sm">
+              <div className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-[2px] border border-[var(--border-gold)] bg-white px-4 py-3 text-sm">
                 <span>
-                  Sample preview. Run your own copy to connect your company.
+                  Public preview with sample records. Real company data is
+                  connected only in the local copy.
                 </span>
-                <a
-                  className="font-medium underline"
-                  href="https://github.com/how-to-ai-co/company-brain#start-here"
-                  target="_blank"
-                  rel="noreferrer"
+                <button
+                  className="font-medium underline underline-offset-2"
+                  onClick={() => setPage("setup")}
                 >
-                  Get the repo & recipe
-                </a>
+                  Finish setup
+                </button>
               </div>
             )}
             {brain.setupError && (
@@ -184,7 +198,7 @@ export default function Home() {
                 <DatabaseSetup brain={brain} />
               </div>
             )}
-            {(configured || brain.preview) && (
+            {(configured || brain.preview || page === "setup") && (
               <>
                 {page === "home" && (
                   <HomeOverview brain={brain} onCustomer={setCustomer} />
@@ -221,6 +235,7 @@ export default function Home() {
                     <Sources brain={brain} />
                   </>
                 )}
+                {page === "setup" && <FinishSetup brain={brain} />}
                 {page === "chat" && <Chat brain={brain} />}
                 {page === "settings" && (
                   <div className="mx-auto flex max-w-2xl flex-col gap-4">
@@ -284,6 +299,18 @@ export default function Home() {
                     </Card>
                     {!brain.preview && configured && (
                       <DatabaseSetup brain={brain} />
+                    )}
+                    {brain.preview && (
+                      <Button
+                        variant="outline"
+                        className="self-start"
+                        onClick={async () => {
+                          await fetch("/api/login", { method: "DELETE" });
+                          window.location.reload();
+                        }}
+                      >
+                        Sign out
+                      </Button>
                     )}
                   </div>
                 )}

@@ -1,0 +1,863 @@
+{
+ "company": "ParksPacific Financial",
+ "note": "Labelled sample workbook for ParksPacific Financial's preview. ParksPacific Financial is a real company; the client firms, invoices, notes and figures in these records are invented samples, not client data.",
+ "sources": [
+  {
+   "kind": "web",
+   "name": "Client workbook",
+   "records": [
+    {
+     "external_id": "sheet-engagement-halvorsen",
+     "domain": "cx",
+     "title": "Engagement — Halvorsen & Mendes LLP (Platinum — Elite FCFO)",
+     "content": "Halvorsen & Mendes LLP. Tier: Platinum — Elite FCFO. Fee: $3,400 per month. Firm revenue about $18M. Client since May 1, 2026. Monthly risk update meeting with the managing partner; dashboards maintained monthly.",
+     "source_url": "https://parkspacific.example/workbook/engagements/halvorsen",
+     "metadata": {
+      "sheet": "Engagements",
+      "type": "engagement",
+      "as_of": "2026-10-02",
+      "client": "Halvorsen & Mendes LLP",
+      "tier": "Platinum — Elite FCFO",
+      "fee": 3400,
+      "basis": "monthly",
+      "firm_revenue_m": 18,
+      "since": "2026-05-01",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-engagement-okafor",
+     "domain": "cx",
+     "title": "Engagement — Okafor Brandt Litigation Group (Gold — Executive FCFO)",
+     "content": "Okafor Brandt Litigation Group. Tier: Gold — Executive FCFO. Fee: $8,600 fixed. Firm revenue about $14M. Client since Sep 8, 2026. Six-week engagement, currently in week 4. Focus: realization, WIP and collections.",
+     "source_url": "https://parkspacific.example/workbook/engagements/okafor",
+     "metadata": {
+      "sheet": "Engagements",
+      "type": "engagement",
+      "as_of": "2026-10-02",
+      "client": "Okafor Brandt Litigation Group",
+      "tier": "Gold — Executive FCFO",
+      "fee": 8600,
+      "basis": "fixed",
+      "firm_revenue_m": 14,
+      "since": "2026-09-08",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-engagement-kealoha",
+     "domain": "cx",
+     "title": "Engagement — Kealoha Fitzgerald LLP (Platinum — Elite FCFO + AI add-on)",
+     "content": "Kealoha Fitzgerald LLP. Tier: Platinum — Elite FCFO + AI add-on. Fee: $5,000 per month. Firm revenue about $9M. Client since Mar 1, 2026. Platinum $2,600/month plus AI consulting add-on $2,400/month (AI policy and governance).",
+     "source_url": "https://parkspacific.example/workbook/engagements/kealoha",
+     "metadata": {
+      "sheet": "Engagements",
+      "type": "engagement",
+      "as_of": "2026-10-02",
+      "client": "Kealoha Fitzgerald LLP",
+      "tier": "Platinum — Elite FCFO + AI add-on",
+      "fee": 5000,
+      "basis": "monthly",
+      "firm_revenue_m": 9,
+      "since": "2026-03-01",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-engagement-vance",
+     "domain": "cx",
+     "title": "Engagement — Vance Whitcombe & Rao (Silver — Business Health Review)",
+     "content": "Vance Whitcombe & Rao. Tier: Silver — Business Health Review. Fee: $1,500 fixed. Firm revenue about $6M. Client since Sep 28, 2026. Two-day Business Health Review scheduled Oct 7–8.",
+     "source_url": "https://parkspacific.example/workbook/engagements/vance",
+     "metadata": {
+      "sheet": "Engagements",
+      "type": "engagement",
+      "as_of": "2026-10-02",
+      "client": "Vance Whitcombe & Rao",
+      "tier": "Silver — Business Health Review",
+      "fee": 1500,
+      "basis": "fixed",
+      "firm_revenue_m": 6,
+      "since": "2026-09-28",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-engagement-delacroix",
+     "domain": "cx",
+     "title": "Engagement — Delacroix Sutton PC (Gold — Executive FCFO)",
+     "content": "Delacroix Sutton PC. Tier: Gold — Executive FCFO. Fee: $9,800 fixed. Firm revenue about $22M. Client since Sep 24, 2026. Six-week engagement, week 2. 50% deposit invoiced at kickoff.",
+     "source_url": "https://parkspacific.example/workbook/engagements/delacroix",
+     "metadata": {
+      "sheet": "Engagements",
+      "type": "engagement",
+      "as_of": "2026-10-02",
+      "client": "Delacroix Sutton PC",
+      "tier": "Gold — Executive FCFO",
+      "fee": 9800,
+      "basis": "fixed",
+      "firm_revenue_m": 22,
+      "since": "2026-09-24",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-engagement-pemberton",
+     "domain": "cx",
+     "title": "Engagement — Pemberton Ashe LLP (Platinum — Elite FCFO)",
+     "content": "Pemberton Ashe LLP. Tier: Platinum — Elite FCFO. Fee: $1,800 per month. Firm revenue about $5.5M. Client since Jun 1, 2026. Monthly dashboard refresh and risk review.",
+     "source_url": "https://parkspacific.example/workbook/engagements/pemberton",
+     "metadata": {
+      "sheet": "Engagements",
+      "type": "engagement",
+      "as_of": "2026-10-02",
+      "client": "Pemberton Ashe LLP",
+      "tier": "Platinum — Elite FCFO",
+      "fee": 1800,
+      "basis": "monthly",
+      "firm_revenue_m": 5.5,
+      "since": "2026-06-01",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-engagement-ridgeway",
+     "domain": "cx",
+     "title": "Engagement — Ridgeway Family Law (Legacy bookkeeping)",
+     "content": "Ridgeway Family Law. Tier: Legacy bookkeeping. Fee: $900 per month. Firm revenue about $2.1M. Client since Apr 1, 2025. Legacy bookkeeping client. Supported, not marketed; referral transition planned.",
+     "source_url": "https://parkspacific.example/workbook/engagements/ridgeway",
+     "metadata": {
+      "sheet": "Engagements",
+      "type": "engagement",
+      "as_of": "2026-10-02",
+      "client": "Ridgeway Family Law",
+      "tier": "Legacy bookkeeping",
+      "fee": 900,
+      "basis": "monthly",
+      "firm_revenue_m": 2.1,
+      "since": "2025-04-01",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-deliverable-halvorsen-risk-oct",
+     "domain": "operations",
+     "title": "Deliverable — Halvorsen & Mendes LLP: October monthly risk update meeting",
+     "content": "Halvorsen & Mendes LLP: October monthly risk update meeting. Due Oct 6, 2026. Status: In progress. Owner: Aaron. Prep deck in progress; WIP aging and realization trend updated.",
+     "source_url": "https://parkspacific.example/workbook/deliverables/halvorsen-risk-oct",
+     "metadata": {
+      "sheet": "Deliverables",
+      "type": "deliverable",
+      "as_of": "2026-10-02",
+      "client": "Halvorsen & Mendes LLP",
+      "item": "October monthly risk update meeting",
+      "due": "2026-10-06",
+      "status": "In progress",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-deliverable-okafor-dashboard",
+     "domain": "operations",
+     "title": "Deliverable — Okafor Brandt Litigation Group: Utilization, realization & collection dashboard",
+     "content": "Okafor Brandt Litigation Group: Utilization, realization & collection dashboard. Due Oct 5, 2026. Status: Blocked. Owner: Aaron. Waiting on the WIP export from the firm's practice management system. Promised by the managing partner for Oct 2; not received.",
+     "source_url": "https://parkspacific.example/workbook/deliverables/okafor-dashboard",
+     "metadata": {
+      "sheet": "Deliverables",
+      "type": "deliverable",
+      "as_of": "2026-10-02",
+      "client": "Okafor Brandt Litigation Group",
+      "item": "Utilization, realization & collection dashboard",
+      "due": "2026-10-05",
+      "status": "Blocked",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-deliverable-kealoha-ai-policy",
+     "domain": "operations",
+     "title": "Deliverable — Kealoha Fitzgerald LLP: AI policy & governance review — first draft",
+     "content": "Kealoha Fitzgerald LLP: AI policy & governance review — first draft. Due Oct 9, 2026. Status: In progress. Owner: Aaron. Draft for the firm's AI steering committee.",
+     "source_url": "https://parkspacific.example/workbook/deliverables/kealoha-ai-policy",
+     "metadata": {
+      "sheet": "Deliverables",
+      "type": "deliverable",
+      "as_of": "2026-10-02",
+      "client": "Kealoha Fitzgerald LLP",
+      "item": "AI policy & governance review — first draft",
+      "due": "2026-10-09",
+      "status": "In progress",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-deliverable-vance-prework",
+     "domain": "operations",
+     "title": "Deliverable — Vance Whitcombe & Rao: Business Health Review pre-read: P&L, AR aging, WIP report",
+     "content": "Vance Whitcombe & Rao: Business Health Review pre-read: P&L, AR aging, WIP report. Due Oct 5, 2026. Status: Waiting on client. Owner: Aaron. Document request sent Sep 28. Needed before the Oct 7–8 review.",
+     "source_url": "https://parkspacific.example/workbook/deliverables/vance-prework",
+     "metadata": {
+      "sheet": "Deliverables",
+      "type": "deliverable",
+      "as_of": "2026-10-02",
+      "client": "Vance Whitcombe & Rao",
+      "item": "Business Health Review pre-read: P&L, AR aging, WIP report",
+      "due": "2026-10-05",
+      "status": "Waiting on client",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-deliverable-delacroix-baseline",
+     "domain": "operations",
+     "title": "Deliverable — Delacroix Sutton PC: Baseline financial health review",
+     "content": "Delacroix Sutton PC: Baseline financial health review. Due Oct 8, 2026. Status: In progress. Owner: Aaron. Week 2 deliverable of the Gold engagement.",
+     "source_url": "https://parkspacific.example/workbook/deliverables/delacroix-baseline",
+     "metadata": {
+      "sheet": "Deliverables",
+      "type": "deliverable",
+      "as_of": "2026-10-02",
+      "client": "Delacroix Sutton PC",
+      "item": "Baseline financial health review",
+      "due": "2026-10-08",
+      "status": "In progress",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-deliverable-pemberton-dash",
+     "domain": "operations",
+     "title": "Deliverable — Pemberton Ashe LLP: Monthly dashboard refresh — September",
+     "content": "Pemberton Ashe LLP: Monthly dashboard refresh — September. Due Oct 7, 2026. Status: Not started. Owner: Aaron. Needs September close numbers from the firm's controller.",
+     "source_url": "https://parkspacific.example/workbook/deliverables/pemberton-dash",
+     "metadata": {
+      "sheet": "Deliverables",
+      "type": "deliverable",
+      "as_of": "2026-10-02",
+      "client": "Pemberton Ashe LLP",
+      "item": "Monthly dashboard refresh — September",
+      "due": "2026-10-07",
+      "status": "Not started",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-deliverable-okafor-recs",
+     "domain": "operations",
+     "title": "Deliverable — Okafor Brandt Litigation Group: Draft recommendations",
+     "content": "Okafor Brandt Litigation Group: Draft recommendations. Due Oct 14, 2026. Status: Not started. Owner: Aaron. Depends on the realization dashboard.",
+     "source_url": "https://parkspacific.example/workbook/deliverables/okafor-recs",
+     "metadata": {
+      "sheet": "Deliverables",
+      "type": "deliverable",
+      "as_of": "2026-10-02",
+      "client": "Okafor Brandt Litigation Group",
+      "item": "Draft recommendations",
+      "due": "2026-10-14",
+      "status": "Not started",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-deliverable-ridgeway-close",
+     "domain": "operations",
+     "title": "Deliverable — Ridgeway Family Law: September bookkeeping close",
+     "content": "Ridgeway Family Law: September bookkeeping close. Due Oct 10, 2026. Status: Not started. Owner: Aaron. Legacy bookkeeping work.",
+     "source_url": "https://parkspacific.example/workbook/deliverables/ridgeway-close",
+     "metadata": {
+      "sheet": "Deliverables",
+      "type": "deliverable",
+      "as_of": "2026-10-02",
+      "client": "Ridgeway Family Law",
+      "item": "September bookkeeping close",
+      "due": "2026-10-10",
+      "status": "Not started",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-invoice-PPF-2609-01",
+     "domain": "finance",
+     "title": "Invoice PPF-2609-01 — Halvorsen & Mendes LLP, $3,400 (Paid)",
+     "content": "Invoice PPF-2609-01 to Halvorsen & Mendes LLP: September Platinum retainer. Amount $3,400. Issued Sep 1, 2026, due Sep 15, 2026. Status: Paid.",
+     "source_url": "https://parkspacific.example/workbook/invoices/PPF-2609-01",
+     "metadata": {
+      "sheet": "Invoices",
+      "type": "invoice",
+      "as_of": "2026-10-02",
+      "client": "Halvorsen & Mendes LLP",
+      "invoice": "PPF-2609-01",
+      "amount": 3400,
+      "currency": "USD",
+      "issued": "2026-09-01",
+      "due": "2026-09-15",
+      "status": "Paid",
+      "description": "September Platinum retainer"
+     }
+    },
+    {
+     "external_id": "sheet-invoice-PPF-2610-01",
+     "domain": "finance",
+     "title": "Invoice PPF-2610-01 — Halvorsen & Mendes LLP, $3,400 (Open)",
+     "content": "Invoice PPF-2610-01 to Halvorsen & Mendes LLP: October Platinum retainer. Amount $3,400. Issued Oct 1, 2026, due Oct 15, 2026. Status: Open.",
+     "source_url": "https://parkspacific.example/workbook/invoices/PPF-2610-01",
+     "metadata": {
+      "sheet": "Invoices",
+      "type": "invoice",
+      "as_of": "2026-10-02",
+      "client": "Halvorsen & Mendes LLP",
+      "invoice": "PPF-2610-01",
+      "amount": 3400,
+      "currency": "USD",
+      "issued": "2026-10-01",
+      "due": "2026-10-15",
+      "status": "Open",
+      "description": "October Platinum retainer"
+     }
+    },
+    {
+     "external_id": "sheet-invoice-PPF-2609-03",
+     "domain": "finance",
+     "title": "Invoice PPF-2609-03 — Kealoha Fitzgerald LLP, $5,000 (Overdue)",
+     "content": "Invoice PPF-2609-03 to Kealoha Fitzgerald LLP: September Platinum retainer + AI add-on. Amount $5,000. Issued Sep 1, 2026, due Sep 15, 2026. Status: Overdue.",
+     "source_url": "https://parkspacific.example/workbook/invoices/PPF-2609-03",
+     "metadata": {
+      "sheet": "Invoices",
+      "type": "invoice",
+      "as_of": "2026-10-02",
+      "client": "Kealoha Fitzgerald LLP",
+      "invoice": "PPF-2609-03",
+      "amount": 5000,
+      "currency": "USD",
+      "issued": "2026-09-01",
+      "due": "2026-09-15",
+      "status": "Overdue",
+      "description": "September Platinum retainer + AI add-on"
+     }
+    },
+    {
+     "external_id": "sheet-invoice-PPF-2610-03",
+     "domain": "finance",
+     "title": "Invoice PPF-2610-03 — Kealoha Fitzgerald LLP, $5,000 (Open)",
+     "content": "Invoice PPF-2610-03 to Kealoha Fitzgerald LLP: October Platinum retainer + AI add-on. Amount $5,000. Issued Oct 1, 2026, due Oct 15, 2026. Status: Open.",
+     "source_url": "https://parkspacific.example/workbook/invoices/PPF-2610-03",
+     "metadata": {
+      "sheet": "Invoices",
+      "type": "invoice",
+      "as_of": "2026-10-02",
+      "client": "Kealoha Fitzgerald LLP",
+      "invoice": "PPF-2610-03",
+      "amount": 5000,
+      "currency": "USD",
+      "issued": "2026-10-01",
+      "due": "2026-10-15",
+      "status": "Open",
+      "description": "October Platinum retainer + AI add-on"
+     }
+    },
+    {
+     "external_id": "sheet-invoice-PPF-2609-07",
+     "domain": "finance",
+     "title": "Invoice PPF-2609-07 — Okafor Brandt Litigation Group, $4,300 (Paid)",
+     "content": "Invoice PPF-2609-07 to Okafor Brandt Litigation Group: Gold engagement — 50% deposit. Amount $4,300. Issued Sep 8, 2026, due Sep 22, 2026. Status: Paid.",
+     "source_url": "https://parkspacific.example/workbook/invoices/PPF-2609-07",
+     "metadata": {
+      "sheet": "Invoices",
+      "type": "invoice",
+      "as_of": "2026-10-02",
+      "client": "Okafor Brandt Litigation Group",
+      "invoice": "PPF-2609-07",
+      "amount": 4300,
+      "currency": "USD",
+      "issued": "2026-09-08",
+      "due": "2026-09-22",
+      "status": "Paid",
+      "description": "Gold engagement — 50% deposit"
+     }
+    },
+    {
+     "external_id": "sheet-invoice-PPF-2609-09",
+     "domain": "finance",
+     "title": "Invoice PPF-2609-09 — Delacroix Sutton PC, $4,900 (Overdue)",
+     "content": "Invoice PPF-2609-09 to Delacroix Sutton PC: Gold engagement — 50% deposit. Amount $4,900. Issued Sep 24, 2026, due Oct 1, 2026. Status: Overdue.",
+     "source_url": "https://parkspacific.example/workbook/invoices/PPF-2609-09",
+     "metadata": {
+      "sheet": "Invoices",
+      "type": "invoice",
+      "as_of": "2026-10-02",
+      "client": "Delacroix Sutton PC",
+      "invoice": "PPF-2609-09",
+      "amount": 4900,
+      "currency": "USD",
+      "issued": "2026-09-24",
+      "due": "2026-10-01",
+      "status": "Overdue",
+      "description": "Gold engagement — 50% deposit"
+     }
+    },
+    {
+     "external_id": "sheet-invoice-PPF-2609-10",
+     "domain": "finance",
+     "title": "Invoice PPF-2609-10 — Vance Whitcombe & Rao, $1,500 (Paid)",
+     "content": "Invoice PPF-2609-10 to Vance Whitcombe & Rao: Business Health Review. Amount $1,500. Issued Sep 28, 2026, due Sep 28, 2026. Status: Paid.",
+     "source_url": "https://parkspacific.example/workbook/invoices/PPF-2609-10",
+     "metadata": {
+      "sheet": "Invoices",
+      "type": "invoice",
+      "as_of": "2026-10-02",
+      "client": "Vance Whitcombe & Rao",
+      "invoice": "PPF-2609-10",
+      "amount": 1500,
+      "currency": "USD",
+      "issued": "2026-09-28",
+      "due": "2026-09-28",
+      "status": "Paid",
+      "description": "Business Health Review"
+     }
+    },
+    {
+     "external_id": "sheet-invoice-PPF-2609-06",
+     "domain": "finance",
+     "title": "Invoice PPF-2609-06 — Pemberton Ashe LLP, $1,800 (Overdue)",
+     "content": "Invoice PPF-2609-06 to Pemberton Ashe LLP: September Platinum retainer. Amount $1,800. Issued Sep 1, 2026, due Sep 15, 2026. Status: Overdue.",
+     "source_url": "https://parkspacific.example/workbook/invoices/PPF-2609-06",
+     "metadata": {
+      "sheet": "Invoices",
+      "type": "invoice",
+      "as_of": "2026-10-02",
+      "client": "Pemberton Ashe LLP",
+      "invoice": "PPF-2609-06",
+      "amount": 1800,
+      "currency": "USD",
+      "issued": "2026-09-01",
+      "due": "2026-09-15",
+      "status": "Overdue",
+      "description": "September Platinum retainer"
+     }
+    },
+    {
+     "external_id": "sheet-invoice-PPF-2610-06",
+     "domain": "finance",
+     "title": "Invoice PPF-2610-06 — Pemberton Ashe LLP, $1,800 (Open)",
+     "content": "Invoice PPF-2610-06 to Pemberton Ashe LLP: October Platinum retainer. Amount $1,800. Issued Oct 1, 2026, due Oct 15, 2026. Status: Open.",
+     "source_url": "https://parkspacific.example/workbook/invoices/PPF-2610-06",
+     "metadata": {
+      "sheet": "Invoices",
+      "type": "invoice",
+      "as_of": "2026-10-02",
+      "client": "Pemberton Ashe LLP",
+      "invoice": "PPF-2610-06",
+      "amount": 1800,
+      "currency": "USD",
+      "issued": "2026-10-01",
+      "due": "2026-10-15",
+      "status": "Open",
+      "description": "October Platinum retainer"
+     }
+    },
+    {
+     "external_id": "sheet-invoice-PPF-2608-12",
+     "domain": "finance",
+     "title": "Invoice PPF-2608-12 — Ridgeway Family Law, $900 (Overdue)",
+     "content": "Invoice PPF-2608-12 to Ridgeway Family Law: August bookkeeping. Amount $900. Issued Aug 1, 2026, due Aug 15, 2026. Status: Overdue.",
+     "source_url": "https://parkspacific.example/workbook/invoices/PPF-2608-12",
+     "metadata": {
+      "sheet": "Invoices",
+      "type": "invoice",
+      "as_of": "2026-10-02",
+      "client": "Ridgeway Family Law",
+      "invoice": "PPF-2608-12",
+      "amount": 900,
+      "currency": "USD",
+      "issued": "2026-08-01",
+      "due": "2026-08-15",
+      "status": "Overdue",
+      "description": "August bookkeeping"
+     }
+    },
+    {
+     "external_id": "sheet-invoice-PPF-2609-12",
+     "domain": "finance",
+     "title": "Invoice PPF-2609-12 — Ridgeway Family Law, $900 (Paid)",
+     "content": "Invoice PPF-2609-12 to Ridgeway Family Law: September bookkeeping. Amount $900. Issued Sep 1, 2026, due Sep 15, 2026. Status: Paid.",
+     "source_url": "https://parkspacific.example/workbook/invoices/PPF-2609-12",
+     "metadata": {
+      "sheet": "Invoices",
+      "type": "invoice",
+      "as_of": "2026-10-02",
+      "client": "Ridgeway Family Law",
+      "invoice": "PPF-2609-12",
+      "amount": 900,
+      "currency": "USD",
+      "issued": "2026-09-01",
+      "due": "2026-09-15",
+      "status": "Paid",
+      "description": "September bookkeeping"
+     }
+    },
+    {
+     "external_id": "sheet-prospect-brightwater",
+     "domain": "sales",
+     "title": "Prospect — Brightwater Legal Group: Stage 2 — $17 risk report purchased",
+     "content": "Brightwater Legal Group (about $12M revenue). Ladder stage: Stage 2 — $17 risk report purchased. Proposed value $1,500. Next step: Offer the Business Health Review, due Sep 29, 2026. Bought the $17 risk and mitigation report Sep 22. Follow-up offering the Business Health Review was due Sep 29.",
+     "source_url": "https://parkspacific.example/workbook/prospects/brightwater",
+     "metadata": {
+      "sheet": "Prospects",
+      "type": "prospect",
+      "as_of": "2026-10-02",
+      "client": "Brightwater Legal Group",
+      "stage": "Stage 2 — $17 risk report purchased",
+      "value": 1500,
+      "next_step": "Offer the Business Health Review",
+      "follow_up": "2026-09-29",
+      "firm_revenue_m": 12,
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-prospect-castellan",
+     "domain": "sales",
+     "title": "Prospect — Castellan Moore LLP: Silver — BHR proposal sent",
+     "content": "Castellan Moore LLP (about $31M revenue). Ladder stage: Silver — BHR proposal sent. Proposed value $1,500. Next step: Follow-up call, due Oct 2, 2026. Business Health Review proposal sent Sep 25 to the firm administrator.",
+     "source_url": "https://parkspacific.example/workbook/prospects/castellan",
+     "metadata": {
+      "sheet": "Prospects",
+      "type": "prospect",
+      "as_of": "2026-10-02",
+      "client": "Castellan Moore LLP",
+      "stage": "Silver — BHR proposal sent",
+      "value": 1500,
+      "next_step": "Follow-up call",
+      "follow_up": "2026-10-02",
+      "firm_revenue_m": 31,
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-prospect-ironwood",
+     "domain": "sales",
+     "title": "Prospect — Ironwood Trial Lawyers: Gold — proposal sent",
+     "content": "Ironwood Trial Lawyers (about $8M revenue). Ladder stage: Gold — proposal sent. Proposed value $7,400. Next step: Decision expected, due Oct 6, 2026. Completed a Business Health Review in August. Gold proposal for $7,400 sent Sep 18.",
+     "source_url": "https://parkspacific.example/workbook/prospects/ironwood",
+     "metadata": {
+      "sheet": "Prospects",
+      "type": "prospect",
+      "as_of": "2026-10-02",
+      "client": "Ironwood Trial Lawyers",
+      "stage": "Gold — proposal sent",
+      "value": 7400,
+      "next_step": "Decision expected",
+      "follow_up": "2026-10-06",
+      "firm_revenue_m": 8,
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-prospect-sato",
+     "domain": "sales",
+     "title": "Prospect — Sato Whitfield PLLC: Stage 1 — one-pager download",
+     "content": "Sato Whitfield PLLC (about $16M revenue). Ladder stage: Stage 1 — one-pager download. No proposal yet. Next step: Send the $17 risk report offer, due Oct 9, 2026. Downloaded the one-page risk giveaway from a LinkedIn post on Sep 30.",
+     "source_url": "https://parkspacific.example/workbook/prospects/sato",
+     "metadata": {
+      "sheet": "Prospects",
+      "type": "prospect",
+      "as_of": "2026-10-02",
+      "client": "Sato Whitfield PLLC",
+      "stage": "Stage 1 — one-pager download",
+      "value": 0,
+      "next_step": "Send the $17 risk report offer",
+      "follow_up": "2026-10-09",
+      "firm_revenue_m": 16,
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-task-t1",
+     "domain": "company",
+     "title": "Task **** Send Okafor Brandt a revised dashboard date if the WIP export is still missing",
+     "content": "To-do (priority ****): Send Okafor Brandt a revised dashboard date if the WIP export is still missing. Due Oct 3, 2026. Status: Open. Client: Okafor Brandt Litigation Group.",
+     "source_url": "https://parkspacific.example/workbook/tasks/t1",
+     "metadata": {
+      "sheet": "Tasks",
+      "type": "task",
+      "as_of": "2026-10-02",
+      "client": "Okafor Brandt Litigation Group",
+      "item": "Send Okafor Brandt a revised dashboard date if the WIP export is still missing",
+      "priority": "****",
+      "due": "2026-10-03",
+      "status": "Open",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-task-t2",
+     "domain": "company",
+     "title": "Task **** Kealoha Fitzgerald: payment reminder for invoice PPF-2609-03",
+     "content": "To-do (priority ****): Kealoha Fitzgerald: payment reminder for invoice PPF-2609-03. Due Oct 2, 2026. Status: Open. Client: Kealoha Fitzgerald LLP.",
+     "source_url": "https://parkspacific.example/workbook/tasks/t2",
+     "metadata": {
+      "sheet": "Tasks",
+      "type": "task",
+      "as_of": "2026-10-02",
+      "client": "Kealoha Fitzgerald LLP",
+      "item": "Kealoha Fitzgerald: payment reminder for invoice PPF-2609-03",
+      "priority": "****",
+      "due": "2026-10-02",
+      "status": "Open",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-task-t3",
+     "domain": "company",
+     "title": "Task *** Prepare Business Health Review agenda for Vance Whitcombe & Rao",
+     "content": "To-do (priority ***): Prepare Business Health Review agenda for Vance Whitcombe & Rao. Due Oct 6, 2026. Status: Open. Client: Vance Whitcombe & Rao.",
+     "source_url": "https://parkspacific.example/workbook/tasks/t3",
+     "metadata": {
+      "sheet": "Tasks",
+      "type": "task",
+      "as_of": "2026-10-02",
+      "client": "Vance Whitcombe & Rao",
+      "item": "Prepare Business Health Review agenda for Vance Whitcombe & Rao",
+      "priority": "***",
+      "due": "2026-10-06",
+      "status": "Open",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-task-t4",
+     "domain": "company",
+     "title": "Task *** Brightwater Legal Group: send the Business Health Review offer",
+     "content": "To-do (priority ***): Brightwater Legal Group: send the Business Health Review offer. Due Sep 29, 2026. Status: Open. Client: Brightwater Legal Group.",
+     "source_url": "https://parkspacific.example/workbook/tasks/t4",
+     "metadata": {
+      "sheet": "Tasks",
+      "type": "task",
+      "as_of": "2026-10-02",
+      "client": "Brightwater Legal Group",
+      "item": "Brightwater Legal Group: send the Business Health Review offer",
+      "priority": "***",
+      "due": "2026-09-29",
+      "status": "Open",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-task-t5",
+     "domain": "company",
+     "title": "Task ** Write the Ridgeway bookkeeping referral transition plan",
+     "content": "To-do (priority **): Write the Ridgeway bookkeeping referral transition plan. Due Nov 1, 2026. Status: Open. Client: Ridgeway Family Law.",
+     "source_url": "https://parkspacific.example/workbook/tasks/t5",
+     "metadata": {
+      "sheet": "Tasks",
+      "type": "task",
+      "as_of": "2026-10-02",
+      "client": "Ridgeway Family Law",
+      "item": "Write the Ridgeway bookkeeping referral transition plan",
+      "priority": "**",
+      "due": "2026-11-01",
+      "status": "Open",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-task-t6",
+     "domain": "company",
+     "title": "Task ** Schedule Q4 quarterly reviews with Platinum clients",
+     "content": "To-do (priority **): Schedule Q4 quarterly reviews with Platinum clients. Due Oct 15, 2026. Status: Open.",
+     "source_url": "https://parkspacific.example/workbook/tasks/t6",
+     "metadata": {
+      "sheet": "Tasks",
+      "type": "task",
+      "as_of": "2026-10-02",
+      "client": "",
+      "item": "Schedule Q4 quarterly reviews with Platinum clients",
+      "priority": "**",
+      "due": "2026-10-15",
+      "status": "Open",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-task-t7",
+     "domain": "company",
+     "title": "Task * File September receipts and reconcile the business card",
+     "content": "To-do (priority *): File September receipts and reconcile the business card. Due Oct 10, 2026. Status: Open.",
+     "source_url": "https://parkspacific.example/workbook/tasks/t7",
+     "metadata": {
+      "sheet": "Tasks",
+      "type": "task",
+      "as_of": "2026-10-02",
+      "client": "",
+      "item": "File September receipts and reconcile the business card",
+      "priority": "*",
+      "due": "2026-10-10",
+      "status": "Open",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-task-t8",
+     "domain": "company",
+     "title": "Task *** Halvorsen & Mendes risk meeting deck",
+     "content": "To-do (priority ***): Halvorsen & Mendes risk meeting deck. Due Oct 1, 2026. Status: Done. Client: Halvorsen & Mendes LLP.",
+     "source_url": "https://parkspacific.example/workbook/tasks/t8",
+     "metadata": {
+      "sheet": "Tasks",
+      "type": "task",
+      "as_of": "2026-10-02",
+      "client": "Halvorsen & Mendes LLP",
+      "item": "Halvorsen & Mendes risk meeting deck",
+      "priority": "***",
+      "due": "2026-10-01",
+      "status": "Done",
+      "owner": "Aaron"
+     }
+    },
+    {
+     "external_id": "sheet-note-okafor-0930",
+     "domain": "company",
+     "title": "Note — Okafor Brandt Litigation Group: Weekly check-in (Sep 30, 2026)",
+     "content": "Weekly check-in with Okafor Brandt Litigation Group, Sep 30, 2026. Managing partner promised the WIP export from the practice management system by Oct 2. We committed to deliver the realization dashboard by Oct 5. Early read: about $410,000 of unbilled WIP is older than 90 days.",
+     "source_url": "https://parkspacific.example/workbook/notes/okafor-0930",
+     "metadata": {
+      "sheet": "Notes",
+      "type": "note",
+      "as_of": "2026-10-02",
+      "client": "Okafor Brandt Litigation Group",
+      "date": "2026-09-30",
+      "meeting": "Weekly check-in"
+     }
+    },
+    {
+     "external_id": "sheet-note-kealoha-0929",
+     "domain": "company",
+     "title": "Note — Kealoha Fitzgerald LLP: AI steering committee (Sep 29, 2026)",
+     "content": "AI steering committee with Kealoha Fitzgerald LLP, Sep 29, 2026. We committed the AI policy draft by Oct 9. The managing partner said the September invoice was approved and would be paid that week.",
+     "source_url": "https://parkspacific.example/workbook/notes/kealoha-0929",
+     "metadata": {
+      "sheet": "Notes",
+      "type": "note",
+      "as_of": "2026-10-02",
+      "client": "Kealoha Fitzgerald LLP",
+      "date": "2026-09-29",
+      "meeting": "AI steering committee"
+     }
+    },
+    {
+     "external_id": "sheet-note-delacroix-0924",
+     "domain": "company",
+     "title": "Note — Delacroix Sutton PC: Gold kickoff (Sep 24, 2026)",
+     "content": "Gold kickoff with Delacroix Sutton PC, Sep 24, 2026. Agreed the 50% deposit is paid before the baseline review is delivered. Firm CFO is the day-to-day contact.",
+     "source_url": "https://parkspacific.example/workbook/notes/delacroix-0924",
+     "metadata": {
+      "sheet": "Notes",
+      "type": "note",
+      "as_of": "2026-10-02",
+      "client": "Delacroix Sutton PC",
+      "date": "2026-09-24",
+      "meeting": "Gold kickoff"
+     }
+    },
+    {
+     "external_id": "sheet-note-capacity-1001",
+     "domain": "company",
+     "title": "Note — ParksPacific Financial: Internal capacity review (Oct 1, 2026)",
+     "content": "Internal capacity review with ParksPacific Financial, Oct 1, 2026. October holds a two-day Business Health Review, two Gold engagements and three Platinum monthly meetings, which fills the part-time calendar through Oct 16. Ridgeway bookkeeping moves to a referral partner; transition plan due by Nov 1.",
+     "source_url": "https://parkspacific.example/workbook/notes/capacity-1001",
+     "metadata": {
+      "sheet": "Notes",
+      "type": "note",
+      "as_of": "2026-10-02",
+      "client": "ParksPacific Financial",
+      "date": "2026-10-01",
+      "meeting": "Internal capacity review"
+     }
+    }
+   ]
+  }
+ ],
+ "issues": [
+  {
+   "title": "Okafor Brandt dashboard blocked on WIP export",
+   "consequence": "The realization dashboard is due Oct 5 and the promised WIP export has not arrived; draft recommendations on Oct 14 depend on it.",
+   "category": "Customers",
+   "priority": "high",
+   "owner": "Aaron",
+   "due": "2026-10-05",
+   "status": "Waiting on the client's WIP export",
+   "action": "Call the managing partner today to get the export, or agree a revised dashboard date in writing.",
+   "customer": "Okafor Brandt Litigation Group",
+   "evidence": [
+    "sheet-deliverable-okafor-dashboard",
+    "sheet-note-okafor-0930",
+    "sheet-deliverable-okafor-recs",
+    "sheet-task-t1"
+   ]
+  },
+  {
+   "title": "Kealoha September invoice overdue",
+   "consequence": "$5,000 is past due despite the managing partner's Sep 29 assurance, and the October invoice is already open.",
+   "category": "Revenue",
+   "priority": "high",
+   "owner": "Aaron",
+   "due": "2026-10-05",
+   "status": "Promised payment not received",
+   "action": "Send a courteous reminder referencing the Sep 29 conversation before the AI policy draft goes out.",
+   "customer": "Kealoha Fitzgerald LLP",
+   "evidence": [
+    "sheet-invoice-PPF-2609-03",
+    "sheet-note-kealoha-0929",
+    "sheet-invoice-PPF-2610-03"
+   ]
+  },
+  {
+   "title": "Delacroix deposit unpaid before baseline review",
+   "consequence": "The kickoff agreement requires the $4,900 deposit before the Oct 8 baseline review is delivered.",
+   "category": "Revenue",
+   "priority": "medium",
+   "owner": "Aaron",
+   "due": "2026-10-08",
+   "status": "Deposit past its Oct 1 due date",
+   "action": "Confirm payment timing with the firm CFO this week.",
+   "customer": "Delacroix Sutton PC",
+   "evidence": [
+    "sheet-invoice-PPF-2609-09",
+    "sheet-note-delacroix-0924",
+    "sheet-deliverable-delacroix-baseline"
+   ]
+  },
+  {
+   "title": "Brightwater follow-up missed after $17 purchase",
+   "consequence": "A qualified $17 buyer has had no Business Health Review offer three days after the planned follow-up.",
+   "category": "Customers",
+   "priority": "medium",
+   "owner": "Aaron",
+   "due": "2026-09-29",
+   "status": "Follow-up overdue",
+   "action": "Send the Business Health Review offer with one clear call to action.",
+   "customer": "Brightwater Legal Group",
+   "evidence": [
+    "sheet-prospect-brightwater",
+    "sheet-task-t4"
+   ]
+  },
+  {
+   "title": "October advisory calendar near capacity",
+   "consequence": "The calendar is full through Oct 16, so a Gold win from Ironwood would need a start date after that.",
+   "category": "People",
+   "priority": "medium",
+   "owner": "Aaron",
+   "due": "2026-10-06",
+   "status": "Booked through Oct 16",
+   "action": "Decide the earliest Ironwood start date before their Oct 6 decision.",
+   "customer": "",
+   "evidence": [
+    "sheet-note-capacity-1001",
+    "sheet-prospect-ironwood",
+    "sheet-deliverable-vance-prework"
+   ]
+  }
+ ]
+}
