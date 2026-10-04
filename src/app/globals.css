@@ -200,7 +200,11 @@
   .pp-scroll {
     scrollbar-width: thin;
     scrollbar-color: var(--gold) var(--lavender);
-    overscroll-behavior: contain;
+    /* Let the page scroll once the list reaches its top or bottom, so the
+       start of a list can never be stranded under the sticky menu bar. */
+    overscroll-behavior: auto;
+    /* Short enough that the whole panel fits below the menu bar. */
+    max-height: min(32rem, calc(100dvh - 14rem));
   }
   .pp-scroll::-webkit-scrollbar {
     width: 10px;

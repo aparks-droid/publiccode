@@ -42,3 +42,22 @@ test("dates in common formats parse to the same day", () => {
   assert.ok(isNaN(daysBetween(from, "")));
   assert.ok(isNaN(daysBetween(from, "someday")));
 });
+
+test("a Type column of the owner's own categories still reads as tasks", () => {
+  const list = rows(
+    "id,Type,Task,Status\n1,Marketing,Post on LinkedIn,\n2,Admin,File receipts,\n3,Client,Send dashboard,x\n",
+    "To do list",
+  );
+  assert.equal(sheetRows(list, "task").length, 3);
+  assert.equal(sheetRows(list, "task").filter((r) => isDone(r.metadata.status)).length, 1);
+});
+
+test("the tab decides: every row on a to-do tab is a to-do, whatever Type says", () => {
+  const list = rows(
+    "id,Type,Task\n1,Invoice follow-up,Chase the Kealoha invoice\n2,Meeting notes,Write up the call\n3,,Plain task\n",
+    "To do list",
+  );
+  assert.equal(sheetRows(list, "task").length, 3);
+  // Type still applies on a tab of no known kind.
+  assert.equal(sheetRows(rows("id,type,item\n1,invoice,X\n", "Misc"), "invoice").length, 1);
+});

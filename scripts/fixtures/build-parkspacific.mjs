@@ -83,19 +83,19 @@ for (const [id, firm, revenueM, stage, value, next, follow, detail] of prospects
 
 // Task list tab — the owner's to-do list, priority by leading asterisks (**** highest).
 const tasks = [
-  ["t1", "****", "Send Okafor Brandt a revised dashboard date if the WIP export is still missing", "2026-10-03", "Open", "Okafor Brandt Litigation Group"],
-  ["t2", "****", "Kealoha Fitzgerald: payment reminder for invoice PPF-2609-03", "2026-10-02", "Open", "Kealoha Fitzgerald LLP"],
-  ["t3", "***", "Prepare Business Health Review agenda for Vance Whitcombe & Rao", "2026-10-06", "Open", "Vance Whitcombe & Rao"],
-  ["t4", "***", "Brightwater Legal Group: send the Business Health Review offer", "2026-09-29", "Open", "Brightwater Legal Group"],
-  ["t5", "**", "Write the Ridgeway bookkeeping referral transition plan", "2026-11-01", "Open", "Ridgeway Family Law"],
-  ["t6", "**", "Schedule Q4 quarterly reviews with Platinum clients", "2026-10-15", "Open", ""],
-  ["t7", "*", "File September receipts and reconcile the business card", "2026-10-10", "Open", ""],
-  ["t8", "***", "Halvorsen & Mendes risk meeting deck", "2026-10-01", "Done", "Halvorsen & Mendes LLP"],
+  ["t1", "****", "Send Okafor Brandt a revised dashboard date if the WIP export is still missing", "2026-10-03", "Open", "CLIENT DELIVERY"],
+  ["t2", "****", "Kealoha Fitzgerald: payment reminder for invoice PPF-2609-03", "2026-10-02", "Open", "COLLECTIONS"],
+  ["t3", "***", "Prepare Business Health Review agenda for Vance Whitcombe & Rao", "2026-10-06", "Open", "CLIENT DELIVERY"],
+  ["t4", "***", "Brightwater Legal Group: send the Business Health Review offer", "2026-09-29", "Open", "FINISH SALES FUNNEL"],
+  ["t5", "**", "Write the Ridgeway bookkeeping referral transition plan", "2026-11-01", "Open", "ADMINISTRATIVE"],
+  ["t6", "**", "Schedule Q4 quarterly reviews with Platinum clients", "2026-12-31", "Open", "CLIENT DELIVERY"],
+  ["t7", "*", "File September receipts and reconcile the business card", "", "Open", "ADMINISTRATIVE"],
+  ["t8", "***", "Halvorsen & Mendes risk meeting deck", "2026-10-01", "Done", "CLIENT DELIVERY"],
 ];
-for (const [id, priority, item, due, status, firm] of tasks)
+for (const [id, priority, item, due, status, category] of tasks)
   add("task", id, "company", `Task ${priority} ${item}`,
-    `To-do (priority ${priority}): ${item}. Due ${pretty(due)}. Status: ${status}.${firm ? ` Client: ${firm}.` : ""}`,
-    { client: firm, item, priority, due, status, owner: "Aaron" });
+    `To-do (priority ${priority}): ${item}.${due ? ` Due ${pretty(due)}.` : " No due date."} Status: ${status}. Category: ${category}.`,
+    { item, priority, ...(due ? { due } : {}), status, category, owner: "Aaron" });
 
 // Notes tab — meeting notes and commitments.
 const notes = [
