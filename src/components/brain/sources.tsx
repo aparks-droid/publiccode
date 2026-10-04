@@ -345,7 +345,7 @@ export function Sources({ brain }: { brain: Brain }) {
                 </Badge>
                 <span className="font-medium">{r.title}</span>
                 {r.source_url &&
-                  !r.source_url.includes("driftwood.example") && (
+                  !/\.example\//.test(r.source_url) && (
                     <a
                       className="ml-auto underline"
                       href={r.source_url}

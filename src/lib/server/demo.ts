@@ -1,4 +1,4 @@
-import demo from "../../../demo/driftwood-coffee.json";
+import demo from "../../../demo/parkspacific-financial.json";
 export function demoSnapshot() {
   const sources = demo.sources.map((s) => ({
     id: `demo-${s.kind}`,
